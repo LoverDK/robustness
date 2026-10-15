@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" modified="2026-09-27T00:00:00.000Z" agent="Codex" version="24.7.17">
+  <diagram id="structshift-fig2" name="Page-1">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="f2_title" value="StructShift construction and evaluation pipeline" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#263238;fontSize=28;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="35" y="18" width="1730" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_seed" value="1  Symbolic seed graph&lt;br&gt;&lt;br&gt;Depth • branching&lt;br&gt;operators • answer" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fontColor=#263238;fontSize=17;spacing=12;verticalAlign=top;fillColor=#EAF2F8;strokeColor=#377EB8;" vertex="1" parent="1">
+          <mxGeometry x="35" y="115" width="290" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_solve" value="2  Solver + trace&lt;br&gt;&lt;br&gt;Deterministic solution&lt;br&gt;retain trace metadata" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fontColor=#263238;fontSize=17;spacing=12;verticalAlign=top;fillColor=#E8F5EF;strokeColor=#1B9E77;" vertex="1" parent="1">
+          <mxGeometry x="375" y="115" width="290" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_render" value="3  Natural-language renderer&lt;br&gt;&lt;br&gt;Templates • lexical variation&lt;br&gt;consistency checks" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fontColor=#263238;fontSize=17;spacing=12;verticalAlign=top;fillColor=#EAF2F8;strokeColor=#377EB8;" vertex="1" parent="1">
+          <mxGeometry x="715" y="115" width="290" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_transform" value="4  Transform grammar&lt;br&gt;&lt;br&gt;Order • depth/branching&lt;br&gt;composition • side question" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fontColor=#263238;fontSize=17;spacing=12;verticalAlign=top;fillColor=#FCEBDD;strokeColor=#D95F02;" vertex="1" parent="1">
+          <mxGeometry x="1055" y="115" width="290" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_pair" value="5  Candidate pair&lt;br&gt;&lt;br&gt;Clean + transformed item&lt;br&gt;transform metadata" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fontColor=#263238;fontSize=17;spacing=12;verticalAlign=top;fillColor=#FCEBDD;strokeColor=#D95F02;" vertex="1" parent="1">
+          <mxGeometry x="1395" y="115" width="290" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_seed_to_f2_solve" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#263238;strokeWidth=2;dashed=0;" edge="1" parent="1" source="f2_seed" target="f2_solve">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_solve_to_f2_render" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#263238;strokeWidth=2;dashed=0;" edge="1" parent="1" source="f2_solve" target="f2_render">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_render_to_f2_transform" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#263238;strokeWidth=2;dashed=0;" edge="1" parent="1" source="f2_render" target="f2_transform">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_transform_to_f2_pair" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#263238;strokeWidth=2;dashed=0;" edge="1" parent="1" source="f2_transform" target="f2_pair">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_gate" value="Validation gate&lt;br&gt;&lt;br&gt;re-solve transformed graph&lt;br&gt;&lt;b&gt;Solve(Tδ(G), q) = Solve(G, q)&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fontColor=#263238;fontSize=17;spacing=12;verticalAlign=top;fillColor=#E8F5EF;strokeColor=#1B9E77;fontSize=18;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="625" y="365" width="550" height="155" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_gate_in" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#1B9E77;strokeWidth=2;dashed=0;" edge="1" parent="1" source="f2_pair" target="f2_gate">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_accept" value="Accepted candidates&lt;br&gt;answer preserved + valid text&lt;br&gt;&lt;br&gt;duplicate check&lt;br&gt;nuisance matching" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fontColor=#263238;fontSize=17;spacing=12;verticalAlign=top;fillColor=#EEEAF8;strokeColor=#7570B3;" vertex="1" parent="1">
+          <mxGeometry x="150" y="610" width="350" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_train" value="Train-only adaptation&lt;br&gt;clean replay + random augmentation&lt;br&gt;or error-guided LoRA / QLoRA" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fontColor=#263238;fontSize=17;spacing=12;verticalAlign=top;fillColor=#FCEBDD;strokeColor=#D95F02;" vertex="1" parent="1">
+          <mxGeometry x="540" y="610" width="350" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_test" value="Held-out test pool&lt;br&gt;fresh seeds and held-out structures&lt;br&gt;&lt;b&gt;never enters hard mining&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fontColor=#263238;fontSize=17;spacing=12;verticalAlign=top;fillColor=#E8F5EF;strokeColor=#1B9E77;" vertex="1" parent="1">
+          <mxGeometry x="930" y="610" width="350" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_reject" value="Rejected candidates&lt;br&gt;answer changed / malformed / ambiguous&lt;br&gt;&lt;br&gt;rejection log" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fontColor=#263238;fontSize=17;spacing=12;verticalAlign=top;fillColor=#FBE9E7;strokeColor=#D73027;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="610" width="350" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_accept_edge" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#1B9E77;strokeWidth=2;dashed=0;" edge="1" parent="1" source="f2_gate" target="f2_accept">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_train_edge" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#D95F02;strokeWidth=2;dashed=0;" edge="1" parent="1" source="f2_accept" target="f2_train">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_test_edge" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#1B9E77;strokeWidth=2;dashed=1;" edge="1" parent="1" source="f2_accept" target="f2_test">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_reject_edge" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#D73027;strokeWidth=2;dashed=0;" edge="1" parent="1" source="f2_gate" target="f2_reject">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_iid" value="IID&lt;br&gt;same graph distribution" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fontColor=#263238;fontSize=17;spacing=12;verticalAlign=top;fillColor=#EEEAF8;strokeColor=#7570B3;fontSize=15;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="400" width="145" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_test_f2_iid" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#7570B3;strokeWidth=2;dashed=0;" edge="1" parent="1" source="f2_test" target="f2_iid">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_surface" value="Surface-OOD&lt;br&gt;new wording / entities" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fontColor=#263238;fontSize=17;spacing=12;verticalAlign=top;fillColor=#EEEAF8;strokeColor=#7570B3;fontSize=15;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="400" width="145" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_test_f2_surface" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#7570B3;strokeWidth=2;dashed=0;" edge="1" parent="1" source="f2_test" target="f2_surface">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_struct" value="Structure-OOD&lt;br&gt;held-out structure axis" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fontColor=#263238;fontSize=17;spacing=12;verticalAlign=top;fillColor=#EEEAF8;strokeColor=#7570B3;fontSize=15;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1460" y="400" width="145" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_test_f2_struct" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#7570B3;strokeWidth=2;dashed=0;" edge="1" parent="1" source="f2_test" target="f2_struct">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_comp" value="Composition-OOD&lt;br&gt;held-out operator combination" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fontColor=#263238;fontSize=17;spacing=12;verticalAlign=top;fillColor=#EEEAF8;strokeColor=#7570B3;fontSize=15;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="400" width="145" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_test_f2_comp" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#7570B3;strokeWidth=2;dashed=0;" edge="1" parent="1" source="f2_test" target="f2_comp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_meta" value="Metadata stream: source graph • transform sequence • perturbation budget • solver trace • nuisance statistics" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#607D8B;fontSize=14;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="790" width="1710" height="32" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

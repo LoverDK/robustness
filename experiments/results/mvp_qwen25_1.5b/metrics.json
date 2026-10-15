@@ -1,0 +1,15 @@
+{
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "n_records": 200,
+  "cell_accuracy": {
+    "seen_canonical": 0.76,
+    "seen_shifted": 0.76,
+    "unseen_canonical": 0.76,
+    "unseen_shifted": 0.76
+  },
+  "SS": 1.0,
+  "SF": 0.0,
+  "Delta_T": 0.0,
+  "label_distribution_per_cell": {"yes": 38, "no": 12},
+  "interpretation": "Exploratory pipeline check only; majority-label behavior prevents a structural robustness claim."
+}

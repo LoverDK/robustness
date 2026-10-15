@@ -1,0 +1,2554 @@
+{
+  "config": {
+    "seed": 0,
+    "n_boot": 2000,
+    "alpha": 0.05,
+    "tolerance_acc": 1e-12,
+    "pair_key": "graph_hash",
+    "latent_order": "sorted graph_hash",
+    "interval": "[point, low, high]",
+    "training": false,
+    "loaded_model": false
+  },
+  "quant": {
+    "b0": "bf16-eval",
+    "trained": "nf4",
+    "pilot_mix15_has_b0": false
+  },
+  "definitions": {
+    "SF": "P(reversed wrong | aligned right)",
+    "delta_T": "acc(seen, p) - acc(unseen, p); pools resampled independently",
+    "interaction": "delta_T(reversed) - delta_T(aligned) on the same bootstrap draw"
+  },
+  "isolation": {
+    "ok": true,
+    "overlaps": {
+      "train__val": 0,
+      "train__test_seen": 0,
+      "train__test_unseen": 0,
+      "val__test_seen": 0,
+      "val__test_unseen": 0,
+      "train__e0_seen_depth2": 0,
+      "val__e0_seen_depth2": 0,
+      "test_seen__e0_seen_depth2": 0,
+      "test_unseen__e0_seen_depth2": 0,
+      "test_seen__test_unseen": 0
+    },
+    "shifted_presentation": "reversed",
+    "test_seen_n": 200,
+    "test_unseen_n": 200,
+    "test_seen_n_yes": 100,
+    "test_seen_n_no": 100,
+    "test_unseen_n_yes": 100,
+    "test_unseen_n_no": 100
+  },
+  "cell_check": {
+    "all_match": true,
+    "n_cells": 36,
+    "max_abs_acc_diff": 0.0,
+    "tolerance": 1e-12,
+    "uniform_counts": {
+      "same": true,
+      "n": 200,
+      "n_yes": 100,
+      "n_no": 100
+    },
+    "rows": [
+      {
+        "cell": "seen_aligned",
+        "acc": 0.645,
+        "original_acc": 0.645,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot",
+        "condition": "b0"
+      },
+      {
+        "cell": "seen_shifted",
+        "acc": 0.685,
+        "original_acc": 0.685,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot",
+        "condition": "b0"
+      },
+      {
+        "cell": "unseen_aligned",
+        "acc": 0.64,
+        "original_acc": 0.64,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot",
+        "condition": "b0"
+      },
+      {
+        "cell": "unseen_shifted",
+        "acc": 0.55,
+        "original_acc": 0.55,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot",
+        "condition": "b0"
+      },
+      {
+        "cell": "seen_aligned",
+        "acc": 0.97,
+        "original_acc": 0.97,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot",
+        "condition": "b1"
+      },
+      {
+        "cell": "seen_shifted",
+        "acc": 0.73,
+        "original_acc": 0.73,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot",
+        "condition": "b1"
+      },
+      {
+        "cell": "unseen_aligned",
+        "acc": 0.88,
+        "original_acc": 0.88,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot",
+        "condition": "b1"
+      },
+      {
+        "cell": "unseen_shifted",
+        "acc": 0.645,
+        "original_acc": 0.645,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot",
+        "condition": "b1"
+      },
+      {
+        "cell": "seen_aligned",
+        "acc": 0.985,
+        "original_acc": 0.985,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot",
+        "condition": "b2"
+      },
+      {
+        "cell": "seen_shifted",
+        "acc": 0.895,
+        "original_acc": 0.895,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot",
+        "condition": "b2"
+      },
+      {
+        "cell": "unseen_aligned",
+        "acc": 0.79,
+        "original_acc": 0.79,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot",
+        "condition": "b2"
+      },
+      {
+        "cell": "unseen_shifted",
+        "acc": 0.705,
+        "original_acc": 0.705,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot",
+        "condition": "b2"
+      },
+      {
+        "cell": "seen_aligned",
+        "acc": 0.975,
+        "original_acc": 0.975,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot",
+        "condition": "b3"
+      },
+      {
+        "cell": "seen_shifted",
+        "acc": 0.9,
+        "original_acc": 0.9,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot",
+        "condition": "b3"
+      },
+      {
+        "cell": "unseen_aligned",
+        "acc": 0.81,
+        "original_acc": 0.81,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot",
+        "condition": "b3"
+      },
+      {
+        "cell": "unseen_shifted",
+        "acc": 0.68,
+        "original_acc": 0.68,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot",
+        "condition": "b3"
+      },
+      {
+        "cell": "seen_aligned",
+        "acc": 0.885,
+        "original_acc": 0.885,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot",
+        "condition": "ours"
+      },
+      {
+        "cell": "seen_shifted",
+        "acc": 0.91,
+        "original_acc": 0.91,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot",
+        "condition": "ours"
+      },
+      {
+        "cell": "unseen_aligned",
+        "acc": 0.745,
+        "original_acc": 0.745,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot",
+        "condition": "ours"
+      },
+      {
+        "cell": "unseen_shifted",
+        "acc": 0.77,
+        "original_acc": 0.77,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot",
+        "condition": "ours"
+      },
+      {
+        "cell": "seen_aligned",
+        "acc": 0.965,
+        "original_acc": 0.965,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot_mix15",
+        "condition": "b1"
+      },
+      {
+        "cell": "seen_shifted",
+        "acc": 0.775,
+        "original_acc": 0.775,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot_mix15",
+        "condition": "b1"
+      },
+      {
+        "cell": "unseen_aligned",
+        "acc": 0.8,
+        "original_acc": 0.8,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot_mix15",
+        "condition": "b1"
+      },
+      {
+        "cell": "unseen_shifted",
+        "acc": 0.625,
+        "original_acc": 0.625,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot_mix15",
+        "condition": "b1"
+      },
+      {
+        "cell": "seen_aligned",
+        "acc": 0.965,
+        "original_acc": 0.965,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot_mix15",
+        "condition": "b2"
+      },
+      {
+        "cell": "seen_shifted",
+        "acc": 0.905,
+        "original_acc": 0.905,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot_mix15",
+        "condition": "b2"
+      },
+      {
+        "cell": "unseen_aligned",
+        "acc": 0.85,
+        "original_acc": 0.85,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot_mix15",
+        "condition": "b2"
+      },
+      {
+        "cell": "unseen_shifted",
+        "acc": 0.705,
+        "original_acc": 0.705,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot_mix15",
+        "condition": "b2"
+      },
+      {
+        "cell": "seen_aligned",
+        "acc": 0.975,
+        "original_acc": 0.975,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot_mix15",
+        "condition": "b3"
+      },
+      {
+        "cell": "seen_shifted",
+        "acc": 0.875,
+        "original_acc": 0.875,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot_mix15",
+        "condition": "b3"
+      },
+      {
+        "cell": "unseen_aligned",
+        "acc": 0.79,
+        "original_acc": 0.79,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot_mix15",
+        "condition": "b3"
+      },
+      {
+        "cell": "unseen_shifted",
+        "acc": 0.64,
+        "original_acc": 0.64,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot_mix15",
+        "condition": "b3"
+      },
+      {
+        "cell": "seen_aligned",
+        "acc": 0.895,
+        "original_acc": 0.895,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot_mix15",
+        "condition": "ours"
+      },
+      {
+        "cell": "seen_shifted",
+        "acc": 0.84,
+        "original_acc": 0.84,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot_mix15",
+        "condition": "ours"
+      },
+      {
+        "cell": "unseen_aligned",
+        "acc": 0.785,
+        "original_acc": 0.785,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot_mix15",
+        "condition": "ours"
+      },
+      {
+        "cell": "unseen_shifted",
+        "acc": 0.7,
+        "original_acc": 0.7,
+        "abs_diff": 0.0,
+        "n": 200,
+        "n_yes": 100,
+        "n_no": 100,
+        "original_n": 200,
+        "original_n_yes": 100,
+        "original_n_no": 100,
+        "match": true,
+        "round": "pilot_mix15",
+        "condition": "ours"
+      }
+    ]
+  },
+  "rounds": {
+    "pilot": {
+      "has_b0": true,
+      "conditions": {
+        "b0": {
+          "quant": "bf16-eval",
+          "logic": "build/e1/pilot/b0/logic.jsonl",
+          "metrics": "experiments/e1/pilot/b0/metrics.json",
+          "n_logic_lines": 896,
+          "n_logic_uid": 800,
+          "n_duplicate_uid": 96,
+          "n_identical_duplicate_uid": 74,
+          "n_text_conflict_uid": 22,
+          "n_answer_conflict_uid": 5,
+          "acc": {
+            "seen": {
+              "aligned": [
+                0.645,
+                0.575,
+                0.715
+              ],
+              "reversed": [
+                0.685,
+                0.62,
+                0.75
+              ]
+            },
+            "unseen": {
+              "aligned": [
+                0.64,
+                0.57,
+                0.705
+              ],
+              "reversed": [
+                0.55,
+                0.475,
+                0.62
+              ]
+            }
+          },
+          "SF": {
+            "seen": [
+              0.2868217054263566,
+              0.21008403361344538,
+              0.3643427276310603
+            ],
+            "unseen": [
+              0.4765625,
+              0.393435617206109,
+              0.5639249333009944
+            ]
+          },
+          "delta_T": {
+            "aligned": [
+              0.0050000000000000044,
+              -0.09499999999999997,
+              0.09999999999999998
+            ],
+            "reversed": [
+              0.135,
+              0.040000000000000036,
+              0.235
+            ]
+          },
+          "interaction": {
+            "reversed": [
+              0.13,
+              -0.009999999999999898,
+              0.265
+            ]
+          },
+          "counts": {
+            "seen": {
+              "n": 200,
+              "n_aligned_correct": 129,
+              "n_flip": 37,
+              "n_stay": 92
+            },
+            "unseen": {
+              "n": 200,
+              "n_aligned_correct": 128,
+              "n_flip": 61,
+              "n_stay": 67
+            }
+          }
+        },
+        "b1": {
+          "quant": "nf4",
+          "logic": "build/e1/pilot/b1/logic.jsonl",
+          "metrics": "experiments/e1/pilot/b1/metrics.json",
+          "n_logic_lines": 800,
+          "n_logic_uid": 800,
+          "n_duplicate_uid": 0,
+          "n_identical_duplicate_uid": 0,
+          "n_text_conflict_uid": 0,
+          "n_answer_conflict_uid": 0,
+          "acc": {
+            "seen": {
+              "aligned": [
+                0.97,
+                0.945,
+                0.99
+              ],
+              "reversed": [
+                0.73,
+                0.665,
+                0.79
+              ]
+            },
+            "unseen": {
+              "aligned": [
+                0.88,
+                0.83,
+                0.925
+              ],
+              "reversed": [
+                0.645,
+                0.575,
+                0.71
+              ]
+            }
+          },
+          "SF": {
+            "seen": [
+              0.26804123711340205,
+              0.20833333333333334,
+              0.33160687850269643
+            ],
+            "unseen": [
+              0.36363636363636365,
+              0.2921116804543771,
+              0.4375
+            ]
+          },
+          "delta_T": {
+            "aligned": [
+              0.08999999999999997,
+              0.039999999999999925,
+              0.14
+            ],
+            "reversed": [
+              0.08499999999999996,
+              -0.010000000000000009,
+              0.17500000000000004
+            ]
+          },
+          "interaction": {
+            "reversed": [
+              -0.0050000000000000044,
+              -0.10999999999999999,
+              0.10000000000000009
+            ]
+          },
+          "counts": {
+            "seen": {
+              "n": 200,
+              "n_aligned_correct": 194,
+              "n_flip": 52,
+              "n_stay": 142
+            },
+            "unseen": {
+              "n": 200,
+              "n_aligned_correct": 176,
+              "n_flip": 64,
+              "n_stay": 112
+            }
+          }
+        },
+        "b2": {
+          "quant": "nf4",
+          "logic": "build/e1/pilot/b2/logic.jsonl",
+          "metrics": "experiments/e1/pilot/b2/metrics.json",
+          "n_logic_lines": 800,
+          "n_logic_uid": 800,
+          "n_duplicate_uid": 0,
+          "n_identical_duplicate_uid": 0,
+          "n_text_conflict_uid": 0,
+          "n_answer_conflict_uid": 0,
+          "acc": {
+            "seen": {
+              "aligned": [
+                0.985,
+                0.965,
+                1.0
+              ],
+              "reversed": [
+                0.895,
+                0.85,
+                0.935
+              ]
+            },
+            "unseen": {
+              "aligned": [
+                0.79,
+                0.735,
+                0.845
+              ],
+              "reversed": [
+                0.705,
+                0.64,
+                0.77
+              ]
+            }
+          },
+          "SF": {
+            "seen": [
+              0.10152284263959391,
+              0.06060606060606061,
+              0.1457286432160804
+            ],
+            "unseen": [
+              0.21518987341772153,
+              0.15,
+              0.2802547770700637
+            ]
+          },
+          "delta_T": {
+            "aligned": [
+              0.19499999999999995,
+              0.135,
+              0.255
+            ],
+            "reversed": [
+              0.19000000000000006,
+              0.10999999999999999,
+              0.265
+            ]
+          },
+          "interaction": {
+            "reversed": [
+              -0.004999999999999893,
+              -0.08999999999999997,
+              0.07499999999999996
+            ]
+          },
+          "counts": {
+            "seen": {
+              "n": 200,
+              "n_aligned_correct": 197,
+              "n_flip": 20,
+              "n_stay": 177
+            },
+            "unseen": {
+              "n": 200,
+              "n_aligned_correct": 158,
+              "n_flip": 34,
+              "n_stay": 124
+            }
+          }
+        },
+        "b3": {
+          "quant": "nf4",
+          "logic": "build/e1/pilot/b3/logic.jsonl",
+          "metrics": "experiments/e1/pilot/b3/metrics.json",
+          "n_logic_lines": 800,
+          "n_logic_uid": 800,
+          "n_duplicate_uid": 0,
+          "n_identical_duplicate_uid": 0,
+          "n_text_conflict_uid": 0,
+          "n_answer_conflict_uid": 0,
+          "acc": {
+            "seen": {
+              "aligned": [
+                0.975,
+                0.95,
+                0.995
+              ],
+              "reversed": [
+                0.9,
+                0.86,
+                0.94
+              ]
+            },
+            "unseen": {
+              "aligned": [
+                0.81,
+                0.755,
+                0.865
+              ],
+              "reversed": [
+                0.68,
+                0.615,
+                0.745
+              ]
+            }
+          },
+          "SF": {
+            "seen": [
+              0.09743589743589744,
+              0.05699481865284974,
+              0.13919328561508457
+            ],
+            "unseen": [
+              0.25308641975308643,
+              0.18867005635873563,
+              0.32278972403490835
+            ]
+          },
+          "delta_T": {
+            "aligned": [
+              0.16499999999999992,
+              0.10999999999999999,
+              0.22499999999999998
+            ],
+            "reversed": [
+              0.21999999999999997,
+              0.14487499999999992,
+              0.29500000000000004
+            ]
+          },
+          "interaction": {
+            "reversed": [
+              0.05500000000000005,
+              -0.029999999999999916,
+              0.13500000000000012
+            ]
+          },
+          "counts": {
+            "seen": {
+              "n": 200,
+              "n_aligned_correct": 195,
+              "n_flip": 19,
+              "n_stay": 176
+            },
+            "unseen": {
+              "n": 200,
+              "n_aligned_correct": 162,
+              "n_flip": 41,
+              "n_stay": 121
+            }
+          }
+        },
+        "ours": {
+          "quant": "nf4",
+          "logic": "build/e1/pilot/ours/logic.jsonl",
+          "metrics": "experiments/e1/pilot/ours/metrics.json",
+          "n_logic_lines": 800,
+          "n_logic_uid": 800,
+          "n_duplicate_uid": 0,
+          "n_identical_duplicate_uid": 0,
+          "n_text_conflict_uid": 0,
+          "n_answer_conflict_uid": 0,
+          "acc": {
+            "seen": {
+              "aligned": [
+                0.885,
+                0.84,
+                0.925
+              ],
+              "reversed": [
+                0.91,
+                0.87,
+                0.945
+              ]
+            },
+            "unseen": {
+              "aligned": [
+                0.745,
+                0.685,
+                0.805
+              ],
+              "reversed": [
+                0.77,
+                0.71,
+                0.825
+              ]
+            }
+          },
+          "SF": {
+            "seen": [
+              0.04519774011299435,
+              0.017045454545454544,
+              0.07650273224043716
+            ],
+            "unseen": [
+              0.15436241610738255,
+              0.09866808565531476,
+              0.21251008064516122
+            ]
+          },
+          "delta_T": {
+            "aligned": [
+              0.14,
+              0.06499999999999995,
+              0.21500000000000008
+            ],
+            "reversed": [
+              0.14,
+              0.06500000000000006,
+              0.21000000000000008
+            ]
+          },
+          "interaction": {
+            "reversed": [
+              0.0,
+              -0.08500000000000008,
+              0.08500000000000008
+            ]
+          },
+          "counts": {
+            "seen": {
+              "n": 200,
+              "n_aligned_correct": 177,
+              "n_flip": 8,
+              "n_stay": 169
+            },
+            "unseen": {
+              "n": 200,
+              "n_aligned_correct": 149,
+              "n_flip": 23,
+              "n_stay": 126
+            }
+          }
+        }
+      }
+    },
+    "pilot_mix15": {
+      "has_b0": false,
+      "conditions": {
+        "b1": {
+          "quant": "nf4",
+          "logic": "build/e1/pilot_mix15/b1/logic.jsonl",
+          "metrics": "experiments/e1/pilot_mix15/b1/metrics.json",
+          "n_logic_lines": 800,
+          "n_logic_uid": 800,
+          "n_duplicate_uid": 0,
+          "n_identical_duplicate_uid": 0,
+          "n_text_conflict_uid": 0,
+          "n_answer_conflict_uid": 0,
+          "acc": {
+            "seen": {
+              "aligned": [
+                0.965,
+                0.935,
+                0.985
+              ],
+              "reversed": [
+                0.775,
+                0.715,
+                0.83
+              ]
+            },
+            "unseen": {
+              "aligned": [
+                0.8,
+                0.74,
+                0.855
+              ],
+              "reversed": [
+                0.625,
+                0.56,
+                0.69
+              ]
+            }
+          },
+          "SF": {
+            "seen": [
+              0.22279792746113988,
+              0.16666666666666666,
+              0.28350515463917525
+            ],
+            "unseen": [
+              0.325,
+              0.25308641975308643,
+              0.4024409418622488
+            ]
+          },
+          "delta_T": {
+            "aligned": [
+              0.16499999999999992,
+              0.10499999999999998,
+              0.22999999999999998
+            ],
+            "reversed": [
+              0.15000000000000002,
+              0.05999999999999994,
+              0.2350000000000001
+            ]
+          },
+          "interaction": {
+            "reversed": [
+              -0.014999999999999902,
+              -0.11999999999999988,
+              0.08000000000000018
+            ]
+          },
+          "counts": {
+            "seen": {
+              "n": 200,
+              "n_aligned_correct": 193,
+              "n_flip": 43,
+              "n_stay": 150
+            },
+            "unseen": {
+              "n": 200,
+              "n_aligned_correct": 160,
+              "n_flip": 52,
+              "n_stay": 108
+            }
+          }
+        },
+        "b2": {
+          "quant": "nf4",
+          "logic": "build/e1/pilot_mix15/b2/logic.jsonl",
+          "metrics": "experiments/e1/pilot_mix15/b2/metrics.json",
+          "n_logic_lines": 800,
+          "n_logic_uid": 800,
+          "n_duplicate_uid": 0,
+          "n_identical_duplicate_uid": 0,
+          "n_text_conflict_uid": 0,
+          "n_answer_conflict_uid": 0,
+          "acc": {
+            "seen": {
+              "aligned": [
+                0.965,
+                0.935,
+                0.99
+              ],
+              "reversed": [
+                0.905,
+                0.865,
+                0.945
+              ]
+            },
+            "unseen": {
+              "aligned": [
+                0.85,
+                0.799875,
+                0.895
+              ],
+              "reversed": [
+                0.705,
+                0.64,
+                0.765
+              ]
+            }
+          },
+          "SF": {
+            "seen": [
+              0.07772020725388601,
+              0.041666666666666664,
+              0.11641084521795177
+            ],
+            "unseen": [
+              0.2235294117647059,
+              0.16666666666666666,
+              0.28651685393258425
+            ]
+          },
+          "delta_T": {
+            "aligned": [
+              0.11499999999999999,
+              0.05999999999999994,
+              0.16999999999999993
+            ],
+            "reversed": [
+              0.20000000000000007,
+              0.125,
+              0.275
+            ]
+          },
+          "interaction": {
+            "reversed": [
+              0.08500000000000008,
+              0.010000000000000009,
+              0.16000000000000003
+            ]
+          },
+          "counts": {
+            "seen": {
+              "n": 200,
+              "n_aligned_correct": 193,
+              "n_flip": 15,
+              "n_stay": 178
+            },
+            "unseen": {
+              "n": 200,
+              "n_aligned_correct": 170,
+              "n_flip": 38,
+              "n_stay": 132
+            }
+          }
+        },
+        "b3": {
+          "quant": "nf4",
+          "logic": "build/e1/pilot_mix15/b3/logic.jsonl",
+          "metrics": "experiments/e1/pilot_mix15/b3/metrics.json",
+          "n_logic_lines": 800,
+          "n_logic_uid": 800,
+          "n_duplicate_uid": 0,
+          "n_identical_duplicate_uid": 0,
+          "n_text_conflict_uid": 0,
+          "n_answer_conflict_uid": 0,
+          "acc": {
+            "seen": {
+              "aligned": [
+                0.975,
+                0.95,
+                0.995
+              ],
+              "reversed": [
+                0.875,
+                0.825,
+                0.92
+              ]
+            },
+            "unseen": {
+              "aligned": [
+                0.79,
+                0.73,
+                0.845
+              ],
+              "reversed": [
+                0.64,
+                0.5748749999999999,
+                0.705
+              ]
+            }
+          },
+          "SF": {
+            "seen": [
+              0.12307692307692308,
+              0.08121827411167512,
+              0.1717171717171717
+            ],
+            "unseen": [
+              0.25316455696202533,
+              0.1875,
+              0.3231707317073171
+            ]
+          },
+          "delta_T": {
+            "aligned": [
+              0.18499999999999994,
+              0.125,
+              0.24512499999999932
+            ],
+            "reversed": [
+              0.235,
+              0.15000000000000002,
+              0.31500000000000006
+            ]
+          },
+          "interaction": {
+            "reversed": [
+              0.050000000000000044,
+              -0.03500000000000003,
+              0.13000000000000012
+            ]
+          },
+          "counts": {
+            "seen": {
+              "n": 200,
+              "n_aligned_correct": 195,
+              "n_flip": 24,
+              "n_stay": 171
+            },
+            "unseen": {
+              "n": 200,
+              "n_aligned_correct": 158,
+              "n_flip": 40,
+              "n_stay": 118
+            }
+          }
+        },
+        "ours": {
+          "quant": "nf4",
+          "logic": "build/e1/pilot_mix15/ours/logic.jsonl",
+          "metrics": "experiments/e1/pilot_mix15/ours/metrics.json",
+          "n_logic_lines": 800,
+          "n_logic_uid": 800,
+          "n_duplicate_uid": 0,
+          "n_identical_duplicate_uid": 0,
+          "n_text_conflict_uid": 0,
+          "n_answer_conflict_uid": 0,
+          "acc": {
+            "seen": {
+              "aligned": [
+                0.895,
+                0.85,
+                0.935
+              ],
+              "reversed": [
+                0.84,
+                0.785,
+                0.89
+              ]
+            },
+            "unseen": {
+              "aligned": [
+                0.785,
+                0.725,
+                0.84
+              ],
+              "reversed": [
+                0.7,
+                0.635,
+                0.765
+              ]
+            }
+          },
+          "SF": {
+            "seen": [
+              0.1005586592178771,
+              0.05714285714285714,
+              0.14606741573033707
+            ],
+            "unseen": [
+              0.20382165605095542,
+              0.14093959731543623,
+              0.2709677419354839
+            ]
+          },
+          "delta_T": {
+            "aligned": [
+              0.10999999999999999,
+              0.040000000000000036,
+              0.17500000000000004
+            ],
+            "reversed": [
+              0.14,
+              0.05500000000000005,
+              0.2201249999999993
+            ]
+          },
+          "interaction": {
+            "reversed": [
+              0.030000000000000027,
+              -0.05012500000000004,
+              0.11499999999999999
+            ]
+          },
+          "counts": {
+            "seen": {
+              "n": 200,
+              "n_aligned_correct": 179,
+              "n_flip": 18,
+              "n_stay": 161
+            },
+            "unseen": {
+              "n": 200,
+              "n_aligned_correct": 157,
+              "n_flip": 32,
+              "n_stay": 125
+            }
+          }
+        }
+      }
+    }
+  },
+  "burden": {
+    "features": [
+      "back_reads",
+      "d_rel",
+      "f_active"
+    ],
+    "pools": {
+      "seen": {
+        "n": 200,
+        "families": [
+          "chain",
+          "conj_fact"
+        ],
+        "n_core_values": [
+          2
+        ],
+        "presentations": {
+          "aligned": {
+            "back_reads": {
+              "n": 200,
+              "mean": 0.0,
+              "constant": true,
+              "value": 0.0
+            },
+            "d_rel": {
+              "n": 200,
+              "mean": 2.02,
+              "constant": false,
+              "value": null
+            },
+            "f_active": {
+              "n": 200,
+              "mean": 0.76,
+              "constant": false,
+              "value": null
+            }
+          },
+          "reversed": {
+            "back_reads": {
+              "n": 200,
+              "mean": 1.0,
+              "constant": true,
+              "value": 1.0
+            },
+            "d_rel": {
+              "n": 200,
+              "mean": 2.02,
+              "constant": false,
+              "value": null
+            },
+            "f_active": {
+              "n": 200,
+              "mean": 1.26,
+              "constant": false,
+              "value": null
+            }
+          }
+        }
+      },
+      "unseen": {
+        "n": 200,
+        "families": [
+          "diamond",
+          "tree"
+        ],
+        "n_core_values": [
+          3
+        ],
+        "presentations": {
+          "aligned": {
+            "back_reads": {
+              "n": 200,
+              "mean": 0.0,
+              "constant": true,
+              "value": 0.0
+            },
+            "d_rel": {
+              "n": 200,
+              "mean": 1.6875,
+              "constant": false,
+              "value": null
+            },
+            "f_active": {
+              "n": 200,
+              "mean": 0.84,
+              "constant": false,
+              "value": null
+            }
+          },
+          "reversed": {
+            "back_reads": {
+              "n": 200,
+              "mean": 3.0,
+              "constant": true,
+              "value": 3.0
+            },
+            "d_rel": {
+              "n": 200,
+              "mean": 1.6875,
+              "constant": false,
+              "value": null
+            },
+            "f_active": {
+              "n": 200,
+              "mean": 1.34,
+              "constant": false,
+              "value": null
+            }
+          }
+        }
+      }
+    },
+    "families": {
+      "chain": {
+        "pool": "seen",
+        "n": 100,
+        "n_core_values": [
+          2
+        ],
+        "presentations": {
+          "aligned": {
+            "back_reads": {
+              "n": 100,
+              "mean": 0.0,
+              "constant": true,
+              "value": 0.0
+            },
+            "d_rel": {
+              "n": 100,
+              "mean": 2.11,
+              "constant": false,
+              "value": null
+            },
+            "f_active": {
+              "n": 100,
+              "mean": 0.74,
+              "constant": false,
+              "value": null
+            }
+          },
+          "reversed": {
+            "back_reads": {
+              "n": 100,
+              "mean": 1.0,
+              "constant": true,
+              "value": 1.0
+            },
+            "d_rel": {
+              "n": 100,
+              "mean": 2.11,
+              "constant": false,
+              "value": null
+            },
+            "f_active": {
+              "n": 100,
+              "mean": 1.24,
+              "constant": false,
+              "value": null
+            }
+          }
+        }
+      },
+      "conj_fact": {
+        "pool": "seen",
+        "n": 100,
+        "n_core_values": [
+          2
+        ],
+        "presentations": {
+          "aligned": {
+            "back_reads": {
+              "n": 100,
+              "mean": 0.0,
+              "constant": true,
+              "value": 0.0
+            },
+            "d_rel": {
+              "n": 100,
+              "mean": 1.93,
+              "constant": false,
+              "value": null
+            },
+            "f_active": {
+              "n": 100,
+              "mean": 0.78,
+              "constant": false,
+              "value": null
+            }
+          },
+          "reversed": {
+            "back_reads": {
+              "n": 100,
+              "mean": 1.0,
+              "constant": true,
+              "value": 1.0
+            },
+            "d_rel": {
+              "n": 100,
+              "mean": 1.93,
+              "constant": false,
+              "value": null
+            },
+            "f_active": {
+              "n": 100,
+              "mean": 1.28,
+              "constant": false,
+              "value": null
+            }
+          }
+        }
+      },
+      "tree": {
+        "pool": "unseen",
+        "n": 100,
+        "n_core_values": [
+          3
+        ],
+        "presentations": {
+          "aligned": {
+            "back_reads": {
+              "n": 100,
+              "mean": 0.0,
+              "constant": true,
+              "value": 0.0
+            },
+            "d_rel": {
+              "n": 100,
+              "mean": 1.665,
+              "constant": false,
+              "value": null
+            },
+            "f_active": {
+              "n": 100,
+              "mean": 0.82,
+              "constant": false,
+              "value": null
+            }
+          },
+          "reversed": {
+            "back_reads": {
+              "n": 100,
+              "mean": 3.0,
+              "constant": true,
+              "value": 3.0
+            },
+            "d_rel": {
+              "n": 100,
+              "mean": 1.665,
+              "constant": false,
+              "value": null
+            },
+            "f_active": {
+              "n": 100,
+              "mean": 1.32,
+              "constant": false,
+              "value": null
+            }
+          }
+        }
+      },
+      "diamond": {
+        "pool": "unseen",
+        "n": 100,
+        "n_core_values": [
+          3
+        ],
+        "presentations": {
+          "aligned": {
+            "back_reads": {
+              "n": 100,
+              "mean": 0.0,
+              "constant": true,
+              "value": 0.0
+            },
+            "d_rel": {
+              "n": 100,
+              "mean": 1.71,
+              "constant": false,
+              "value": null
+            },
+            "f_active": {
+              "n": 100,
+              "mean": 0.86,
+              "constant": false,
+              "value": null
+            }
+          },
+          "reversed": {
+            "back_reads": {
+              "n": 100,
+              "mean": 3.0,
+              "constant": true,
+              "value": 3.0
+            },
+            "d_rel": {
+              "n": 100,
+              "mean": 1.71,
+              "constant": false,
+              "value": null
+            },
+            "f_active": {
+              "n": 100,
+              "mean": 1.36,
+              "constant": false,
+              "value": null
+            }
+          }
+        }
+      }
+    },
+    "by_condition": {
+      "pilot": {
+        "b0": {
+          "chain": {
+            "pool": "seen",
+            "n_aligned_correct": 72,
+            "n_flip": 15,
+            "n_stay": 57,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 1.0,
+                "stay_mean": 1.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 2.066666666666667,
+                "stay_mean": 2.087719298245614
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.2666666666666666,
+                "stay_mean": 1.2105263157894737
+              }
+            }
+          },
+          "conj_fact": {
+            "pool": "seen",
+            "n_aligned_correct": 57,
+            "n_flip": 22,
+            "n_stay": 35,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 1.0,
+                "stay_mean": 1.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.9090909090909092,
+                "stay_mean": 1.9142857142857144
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.1818181818181819,
+                "stay_mean": 1.2285714285714286
+              }
+            }
+          },
+          "tree": {
+            "pool": "unseen",
+            "n_aligned_correct": 56,
+            "n_flip": 28,
+            "n_stay": 28,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 3.0,
+                "stay_mean": 3.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.5,
+                "stay_mean": 1.75
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.2857142857142858,
+                "stay_mean": 1.2857142857142858
+              }
+            }
+          },
+          "diamond": {
+            "pool": "unseen",
+            "n_aligned_correct": 72,
+            "n_flip": 33,
+            "n_stay": 39,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 3.0,
+                "stay_mean": 3.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.6666666666666667,
+                "stay_mean": 1.7820512820512822
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.303030303030303,
+                "stay_mean": 1.3333333333333333
+              }
+            }
+          }
+        },
+        "b1": {
+          "chain": {
+            "pool": "seen",
+            "n_aligned_correct": 97,
+            "n_flip": 22,
+            "n_stay": 75,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 1.0,
+                "stay_mean": 1.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 2.1363636363636362,
+                "stay_mean": 2.0933333333333333
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.0,
+                "stay_mean": 1.32
+              }
+            }
+          },
+          "conj_fact": {
+            "pool": "seen",
+            "n_aligned_correct": 97,
+            "n_flip": 30,
+            "n_stay": 67,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 1.0,
+                "stay_mean": 1.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 2.0,
+                "stay_mean": 1.8955223880597014
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.0333333333333334,
+                "stay_mean": 1.373134328358209
+              }
+            }
+          },
+          "tree": {
+            "pool": "unseen",
+            "n_aligned_correct": 89,
+            "n_flip": 28,
+            "n_stay": 61,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 3.0,
+                "stay_mean": 3.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.7857142857142858,
+                "stay_mean": 1.6065573770491803
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.0,
+                "stay_mean": 1.3934426229508197
+              }
+            }
+          },
+          "diamond": {
+            "pool": "unseen",
+            "n_aligned_correct": 87,
+            "n_flip": 36,
+            "n_stay": 51,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 3.0,
+                "stay_mean": 3.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.75,
+                "stay_mean": 1.7058823529411764
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.0555555555555556,
+                "stay_mean": 1.5098039215686274
+              }
+            }
+          }
+        },
+        "b2": {
+          "chain": {
+            "pool": "seen",
+            "n_aligned_correct": 98,
+            "n_flip": 11,
+            "n_stay": 87,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 1.0,
+                "stay_mean": 1.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 2.1818181818181817,
+                "stay_mean": 2.103448275862069
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.0,
+                "stay_mean": 1.264367816091954
+              }
+            }
+          },
+          "conj_fact": {
+            "pool": "seen",
+            "n_aligned_correct": 99,
+            "n_flip": 9,
+            "n_stay": 90,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 1.0,
+                "stay_mean": 1.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.4444444444444444,
+                "stay_mean": 1.9777777777777779
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.1111111111111112,
+                "stay_mean": 1.3
+              }
+            }
+          },
+          "tree": {
+            "pool": "unseen",
+            "n_aligned_correct": 83,
+            "n_flip": 10,
+            "n_stay": 73,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 3.0,
+                "stay_mean": 3.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.4,
+                "stay_mean": 1.6643835616438356
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.6,
+                "stay_mean": 1.2328767123287672
+              }
+            }
+          },
+          "diamond": {
+            "pool": "unseen",
+            "n_aligned_correct": 75,
+            "n_flip": 24,
+            "n_stay": 51,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 3.0,
+                "stay_mean": 3.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.6458333333333333,
+                "stay_mean": 1.7549019607843137
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.4583333333333333,
+                "stay_mean": 1.2352941176470589
+              }
+            }
+          }
+        },
+        "b3": {
+          "chain": {
+            "pool": "seen",
+            "n_aligned_correct": 98,
+            "n_flip": 11,
+            "n_stay": 87,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 1.0,
+                "stay_mean": 1.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 2.090909090909091,
+                "stay_mean": 2.1264367816091956
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.0,
+                "stay_mean": 1.264367816091954
+              }
+            }
+          },
+          "conj_fact": {
+            "pool": "seen",
+            "n_aligned_correct": 97,
+            "n_flip": 8,
+            "n_stay": 89,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 1.0,
+                "stay_mean": 1.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.5,
+                "stay_mean": 1.9550561797752808
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.125,
+                "stay_mean": 1.303370786516854
+              }
+            }
+          },
+          "tree": {
+            "pool": "unseen",
+            "n_aligned_correct": 82,
+            "n_flip": 13,
+            "n_stay": 69,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 3.0,
+                "stay_mean": 3.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.6538461538461537,
+                "stay_mean": 1.6159420289855073
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.4615384615384615,
+                "stay_mean": 1.2463768115942029
+              }
+            }
+          },
+          "diamond": {
+            "pool": "unseen",
+            "n_aligned_correct": 80,
+            "n_flip": 28,
+            "n_stay": 52,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 3.0,
+                "stay_mean": 3.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.7321428571428572,
+                "stay_mean": 1.7596153846153846
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.3928571428571428,
+                "stay_mean": 1.2307692307692308
+              }
+            }
+          }
+        },
+        "ours": {
+          "chain": {
+            "pool": "seen",
+            "n_aligned_correct": 97,
+            "n_flip": 4,
+            "n_stay": 93,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 1.0,
+                "stay_mean": 1.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.75,
+                "stay_mean": 2.118279569892473
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.0,
+                "stay_mean": 1.2580645161290323
+              }
+            }
+          },
+          "conj_fact": {
+            "pool": "seen",
+            "n_aligned_correct": 80,
+            "n_flip": 4,
+            "n_stay": 76,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 1.0,
+                "stay_mean": 1.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.75,
+                "stay_mean": 1.9210526315789473
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.0,
+                "stay_mean": 1.368421052631579
+              }
+            }
+          },
+          "tree": {
+            "pool": "unseen",
+            "n_aligned_correct": 78,
+            "n_flip": 8,
+            "n_stay": 70,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 3.0,
+                "stay_mean": 3.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.6875,
+                "stay_mean": 1.6714285714285715
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.25,
+                "stay_mean": 1.4285714285714286
+              }
+            }
+          },
+          "diamond": {
+            "pool": "unseen",
+            "n_aligned_correct": 71,
+            "n_flip": 15,
+            "n_stay": 56,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 3.0,
+                "stay_mean": 3.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.6,
+                "stay_mean": 1.6339285714285714
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.5333333333333334,
+                "stay_mean": 1.5
+              }
+            }
+          }
+        }
+      },
+      "pilot_mix15": {
+        "b1": {
+          "chain": {
+            "pool": "seen",
+            "n_aligned_correct": 98,
+            "n_flip": 18,
+            "n_stay": 80,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 1.0,
+                "stay_mean": 1.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 2.0555555555555554,
+                "stay_mean": 2.125
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.0,
+                "stay_mean": 1.2875
+              }
+            }
+          },
+          "conj_fact": {
+            "pool": "seen",
+            "n_aligned_correct": 95,
+            "n_flip": 25,
+            "n_stay": 70,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 1.0,
+                "stay_mean": 1.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 2.04,
+                "stay_mean": 1.9142857142857144
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.0,
+                "stay_mean": 1.4
+              }
+            }
+          },
+          "tree": {
+            "pool": "unseen",
+            "n_aligned_correct": 86,
+            "n_flip": 25,
+            "n_stay": 61,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 3.0,
+                "stay_mean": 3.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.7,
+                "stay_mean": 1.6311475409836065
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.16,
+                "stay_mean": 1.3442622950819672
+              }
+            }
+          },
+          "diamond": {
+            "pool": "unseen",
+            "n_aligned_correct": 74,
+            "n_flip": 27,
+            "n_stay": 47,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 3.0,
+                "stay_mean": 3.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.7222222222222223,
+                "stay_mean": 1.7234042553191489
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.1851851851851851,
+                "stay_mean": 1.3829787234042554
+              }
+            }
+          }
+        },
+        "b2": {
+          "chain": {
+            "pool": "seen",
+            "n_aligned_correct": 95,
+            "n_flip": 7,
+            "n_stay": 88,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 1.0,
+                "stay_mean": 1.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 2.2857142857142856,
+                "stay_mean": 2.102272727272727
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.0,
+                "stay_mean": 1.25
+              }
+            }
+          },
+          "conj_fact": {
+            "pool": "seen",
+            "n_aligned_correct": 98,
+            "n_flip": 8,
+            "n_stay": 90,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 1.0,
+                "stay_mean": 1.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.625,
+                "stay_mean": 1.9555555555555555
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.125,
+                "stay_mean": 1.2777777777777777
+              }
+            }
+          },
+          "tree": {
+            "pool": "unseen",
+            "n_aligned_correct": 84,
+            "n_flip": 17,
+            "n_stay": 67,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 3.0,
+                "stay_mean": 3.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.5588235294117647,
+                "stay_mean": 1.6567164179104477
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.4705882352941178,
+                "stay_mean": 1.1940298507462686
+              }
+            }
+          },
+          "diamond": {
+            "pool": "unseen",
+            "n_aligned_correct": 86,
+            "n_flip": 21,
+            "n_stay": 65,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 3.0,
+                "stay_mean": 3.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.7142857142857142,
+                "stay_mean": 1.7538461538461538
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.380952380952381,
+                "stay_mean": 1.2461538461538462
+              }
+            }
+          }
+        },
+        "b3": {
+          "chain": {
+            "pool": "seen",
+            "n_aligned_correct": 98,
+            "n_flip": 8,
+            "n_stay": 90,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 1.0,
+                "stay_mean": 1.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 2.25,
+                "stay_mean": 2.088888888888889
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.0,
+                "stay_mean": 1.2555555555555555
+              }
+            }
+          },
+          "conj_fact": {
+            "pool": "seen",
+            "n_aligned_correct": 97,
+            "n_flip": 16,
+            "n_stay": 81,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 1.0,
+                "stay_mean": 1.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.8125,
+                "stay_mean": 1.9506172839506173
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.0,
+                "stay_mean": 1.3209876543209877
+              }
+            }
+          },
+          "tree": {
+            "pool": "unseen",
+            "n_aligned_correct": 82,
+            "n_flip": 15,
+            "n_stay": 67,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 3.0,
+                "stay_mean": 3.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.7666666666666666,
+                "stay_mean": 1.6343283582089552
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.1333333333333333,
+                "stay_mean": 1.2388059701492538
+              }
+            }
+          },
+          "diamond": {
+            "pool": "unseen",
+            "n_aligned_correct": 76,
+            "n_flip": 25,
+            "n_stay": 51,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 3.0,
+                "stay_mean": 3.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.68,
+                "stay_mean": 1.7254901960784315
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.2,
+                "stay_mean": 1.2745098039215685
+              }
+            }
+          }
+        },
+        "ours": {
+          "chain": {
+            "pool": "seen",
+            "n_aligned_correct": 92,
+            "n_flip": 13,
+            "n_stay": 79,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 1.0,
+                "stay_mean": 1.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.6153846153846154,
+                "stay_mean": 2.1392405063291138
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.0,
+                "stay_mean": 1.3037974683544304
+              }
+            }
+          },
+          "conj_fact": {
+            "pool": "seen",
+            "n_aligned_correct": 87,
+            "n_flip": 5,
+            "n_stay": 82,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 1.0,
+                "stay_mean": 1.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.0,
+                "stay_mean": 1.975609756097561
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.0,
+                "stay_mean": 1.329268292682927
+              }
+            }
+          },
+          "tree": {
+            "pool": "unseen",
+            "n_aligned_correct": 85,
+            "n_flip": 19,
+            "n_stay": 66,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 3.0,
+                "stay_mean": 3.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.6578947368421053,
+                "stay_mean": 1.6818181818181819
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.5789473684210527,
+                "stay_mean": 1.303030303030303
+              }
+            }
+          },
+          "diamond": {
+            "pool": "unseen",
+            "n_aligned_correct": 72,
+            "n_flip": 13,
+            "n_stay": 59,
+            "reversed_burden_mean": {
+              "back_reads": {
+                "constant_in_family": true,
+                "flip_mean": 3.0,
+                "stay_mean": 3.0
+              },
+              "d_rel": {
+                "constant_in_family": false,
+                "flip_mean": 1.7692307692307692,
+                "stay_mean": 1.694915254237288
+              },
+              "f_active": {
+                "constant_in_family": false,
+                "flip_mean": 1.8461538461538463,
+                "stay_mean": 1.3389830508474576
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "c2_interval_relation": {
+    "pilot": {
+      "cell": "unseen_reversed",
+      "ours": [
+        0.77,
+        0.71,
+        0.825
+      ],
+      "b2": [
+        0.705,
+        0.64,
+        0.77
+      ],
+      "b3": [
+        0.68,
+        0.615,
+        0.745
+      ],
+      "ours_and_b2": "overlap",
+      "ours_and_b3": "overlap"
+    },
+    "pilot_mix15": {
+      "cell": "unseen_reversed",
+      "ours": [
+        0.7,
+        0.635,
+        0.765
+      ],
+      "b2": [
+        0.705,
+        0.64,
+        0.765
+      ],
+      "b3": [
+        0.64,
+        0.5748749999999999,
+        0.705
+      ],
+      "ours_and_b2": "overlap",
+      "ours_and_b3": "overlap"
+    }
+  }
+}

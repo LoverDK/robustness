@@ -1,0 +1,275 @@
+{
+  "config": {
+    "seed": 0,
+    "split": "unseen",
+    "pool": "test_unseen from build_pools(seed=0)",
+    "population": "unseen graph, latent label yes, aligned extract yes, synonym extract no, and the first synonym Since atom is later_core. Same population as yes_flip_unseen_later_core.py.",
+    "aligned_generation": "unseen_aligned|{graph_hash} in each condition's logic.jsonl. The row is not regenerated.",
+    "synonym_generation": "unseen_synonym|{graph_hash} in each condition's generations.jsonl",
+    "regex": "since\\b[^\\.\\n]*,\\s*{entity} is ([a-z]+)",
+    "regex_flags": "IGNORECASE",
+    "since_sentence": "yes_flip_trace.since_atoms. Order is the order of matches. A line containing 'cannot be proved' contributes no atom.",
+    "class_priority": "yes_flip_first_since_unseen.first_since_class. step0, then query, then same_premise_decoy, then later_core, then other_decoy, then other. Only later_core enters this file.",
+    "later_core_rule": "The first synonym Since atom equals the conclusion of exactly one entry of core_rules[1:]. If that atom is the conclusion of more than one core rule, the script stops and writes nothing. The check is yes_flip_unseen_later_core.rule_error.",
+    "aligned_has_step0": "On the same items, any Since atom in the aligned generation equals core_rules[0]'s conclusion. The atom need not be first.",
+    "aligned_has_query": "On the same items, any Since atom in the aligned generation equals lat.query. The atom need not be first. This count may overlap aligned_has_step0.",
+    "aligned_has_same_later_atom": "On the same items, any Since atom in the aligned generation equals the conclusion of the same later core rule. The atom need not be first. This count may overlap the other aligned counts.",
+    "aligned_has_step0_and_query": "On the same items, the aligned generation has both a Since atom equal to the step-0 conclusion and a Since atom equal to the query. One atom can satisfy both when those two strings are equal.",
+    "overlap": "The five headcounts may overlap. They are not a partition of n. Each of the four flags is at most n, and aligned_has_step0_and_query is at most each of its parts and at least aligned_has_step0 + aligned_has_query - n.",
+    "families": [
+      "tree",
+      "diamond"
+    ],
+    "family_rule": "tree and diamond each repeat the same five counts. Their sums equal the condition.",
+    "answer_extract": "structrobust.prompts.extract_yes_no on the generation only",
+    "duplicate_uids": "e1.read_jsonl keeps the last row for a repeated uid",
+    "conditions": [
+      "b0",
+      "b1",
+      "b2",
+      "b3",
+      "ours",
+      "mix15_b1",
+      "mix15_b2",
+      "mix15_b3",
+      "mix15_ours"
+    ],
+    "prior_lock": "n, including tree and diamond, must equal n_later_first in experiments/e1/synonym/yes_flip_unseen_later_core.json. That file is only read.",
+    "gates": "pilot ours n=13, aligned_has_step0=12, aligned_has_query=13, aligned_has_same_later_atom=13. A mismatch stops the script before it writes this file. Counts are not edited to meet the gate.",
+    "loaded_model": false,
+    "training": false,
+    "reading": "On unseen graphs whose synonym yes-to-no flip opens on a later core rule, counts of whether the same model's aligned Since atoms include the step-0 conclusion, the query, and that same later conclusion. These counts are not evidence that reasoning improved, and they are not a win for any training condition."
+  },
+  "gates": {
+    "ok": true,
+    "pilot_ours": {
+      "observed": {
+        "n": 13,
+        "aligned_has_step0": 12,
+        "aligned_has_query": 13,
+        "aligned_has_same_later_atom": 13
+      },
+      "expected": {
+        "n": 13,
+        "aligned_has_step0": 12,
+        "aligned_has_query": 13,
+        "aligned_has_same_later_atom": 13
+      },
+      "ok": true
+    }
+  },
+  "prior_lock": {
+    "ok": true,
+    "file": "experiments/e1/synonym/yes_flip_unseen_later_core.json",
+    "compared": "n equals n_later_first at the condition and at tree and diamond"
+  },
+  "conditions": {
+    "b0": {
+      "n": 0,
+      "aligned_has_step0": 0,
+      "aligned_has_query": 0,
+      "aligned_has_same_later_atom": 0,
+      "aligned_has_step0_and_query": 0,
+      "families": {
+        "tree": {
+          "n": 0,
+          "aligned_has_step0": 0,
+          "aligned_has_query": 0,
+          "aligned_has_same_later_atom": 0,
+          "aligned_has_step0_and_query": 0
+        },
+        "diamond": {
+          "n": 0,
+          "aligned_has_step0": 0,
+          "aligned_has_query": 0,
+          "aligned_has_same_later_atom": 0,
+          "aligned_has_step0_and_query": 0
+        }
+      }
+    },
+    "b1": {
+      "n": 21,
+      "aligned_has_step0": 19,
+      "aligned_has_query": 21,
+      "aligned_has_same_later_atom": 20,
+      "aligned_has_step0_and_query": 19,
+      "families": {
+        "tree": {
+          "n": 8,
+          "aligned_has_step0": 6,
+          "aligned_has_query": 8,
+          "aligned_has_same_later_atom": 7,
+          "aligned_has_step0_and_query": 6
+        },
+        "diamond": {
+          "n": 13,
+          "aligned_has_step0": 13,
+          "aligned_has_query": 13,
+          "aligned_has_same_later_atom": 13,
+          "aligned_has_step0_and_query": 13
+        }
+      }
+    },
+    "b2": {
+      "n": 15,
+      "aligned_has_step0": 15,
+      "aligned_has_query": 14,
+      "aligned_has_same_later_atom": 15,
+      "aligned_has_step0_and_query": 14,
+      "families": {
+        "tree": {
+          "n": 2,
+          "aligned_has_step0": 2,
+          "aligned_has_query": 2,
+          "aligned_has_same_later_atom": 2,
+          "aligned_has_step0_and_query": 2
+        },
+        "diamond": {
+          "n": 13,
+          "aligned_has_step0": 13,
+          "aligned_has_query": 12,
+          "aligned_has_same_later_atom": 13,
+          "aligned_has_step0_and_query": 12
+        }
+      }
+    },
+    "b3": {
+      "n": 22,
+      "aligned_has_step0": 22,
+      "aligned_has_query": 21,
+      "aligned_has_same_later_atom": 22,
+      "aligned_has_step0_and_query": 21,
+      "families": {
+        "tree": {
+          "n": 7,
+          "aligned_has_step0": 7,
+          "aligned_has_query": 7,
+          "aligned_has_same_later_atom": 7,
+          "aligned_has_step0_and_query": 7
+        },
+        "diamond": {
+          "n": 15,
+          "aligned_has_step0": 15,
+          "aligned_has_query": 14,
+          "aligned_has_same_later_atom": 15,
+          "aligned_has_step0_and_query": 14
+        }
+      }
+    },
+    "ours": {
+      "n": 13,
+      "aligned_has_step0": 12,
+      "aligned_has_query": 13,
+      "aligned_has_same_later_atom": 13,
+      "aligned_has_step0_and_query": 12,
+      "families": {
+        "tree": {
+          "n": 6,
+          "aligned_has_step0": 5,
+          "aligned_has_query": 6,
+          "aligned_has_same_later_atom": 6,
+          "aligned_has_step0_and_query": 5
+        },
+        "diamond": {
+          "n": 7,
+          "aligned_has_step0": 7,
+          "aligned_has_query": 7,
+          "aligned_has_same_later_atom": 7,
+          "aligned_has_step0_and_query": 7
+        }
+      }
+    },
+    "mix15_b1": {
+      "n": 20,
+      "aligned_has_step0": 19,
+      "aligned_has_query": 20,
+      "aligned_has_same_later_atom": 19,
+      "aligned_has_step0_and_query": 19,
+      "families": {
+        "tree": {
+          "n": 10,
+          "aligned_has_step0": 9,
+          "aligned_has_query": 10,
+          "aligned_has_same_later_atom": 10,
+          "aligned_has_step0_and_query": 9
+        },
+        "diamond": {
+          "n": 10,
+          "aligned_has_step0": 10,
+          "aligned_has_query": 10,
+          "aligned_has_same_later_atom": 9,
+          "aligned_has_step0_and_query": 10
+        }
+      }
+    },
+    "mix15_b2": {
+      "n": 18,
+      "aligned_has_step0": 18,
+      "aligned_has_query": 18,
+      "aligned_has_same_later_atom": 17,
+      "aligned_has_step0_and_query": 18,
+      "families": {
+        "tree": {
+          "n": 6,
+          "aligned_has_step0": 6,
+          "aligned_has_query": 6,
+          "aligned_has_same_later_atom": 6,
+          "aligned_has_step0_and_query": 6
+        },
+        "diamond": {
+          "n": 12,
+          "aligned_has_step0": 12,
+          "aligned_has_query": 12,
+          "aligned_has_same_later_atom": 11,
+          "aligned_has_step0_and_query": 12
+        }
+      }
+    },
+    "mix15_b3": {
+      "n": 5,
+      "aligned_has_step0": 5,
+      "aligned_has_query": 5,
+      "aligned_has_same_later_atom": 5,
+      "aligned_has_step0_and_query": 5,
+      "families": {
+        "tree": {
+          "n": 1,
+          "aligned_has_step0": 1,
+          "aligned_has_query": 1,
+          "aligned_has_same_later_atom": 1,
+          "aligned_has_step0_and_query": 1
+        },
+        "diamond": {
+          "n": 4,
+          "aligned_has_step0": 4,
+          "aligned_has_query": 4,
+          "aligned_has_same_later_atom": 4,
+          "aligned_has_step0_and_query": 4
+        }
+      }
+    },
+    "mix15_ours": {
+      "n": 17,
+      "aligned_has_step0": 17,
+      "aligned_has_query": 17,
+      "aligned_has_same_later_atom": 17,
+      "aligned_has_step0_and_query": 17,
+      "families": {
+        "tree": {
+          "n": 6,
+          "aligned_has_step0": 6,
+          "aligned_has_query": 6,
+          "aligned_has_same_later_atom": 6,
+          "aligned_has_step0_and_query": 6
+        },
+        "diamond": {
+          "n": 11,
+          "aligned_has_step0": 11,
+          "aligned_has_query": 11,
+          "aligned_has_same_later_atom": 11,
+          "aligned_has_step0_and_query": 11
+        }
+      }
+    }
+  }
+}

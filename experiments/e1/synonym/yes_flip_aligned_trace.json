@@ -1,0 +1,377 @@
+{
+  "config": {
+    "seed": 0,
+    "split": "seen",
+    "pool": "test_seen from build_pools(seed=0)",
+    "population": "seen graph, latent label yes, aligned extract yes, synonym extract no",
+    "aligned_generation": "seen_aligned|{graph_hash} in each condition's logic.jsonl. The row is not regenerated.",
+    "synonym_generation": "seen_synonym|{graph_hash} in each condition's generations.jsonl",
+    "overlap": "The aligned counts are item headcounts and may overlap. They are not a partition of n.",
+    "regex": "since\\b[^\\.\\n]*,\\s*{entity} is ([a-z]+)",
+    "regex_flags": "IGNORECASE",
+    "since_sentence": "yes_flip_trace.since_atoms on the aligned generation. A line containing 'cannot be proved' contributes no derived atom.",
+    "counts": {
+      "n": "items in the population",
+      "aligned_since_step0": "a Since sentence derives core_rules[0]'s conclusion",
+      "aligned_since_query": "a Since sentence derives the query atom",
+      "aligned_since_same_premise_decoy": "a Since atom is the conclusion of some other_rules entry whose premise frozenset equals core_rules[0]",
+      "aligned_no_since": "the aligned generation has no Since sentence",
+      "aligned_step0_and_query": "Since sentences derive both the step-0 conclusion and the query",
+      "aligned_decoy_without_step0": "a Since atom is a same-premise decoy conclusion and none derives the step-0 conclusion"
+    },
+    "synonym_is_always": "The synonym generation contains the exact substring 'is always'. This count does not change any Since flag. Family blocks record the same substring inside that family.",
+    "premise_equality": "frozenset of the premise atoms; order is ignored",
+    "ours_synonym_gate": "On pilot ours, synonym-side other_derived and the frozenset same_premise_decoy source class. Expected 42 and 38.",
+    "answer_extract": "structrobust.prompts.extract_yes_no on the generation only",
+    "duplicate_uids": "e1.read_jsonl keeps the last row for a repeated uid",
+    "loaded_model": false,
+    "training": false,
+    "reading": "Counts of Since sentences in saved aligned generations for items whose synonym answer flipped from yes to no. These counts are not evidence that reasoning improved, and they are not a win for any training condition."
+  },
+  "gates": {
+    "ours_synonym": {
+      "condition": "ours",
+      "side": "synonym",
+      "equality": "frozenset",
+      "other_derived": 42,
+      "same_premise_decoy": 38,
+      "expected_other_derived": 42,
+      "expected_same_premise_decoy": 38,
+      "sources": {
+        "same_premise_decoy": 38,
+        "other_decoy": 3,
+        "mixed": 1
+      },
+      "ok": true
+    },
+    "is_always": {
+      "match": "exact substring 'is always' in the synonym generation; Since flags are unchanged",
+      "cells": [
+        {
+          "condition": "b0",
+          "expected_n": 13,
+          "expected_synonym_is_always": 12,
+          "n": 13,
+          "synonym_is_always": 12,
+          "ok": true
+        },
+        {
+          "condition": "mix15_b2",
+          "expected_n": 44,
+          "expected_synonym_is_always": 1,
+          "n": 44,
+          "synonym_is_always": 1,
+          "ok": true
+        },
+        {
+          "condition": "b2",
+          "expected_n": null,
+          "expected_synonym_is_always": 0,
+          "n": 37,
+          "synonym_is_always": 0,
+          "ok": true
+        },
+        {
+          "condition": "mix15_ours",
+          "expected_n": null,
+          "expected_synonym_is_always": 0,
+          "n": 51,
+          "synonym_is_always": 0,
+          "ok": true
+        }
+      ],
+      "ok": true
+    },
+    "ok": true
+  },
+  "conditions": {
+    "b0": {
+      "n": 13,
+      "aligned_since_step0": 0,
+      "aligned_since_query": 0,
+      "aligned_since_same_premise_decoy": 0,
+      "aligned_no_since": 13,
+      "aligned_step0_and_query": 0,
+      "aligned_decoy_without_step0": 0,
+      "synonym_is_always": 12,
+      "families": {
+        "chain": {
+          "n": 3,
+          "aligned_since_step0": 0,
+          "aligned_since_query": 0,
+          "aligned_since_same_premise_decoy": 0,
+          "aligned_no_since": 3,
+          "aligned_step0_and_query": 0,
+          "aligned_decoy_without_step0": 0,
+          "synonym_is_always": 3
+        },
+        "conj_fact": {
+          "n": 10,
+          "aligned_since_step0": 0,
+          "aligned_since_query": 0,
+          "aligned_since_same_premise_decoy": 0,
+          "aligned_no_since": 10,
+          "aligned_step0_and_query": 0,
+          "aligned_decoy_without_step0": 0,
+          "synonym_is_always": 9
+        }
+      }
+    },
+    "b1": {
+      "n": 48,
+      "aligned_since_step0": 48,
+      "aligned_since_query": 48,
+      "aligned_since_same_premise_decoy": 45,
+      "aligned_no_since": 0,
+      "aligned_step0_and_query": 48,
+      "aligned_decoy_without_step0": 0,
+      "synonym_is_always": 0,
+      "families": {
+        "chain": {
+          "n": 24,
+          "aligned_since_step0": 24,
+          "aligned_since_query": 24,
+          "aligned_since_same_premise_decoy": 24,
+          "aligned_no_since": 0,
+          "aligned_step0_and_query": 24,
+          "aligned_decoy_without_step0": 0,
+          "synonym_is_always": 0
+        },
+        "conj_fact": {
+          "n": 24,
+          "aligned_since_step0": 24,
+          "aligned_since_query": 24,
+          "aligned_since_same_premise_decoy": 21,
+          "aligned_no_since": 0,
+          "aligned_step0_and_query": 24,
+          "aligned_decoy_without_step0": 0,
+          "synonym_is_always": 0
+        }
+      }
+    },
+    "b2": {
+      "n": 37,
+      "aligned_since_step0": 37,
+      "aligned_since_query": 35,
+      "aligned_since_same_premise_decoy": 34,
+      "aligned_no_since": 0,
+      "aligned_step0_and_query": 35,
+      "aligned_decoy_without_step0": 0,
+      "synonym_is_always": 0,
+      "families": {
+        "chain": {
+          "n": 19,
+          "aligned_since_step0": 19,
+          "aligned_since_query": 19,
+          "aligned_since_same_premise_decoy": 17,
+          "aligned_no_since": 0,
+          "aligned_step0_and_query": 19,
+          "aligned_decoy_without_step0": 0,
+          "synonym_is_always": 0
+        },
+        "conj_fact": {
+          "n": 18,
+          "aligned_since_step0": 18,
+          "aligned_since_query": 16,
+          "aligned_since_same_premise_decoy": 17,
+          "aligned_no_since": 0,
+          "aligned_step0_and_query": 16,
+          "aligned_decoy_without_step0": 0,
+          "synonym_is_always": 0
+        }
+      }
+    },
+    "b3": {
+      "n": 57,
+      "aligned_since_step0": 57,
+      "aligned_since_query": 57,
+      "aligned_since_same_premise_decoy": 45,
+      "aligned_no_since": 0,
+      "aligned_step0_and_query": 57,
+      "aligned_decoy_without_step0": 0,
+      "synonym_is_always": 0,
+      "families": {
+        "chain": {
+          "n": 25,
+          "aligned_since_step0": 25,
+          "aligned_since_query": 25,
+          "aligned_since_same_premise_decoy": 24,
+          "aligned_no_since": 0,
+          "aligned_step0_and_query": 25,
+          "aligned_decoy_without_step0": 0,
+          "synonym_is_always": 0
+        },
+        "conj_fact": {
+          "n": 32,
+          "aligned_since_step0": 32,
+          "aligned_since_query": 32,
+          "aligned_since_same_premise_decoy": 21,
+          "aligned_no_since": 0,
+          "aligned_step0_and_query": 32,
+          "aligned_decoy_without_step0": 0,
+          "synonym_is_always": 0
+        }
+      }
+    },
+    "ours": {
+      "n": 42,
+      "aligned_since_step0": 42,
+      "aligned_since_query": 42,
+      "aligned_since_same_premise_decoy": 35,
+      "aligned_no_since": 0,
+      "aligned_step0_and_query": 42,
+      "aligned_decoy_without_step0": 0,
+      "synonym_is_always": 0,
+      "families": {
+        "chain": {
+          "n": 28,
+          "aligned_since_step0": 28,
+          "aligned_since_query": 28,
+          "aligned_since_same_premise_decoy": 25,
+          "aligned_no_since": 0,
+          "aligned_step0_and_query": 28,
+          "aligned_decoy_without_step0": 0,
+          "synonym_is_always": 0
+        },
+        "conj_fact": {
+          "n": 14,
+          "aligned_since_step0": 14,
+          "aligned_since_query": 14,
+          "aligned_since_same_premise_decoy": 10,
+          "aligned_no_since": 0,
+          "aligned_step0_and_query": 14,
+          "aligned_decoy_without_step0": 0,
+          "synonym_is_always": 0
+        }
+      }
+    },
+    "mix15_b1": {
+      "n": 57,
+      "aligned_since_step0": 57,
+      "aligned_since_query": 57,
+      "aligned_since_same_premise_decoy": 42,
+      "aligned_no_since": 0,
+      "aligned_step0_and_query": 57,
+      "aligned_decoy_without_step0": 0,
+      "synonym_is_always": 0,
+      "families": {
+        "chain": {
+          "n": 26,
+          "aligned_since_step0": 26,
+          "aligned_since_query": 26,
+          "aligned_since_same_premise_decoy": 22,
+          "aligned_no_since": 0,
+          "aligned_step0_and_query": 26,
+          "aligned_decoy_without_step0": 0,
+          "synonym_is_always": 0
+        },
+        "conj_fact": {
+          "n": 31,
+          "aligned_since_step0": 31,
+          "aligned_since_query": 31,
+          "aligned_since_same_premise_decoy": 20,
+          "aligned_no_since": 0,
+          "aligned_step0_and_query": 31,
+          "aligned_decoy_without_step0": 0,
+          "synonym_is_always": 0
+        }
+      }
+    },
+    "mix15_b2": {
+      "n": 44,
+      "aligned_since_step0": 44,
+      "aligned_since_query": 44,
+      "aligned_since_same_premise_decoy": 36,
+      "aligned_no_since": 0,
+      "aligned_step0_and_query": 44,
+      "aligned_decoy_without_step0": 0,
+      "synonym_is_always": 1,
+      "families": {
+        "chain": {
+          "n": 19,
+          "aligned_since_step0": 19,
+          "aligned_since_query": 19,
+          "aligned_since_same_premise_decoy": 16,
+          "aligned_no_since": 0,
+          "aligned_step0_and_query": 19,
+          "aligned_decoy_without_step0": 0,
+          "synonym_is_always": 0
+        },
+        "conj_fact": {
+          "n": 25,
+          "aligned_since_step0": 25,
+          "aligned_since_query": 25,
+          "aligned_since_same_premise_decoy": 20,
+          "aligned_no_since": 0,
+          "aligned_step0_and_query": 25,
+          "aligned_decoy_without_step0": 0,
+          "synonym_is_always": 1
+        }
+      }
+    },
+    "mix15_b3": {
+      "n": 25,
+      "aligned_since_step0": 25,
+      "aligned_since_query": 25,
+      "aligned_since_same_premise_decoy": 23,
+      "aligned_no_since": 0,
+      "aligned_step0_and_query": 25,
+      "aligned_decoy_without_step0": 0,
+      "synonym_is_always": 0,
+      "families": {
+        "chain": {
+          "n": 11,
+          "aligned_since_step0": 11,
+          "aligned_since_query": 11,
+          "aligned_since_same_premise_decoy": 9,
+          "aligned_no_since": 0,
+          "aligned_step0_and_query": 11,
+          "aligned_decoy_without_step0": 0,
+          "synonym_is_always": 0
+        },
+        "conj_fact": {
+          "n": 14,
+          "aligned_since_step0": 14,
+          "aligned_since_query": 14,
+          "aligned_since_same_premise_decoy": 14,
+          "aligned_no_since": 0,
+          "aligned_step0_and_query": 14,
+          "aligned_decoy_without_step0": 0,
+          "synonym_is_always": 0
+        }
+      }
+    },
+    "mix15_ours": {
+      "n": 51,
+      "aligned_since_step0": 51,
+      "aligned_since_query": 51,
+      "aligned_since_same_premise_decoy": 39,
+      "aligned_no_since": 0,
+      "aligned_step0_and_query": 51,
+      "aligned_decoy_without_step0": 0,
+      "synonym_is_always": 0,
+      "families": {
+        "chain": {
+          "n": 25,
+          "aligned_since_step0": 25,
+          "aligned_since_query": 25,
+          "aligned_since_same_premise_decoy": 22,
+          "aligned_no_since": 0,
+          "aligned_step0_and_query": 25,
+          "aligned_decoy_without_step0": 0,
+          "synonym_is_always": 0
+        },
+        "conj_fact": {
+          "n": 26,
+          "aligned_since_step0": 26,
+          "aligned_since_query": 26,
+          "aligned_since_same_premise_decoy": 17,
+          "aligned_no_since": 0,
+          "aligned_step0_and_query": 26,
+          "aligned_decoy_without_step0": 0,
+          "synonym_is_always": 0
+        }
+      }
+    }
+  }
+}

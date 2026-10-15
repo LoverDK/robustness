@@ -1,0 +1,639 @@
+{
+  "config": {
+    "seed": 0,
+    "split": "seen",
+    "pool": "test_seen from build_pools(seed=0)",
+    "population": "seen graph, latent label yes, aligned extract yes, synonym extract no",
+    "empty_extract": "Seen gold-yes items whose aligned extract is yes and whose synonym extract is empty. They are counted in n_empty_extract and are not placed in the four buckets or the source classes. n counts synonym extract no.",
+    "partition": "The four buckets sum to n. The source classes, including fact and mixed, sum to other_derived. step0_word_in_generation is a subset of other_derived and does not move an item between classes.",
+    "regex": "since\\b[^\\.\\n]*,\\s*{entity} is ([a-z]+)",
+    "regex_flags": "IGNORECASE",
+    "since_sentence": "yes_flip_trace.since_atoms. A line containing 'cannot be proved' contributes no derived atom.",
+    "buckets": {
+      "query_derived": "a Since sentence derives the query atom",
+      "step0_not_query": "a Since sentence derives core_rules[0]'s conclusion and none derives the query",
+      "other_derived": "at least one Since sentence, and neither the step-0 conclusion nor the query is derived",
+      "no_since": "no Since sentence"
+    },
+    "premise_equality": "frozenset of the premise atoms; order is ignored",
+    "tuple_equality": "Ordered premise tuples. Used only to compare with the leader's recount. Reported source counts use frozenset.",
+    "atom_source": {
+      "same_premise_decoy": "conclusion of some other_rule whose premise set equals core_rules[0]",
+      "other_decoy": "conclusion of some other_rule, and no such rule has the step-0 premise set",
+      "later_core": "conclusion of core_rules[1:], and not a conclusion of other_rules",
+      "fact": "in lat.facts, and not a conclusion of other_rules or core_rules[1:]",
+      "unknown": "not a conclusion of those rules and not a fact",
+      "mixed": "the item's Since atoms fall in more than one class. A fact atom together with another class is mixed."
+    },
+    "step0_word_in_generation": "Among other_derived items, the full generation contains core_rules[0]'s conclusion as a whole word, ignoring case. This count does not change the bucket or the source class.",
+    "answer_extract": "structrobust.prompts.extract_yes_no on the generation only",
+    "duplicate_uids": "e1.read_jsonl keeps the last row for a repeated uid",
+    "pairs": {
+      "pilot_ours_wrong_b2_right": "seen, gold yes, pilot ours and pilot b2 aligned extracts are yes, ours synonym extract is no, b2 synonym extract is yes",
+      "mix15_ours_wrong_b2_right": "seen, gold yes, mix15 ours and mix15 b2 aligned extracts are yes, mix15 ours synonym extract is no, mix15 b2 synonym extract is yes"
+    },
+    "pair_sides": "Left is ours and receives the same source classification as other_derived items. Right is b2 and is not restricted to extract no. Its three counts are headcounts of Since atoms and may overlap: step-0 conclusion, query, and a same-premise decoy conclusion.",
+    "loaded_model": false,
+    "training": false,
+    "reading": "Counts of which rules the Since atoms match in saved generations. These counts are not evidence that reasoning improved, and they are not a win for any training condition."
+  },
+  "gates": {
+    "tuple_match": true,
+    "n_items_differ": 0,
+    "differing_graph_hashes": [],
+    "leader": {
+      "condition": "ours",
+      "equality": "tuple",
+      "other_derived": 42,
+      "same_premise_decoy": 38,
+      "other_decoy": 3,
+      "later_core": 0,
+      "unknown": 0,
+      "mixed": 1,
+      "pair_n": 18
+    },
+    "matches_leader": true,
+    "tuple": {
+      "condition": "ours",
+      "equality": "tuple",
+      "other_derived": 42,
+      "same_premise_decoy": 38,
+      "other_decoy": 3,
+      "later_core": 0,
+      "unknown": 0,
+      "fact": 0,
+      "mixed": 1,
+      "pair_n": 18
+    },
+    "frozenset": {
+      "condition": "ours",
+      "equality": "frozenset",
+      "other_derived": 42,
+      "same_premise_decoy": 38,
+      "other_decoy": 3,
+      "later_core": 0,
+      "unknown": 0,
+      "fact": 0,
+      "mixed": 1,
+      "pair_n": 18
+    }
+  },
+  "sanity": {
+    "graph_hash": "099cd1bf088e74592cba2fd9c8b6303c1b89361f8fe3f673939bfb6394ab30ad",
+    "condition": "ours",
+    "in_population": true,
+    "entity": "Tina",
+    "family": "chain",
+    "label": "yes",
+    "step0_premises": [
+      "vivid"
+    ],
+    "step0_conclusion": "silver",
+    "query": "snowy",
+    "same_premise_decoy_rule": {
+      "premises": [
+        "vivid"
+      ],
+      "conclusion": "windy"
+    },
+    "derived_atoms": [
+      "windy"
+    ],
+    "bucket": "other_derived",
+    "source": "same_premise_decoy",
+    "sanity_ok": true
+  },
+  "conditions": {
+    "b0": {
+      "n": 13,
+      "n_empty_extract": 0,
+      "query_derived": 0,
+      "step0_not_query": 0,
+      "other_derived": 0,
+      "no_since": 13,
+      "sources": {
+        "same_premise_decoy": 0,
+        "other_decoy": 0,
+        "later_core": 0,
+        "unknown": 0,
+        "fact": 0,
+        "mixed": 0
+      },
+      "step0_word_in_generation": 0,
+      "families": {
+        "chain": {
+          "n": 3,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 0,
+          "no_since": 3,
+          "sources": {
+            "same_premise_decoy": 0,
+            "other_decoy": 0,
+            "later_core": 0,
+            "unknown": 0,
+            "fact": 0,
+            "mixed": 0
+          },
+          "step0_word_in_generation": 0
+        },
+        "conj_fact": {
+          "n": 10,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 0,
+          "no_since": 10,
+          "sources": {
+            "same_premise_decoy": 0,
+            "other_decoy": 0,
+            "later_core": 0,
+            "unknown": 0,
+            "fact": 0,
+            "mixed": 0
+          },
+          "step0_word_in_generation": 0
+        }
+      }
+    },
+    "b1": {
+      "n": 48,
+      "n_empty_extract": 0,
+      "query_derived": 1,
+      "step0_not_query": 0,
+      "other_derived": 47,
+      "no_since": 0,
+      "sources": {
+        "same_premise_decoy": 35,
+        "other_decoy": 1,
+        "later_core": 0,
+        "unknown": 0,
+        "fact": 0,
+        "mixed": 11
+      },
+      "step0_word_in_generation": 0,
+      "families": {
+        "chain": {
+          "n": 24,
+          "n_empty_extract": 0,
+          "query_derived": 1,
+          "step0_not_query": 0,
+          "other_derived": 23,
+          "no_since": 0,
+          "sources": {
+            "same_premise_decoy": 23,
+            "other_decoy": 0,
+            "later_core": 0,
+            "unknown": 0,
+            "fact": 0,
+            "mixed": 0
+          },
+          "step0_word_in_generation": 0
+        },
+        "conj_fact": {
+          "n": 24,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 24,
+          "no_since": 0,
+          "sources": {
+            "same_premise_decoy": 12,
+            "other_decoy": 1,
+            "later_core": 0,
+            "unknown": 0,
+            "fact": 0,
+            "mixed": 11
+          },
+          "step0_word_in_generation": 0
+        }
+      }
+    },
+    "b2": {
+      "n": 37,
+      "n_empty_extract": 0,
+      "query_derived": 1,
+      "step0_not_query": 0,
+      "other_derived": 36,
+      "no_since": 0,
+      "sources": {
+        "same_premise_decoy": 28,
+        "other_decoy": 1,
+        "later_core": 0,
+        "unknown": 0,
+        "fact": 0,
+        "mixed": 7
+      },
+      "step0_word_in_generation": 0,
+      "families": {
+        "chain": {
+          "n": 19,
+          "n_empty_extract": 0,
+          "query_derived": 1,
+          "step0_not_query": 0,
+          "other_derived": 18,
+          "no_since": 0,
+          "sources": {
+            "same_premise_decoy": 18,
+            "other_decoy": 0,
+            "later_core": 0,
+            "unknown": 0,
+            "fact": 0,
+            "mixed": 0
+          },
+          "step0_word_in_generation": 0
+        },
+        "conj_fact": {
+          "n": 18,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 18,
+          "no_since": 0,
+          "sources": {
+            "same_premise_decoy": 10,
+            "other_decoy": 1,
+            "later_core": 0,
+            "unknown": 0,
+            "fact": 0,
+            "mixed": 7
+          },
+          "step0_word_in_generation": 0
+        }
+      }
+    },
+    "b3": {
+      "n": 57,
+      "n_empty_extract": 0,
+      "query_derived": 0,
+      "step0_not_query": 1,
+      "other_derived": 56,
+      "no_since": 0,
+      "sources": {
+        "same_premise_decoy": 40,
+        "other_decoy": 8,
+        "later_core": 0,
+        "unknown": 0,
+        "fact": 0,
+        "mixed": 8
+      },
+      "step0_word_in_generation": 0,
+      "families": {
+        "chain": {
+          "n": 25,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 25,
+          "no_since": 0,
+          "sources": {
+            "same_premise_decoy": 25,
+            "other_decoy": 0,
+            "later_core": 0,
+            "unknown": 0,
+            "fact": 0,
+            "mixed": 0
+          },
+          "step0_word_in_generation": 0
+        },
+        "conj_fact": {
+          "n": 32,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 1,
+          "other_derived": 31,
+          "no_since": 0,
+          "sources": {
+            "same_premise_decoy": 15,
+            "other_decoy": 8,
+            "later_core": 0,
+            "unknown": 0,
+            "fact": 0,
+            "mixed": 8
+          },
+          "step0_word_in_generation": 0
+        }
+      }
+    },
+    "ours": {
+      "n": 42,
+      "n_empty_extract": 0,
+      "query_derived": 0,
+      "step0_not_query": 0,
+      "other_derived": 42,
+      "no_since": 0,
+      "sources": {
+        "same_premise_decoy": 38,
+        "other_decoy": 3,
+        "later_core": 0,
+        "unknown": 0,
+        "fact": 0,
+        "mixed": 1
+      },
+      "step0_word_in_generation": 0,
+      "families": {
+        "chain": {
+          "n": 28,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 28,
+          "no_since": 0,
+          "sources": {
+            "same_premise_decoy": 28,
+            "other_decoy": 0,
+            "later_core": 0,
+            "unknown": 0,
+            "fact": 0,
+            "mixed": 0
+          },
+          "step0_word_in_generation": 0
+        },
+        "conj_fact": {
+          "n": 14,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 14,
+          "no_since": 0,
+          "sources": {
+            "same_premise_decoy": 10,
+            "other_decoy": 3,
+            "later_core": 0,
+            "unknown": 0,
+            "fact": 0,
+            "mixed": 1
+          },
+          "step0_word_in_generation": 0
+        }
+      }
+    },
+    "mix15_b1": {
+      "n": 57,
+      "n_empty_extract": 0,
+      "query_derived": 0,
+      "step0_not_query": 0,
+      "other_derived": 57,
+      "no_since": 0,
+      "sources": {
+        "same_premise_decoy": 41,
+        "other_decoy": 8,
+        "later_core": 0,
+        "unknown": 1,
+        "fact": 0,
+        "mixed": 7
+      },
+      "step0_word_in_generation": 0,
+      "families": {
+        "chain": {
+          "n": 26,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 26,
+          "no_since": 0,
+          "sources": {
+            "same_premise_decoy": 26,
+            "other_decoy": 0,
+            "later_core": 0,
+            "unknown": 0,
+            "fact": 0,
+            "mixed": 0
+          },
+          "step0_word_in_generation": 0
+        },
+        "conj_fact": {
+          "n": 31,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 31,
+          "no_since": 0,
+          "sources": {
+            "same_premise_decoy": 15,
+            "other_decoy": 8,
+            "later_core": 0,
+            "unknown": 1,
+            "fact": 0,
+            "mixed": 7
+          },
+          "step0_word_in_generation": 0
+        }
+      }
+    },
+    "mix15_b2": {
+      "n": 44,
+      "n_empty_extract": 0,
+      "query_derived": 0,
+      "step0_not_query": 0,
+      "other_derived": 44,
+      "no_since": 0,
+      "sources": {
+        "same_premise_decoy": 32,
+        "other_decoy": 3,
+        "later_core": 0,
+        "unknown": 0,
+        "fact": 0,
+        "mixed": 9
+      },
+      "step0_word_in_generation": 1,
+      "families": {
+        "chain": {
+          "n": 19,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 19,
+          "no_since": 0,
+          "sources": {
+            "same_premise_decoy": 19,
+            "other_decoy": 0,
+            "later_core": 0,
+            "unknown": 0,
+            "fact": 0,
+            "mixed": 0
+          },
+          "step0_word_in_generation": 0
+        },
+        "conj_fact": {
+          "n": 25,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 25,
+          "no_since": 0,
+          "sources": {
+            "same_premise_decoy": 13,
+            "other_decoy": 3,
+            "later_core": 0,
+            "unknown": 0,
+            "fact": 0,
+            "mixed": 9
+          },
+          "step0_word_in_generation": 1
+        }
+      }
+    },
+    "mix15_b3": {
+      "n": 25,
+      "n_empty_extract": 0,
+      "query_derived": 0,
+      "step0_not_query": 0,
+      "other_derived": 25,
+      "no_since": 0,
+      "sources": {
+        "same_premise_decoy": 20,
+        "other_decoy": 0,
+        "later_core": 0,
+        "unknown": 0,
+        "fact": 0,
+        "mixed": 5
+      },
+      "step0_word_in_generation": 0,
+      "families": {
+        "chain": {
+          "n": 11,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 11,
+          "no_since": 0,
+          "sources": {
+            "same_premise_decoy": 11,
+            "other_decoy": 0,
+            "later_core": 0,
+            "unknown": 0,
+            "fact": 0,
+            "mixed": 0
+          },
+          "step0_word_in_generation": 0
+        },
+        "conj_fact": {
+          "n": 14,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 14,
+          "no_since": 0,
+          "sources": {
+            "same_premise_decoy": 9,
+            "other_decoy": 0,
+            "later_core": 0,
+            "unknown": 0,
+            "fact": 0,
+            "mixed": 5
+          },
+          "step0_word_in_generation": 0
+        }
+      }
+    },
+    "mix15_ours": {
+      "n": 51,
+      "n_empty_extract": 0,
+      "query_derived": 0,
+      "step0_not_query": 0,
+      "other_derived": 51,
+      "no_since": 0,
+      "sources": {
+        "same_premise_decoy": 39,
+        "other_decoy": 7,
+        "later_core": 0,
+        "unknown": 0,
+        "fact": 0,
+        "mixed": 5
+      },
+      "step0_word_in_generation": 1,
+      "families": {
+        "chain": {
+          "n": 25,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 25,
+          "no_since": 0,
+          "sources": {
+            "same_premise_decoy": 25,
+            "other_decoy": 0,
+            "later_core": 0,
+            "unknown": 0,
+            "fact": 0,
+            "mixed": 0
+          },
+          "step0_word_in_generation": 0
+        },
+        "conj_fact": {
+          "n": 26,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 26,
+          "no_since": 0,
+          "sources": {
+            "same_premise_decoy": 14,
+            "other_decoy": 7,
+            "later_core": 0,
+            "unknown": 0,
+            "fact": 0,
+            "mixed": 5
+          },
+          "step0_word_in_generation": 1
+        }
+      }
+    }
+  },
+  "pairs": {
+    "pilot_ours_wrong_b2_right": {
+      "n": 18,
+      "left": {
+        "condition": "ours",
+        "n_empty_extract": 0,
+        "query_derived": 0,
+        "step0_not_query": 0,
+        "other_derived": 18,
+        "no_since": 0,
+        "sources": {
+          "same_premise_decoy": 14,
+          "other_decoy": 3,
+          "later_core": 0,
+          "unknown": 0,
+          "fact": 0,
+          "mixed": 1
+        },
+        "step0_word_in_generation": 0
+      },
+      "right": {
+        "condition": "b2",
+        "n_since_step0_conclusion": 14,
+        "n_since_query": 18,
+        "n_since_same_premise_decoy": 15
+      }
+    },
+    "mix15_ours_wrong_b2_right": {
+      "n": 20,
+      "left": {
+        "condition": "mix15_ours",
+        "n_empty_extract": 0,
+        "query_derived": 0,
+        "step0_not_query": 0,
+        "other_derived": 20,
+        "no_since": 0,
+        "sources": {
+          "same_premise_decoy": 13,
+          "other_decoy": 4,
+          "later_core": 0,
+          "unknown": 0,
+          "fact": 0,
+          "mixed": 3
+        },
+        "step0_word_in_generation": 1
+      },
+      "right": {
+        "condition": "mix15_b2",
+        "n_since_step0_conclusion": 10,
+        "n_since_query": 20,
+        "n_since_same_premise_decoy": 15
+      }
+    }
+  }
+}

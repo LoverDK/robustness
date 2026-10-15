@@ -1,0 +1,11 @@
+{
+  "condition": "b2",
+  "skipped": false,
+  "batch_size": 32,
+  "max_new_tokens": 512,
+  "decoding": "greedy",
+  "cot": true,
+  "adapter": "build/e1/pilot/b2/adapter",
+  "load": "e1.load_for_eval",
+  "base_dtype": "bfloat16"
+}

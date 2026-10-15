@@ -1,0 +1,142 @@
+{
+  "ok": true,
+  "seed": 0,
+  "depth": 2,
+  "tags": {
+    "train": "e1train",
+    "val": "e1val",
+    "test_seen": "e1test",
+    "test_unseen": "e1test_unseen",
+    "excluded_e0_tag": "e0"
+  },
+  "overlaps": {
+    "train__val": 0,
+    "train__test_seen": 0,
+    "train__test_unseen": 0,
+    "val__test_seen": 0,
+    "val__test_unseen": 0,
+    "train__e0_seen_depth2": 0,
+    "val__e0_seen_depth2": 0,
+    "test_seen__e0_seen_depth2": 0,
+    "test_unseen__e0_seen_depth2": 0,
+    "test_seen__test_unseen": 0
+  },
+  "pools": {
+    "train": {
+      "n": 500,
+      "n_unique_graph": 500,
+      "n_unique_task_id": 500,
+      "n_yes": 250,
+      "n_no": 250,
+      "depths": [
+        2
+      ],
+      "families": [
+        "chain",
+        "conj_fact"
+      ],
+      "vocabs": [
+        "train"
+      ],
+      "expected_vocab": "train",
+      "expected_families": [
+        "chain",
+        "conj_fact"
+      ]
+    },
+    "val": {
+      "n": 200,
+      "n_unique_graph": 200,
+      "n_unique_task_id": 200,
+      "n_yes": 100,
+      "n_no": 100,
+      "depths": [
+        2
+      ],
+      "families": [
+        "chain",
+        "conj_fact"
+      ],
+      "vocabs": [
+        "train"
+      ],
+      "expected_vocab": "train",
+      "expected_families": [
+        "chain",
+        "conj_fact"
+      ]
+    },
+    "test_seen": {
+      "n": 200,
+      "n_unique_graph": 200,
+      "n_unique_task_id": 200,
+      "n_yes": 100,
+      "n_no": 100,
+      "depths": [
+        2
+      ],
+      "families": [
+        "chain",
+        "conj_fact"
+      ],
+      "vocabs": [
+        "eval"
+      ],
+      "expected_vocab": "eval",
+      "expected_families": [
+        "chain",
+        "conj_fact"
+      ]
+    },
+    "test_unseen": {
+      "n": 200,
+      "n_unique_graph": 200,
+      "n_unique_task_id": 200,
+      "n_yes": 100,
+      "n_no": 100,
+      "depths": [
+        2
+      ],
+      "families": [
+        "diamond",
+        "tree"
+      ],
+      "vocabs": [
+        "eval"
+      ],
+      "expected_vocab": "eval",
+      "expected_families": [
+        "tree",
+        "diamond"
+      ]
+    },
+    "e0_seen_depth2": {
+      "n": 200,
+      "n_unique_graph": 200,
+      "n_unique_task_id": 200,
+      "n_yes": 100,
+      "n_no": 100,
+      "depths": [
+        2
+      ],
+      "families": [
+        "chain",
+        "conj_fact"
+      ],
+      "vocabs": [
+        "eval"
+      ],
+      "expected_vocab": "eval",
+      "expected_families": [
+        "chain",
+        "conj_fact"
+      ]
+    }
+  },
+  "shifted_presentation": "reversed",
+  "slot_random_unique_min": 1,
+  "slot_random_unique_mean": 1.0,
+  "slot_random_unique_max": 1,
+  "slot_random_seeds_per_latent": 16,
+  "training_permutation": "B1 uses logic.render aligned twice. B2 and B3 share two uniform shuffles of all core and other rules. Ours draws K=8 such shuffles. Facts stay fixed. Extra distractors are not used in training."
+}

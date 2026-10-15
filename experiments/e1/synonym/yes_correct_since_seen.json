@@ -1,0 +1,336 @@
+{
+  "config": {
+    "seed": 0,
+    "split": "seen",
+    "pool": "test_seen from build_pools(seed=0)",
+    "population": "seen graph, latent label yes, aligned extract yes, synonym extract yes. These items were answered yes on the synonym presentation. They are not the flip population.",
+    "aligned_generation": "seen_aligned|{graph_hash} in each condition's logic.jsonl. The row is not regenerated. It is used only to require extract yes.",
+    "synonym_generation": "seen_synonym|{graph_hash} in each condition's generations.jsonl",
+    "partition": "first_step0 + first_same_premise_decoy + first_other + first_none = n. has_query and has_step0 may overlap and are not in that sum. chain and conj_fact repeat the same counts and sum to the condition.",
+    "regex": "since\\b[^\\.\\n]*,\\s*{entity} is ([a-z]+)",
+    "regex_flags": "IGNORECASE",
+    "since_sentence": "yes_flip_trace.since_atoms. Order is the order of matches. A line containing 'cannot be proved' contributes no atom.",
+    "has_query": "some synonym Since atom equals lat.query",
+    "has_step0": "some synonym Since atom equals core_rules[0]'s conclusion",
+    "first_atom": "atoms[0] when Since atoms exist; otherwise first_none",
+    "first_classes": {
+      "first_step0": "the first Since atom equals core_rules[0]'s conclusion",
+      "first_same_premise_decoy": "the first Since atom is the conclusion of some other_rules entry whose premise frozenset equals core_rules[0], and it is not the step-0 conclusion and not the query",
+      "first_other": "the generation has a Since sentence, and the first atom is neither first_step0 nor first_same_premise_decoy",
+      "first_none": "the generation has no Since sentence"
+    },
+    "premise_equality": "frozenset of the premise atoms; order is ignored",
+    "class_source": "yes_flip_first_since.first_since_class, collapsed so query, later_core, other_decoy, and other all count as first_other",
+    "families": "chain and conj_fact",
+    "answer_extract": "structrobust.prompts.extract_yes_no on the generation only",
+    "duplicate_uids": "e1.read_jsonl keeps the last row for a repeated uid",
+    "conditions": [
+      "b0",
+      "b1",
+      "b2",
+      "b3",
+      "ours",
+      "mix15_b1",
+      "mix15_b2",
+      "mix15_b3",
+      "mix15_ours"
+    ],
+    "gates": "pilot ours: n=35, has_query=35, has_step0=26, first_step0=16, first_same_premise_decoy=9. A mismatch stops the script before it writes this file. Separately, 35 plus conditions.ours.n in experiments/e1/synonym/yes_flip_trace.json must equal 77. That sum is recorded in gates. If it is not 77, this file is still written and the script then exits.",
+    "loaded_model": false,
+    "training": false,
+    "reading": "Counts of Since atoms in saved generations on items answered yes. These counts are not evidence that reasoning improved, and they are not a win for any training condition."
+  },
+  "gates": {
+    "ok": true,
+    "pilot_ours": {
+      "ok": true,
+      "observed": {
+        "n": 35,
+        "has_query": 35,
+        "has_step0": 26,
+        "first_step0": 16,
+        "first_same_premise_decoy": 9
+      },
+      "expected": {
+        "n": 35,
+        "has_query": 35,
+        "has_step0": 26,
+        "first_step0": 16,
+        "first_same_premise_decoy": 9
+      }
+    },
+    "sum_with_flip": {
+      "ok": true,
+      "correct_n_gate": 35,
+      "observed_correct_n": 35,
+      "flip_file": "experiments/e1/synonym/yes_flip_trace.json",
+      "flip_ours_n": 42,
+      "sum_gate_plus_flip": 77,
+      "sum_observed_plus_flip": 77,
+      "expected_sum": 77
+    }
+  },
+  "conditions": {
+    "b0": {
+      "n": 57,
+      "has_query": 0,
+      "has_step0": 2,
+      "first_step0": 0,
+      "first_same_premise_decoy": 1,
+      "first_other": 2,
+      "first_none": 54,
+      "families": {
+        "chain": {
+          "n": 34,
+          "has_query": 0,
+          "has_step0": 0,
+          "first_step0": 0,
+          "first_same_premise_decoy": 0,
+          "first_other": 1,
+          "first_none": 33
+        },
+        "conj_fact": {
+          "n": 23,
+          "has_query": 0,
+          "has_step0": 2,
+          "first_step0": 0,
+          "first_same_premise_decoy": 1,
+          "first_other": 1,
+          "first_none": 21
+        }
+      }
+    },
+    "b1": {
+      "n": 48,
+      "has_query": 48,
+      "has_step0": 28,
+      "first_step0": 14,
+      "first_same_premise_decoy": 13,
+      "first_other": 21,
+      "first_none": 0,
+      "families": {
+        "chain": {
+          "n": 23,
+          "has_query": 23,
+          "has_step0": 14,
+          "first_step0": 5,
+          "first_same_premise_decoy": 9,
+          "first_other": 9,
+          "first_none": 0
+        },
+        "conj_fact": {
+          "n": 25,
+          "has_query": 25,
+          "has_step0": 14,
+          "first_step0": 9,
+          "first_same_premise_decoy": 4,
+          "first_other": 12,
+          "first_none": 0
+        }
+      }
+    },
+    "b2": {
+      "n": 61,
+      "has_query": 60,
+      "has_step0": 41,
+      "first_step0": 17,
+      "first_same_premise_decoy": 23,
+      "first_other": 21,
+      "first_none": 0,
+      "families": {
+        "chain": {
+          "n": 30,
+          "has_query": 30,
+          "has_step0": 22,
+          "first_step0": 8,
+          "first_same_premise_decoy": 15,
+          "first_other": 7,
+          "first_none": 0
+        },
+        "conj_fact": {
+          "n": 31,
+          "has_query": 30,
+          "has_step0": 19,
+          "first_step0": 9,
+          "first_same_premise_decoy": 8,
+          "first_other": 14,
+          "first_none": 0
+        }
+      }
+    },
+    "b3": {
+      "n": 39,
+      "has_query": 39,
+      "has_step0": 21,
+      "first_step0": 12,
+      "first_same_premise_decoy": 10,
+      "first_other": 17,
+      "first_none": 0,
+      "families": {
+        "chain": {
+          "n": 24,
+          "has_query": 24,
+          "has_step0": 14,
+          "first_step0": 7,
+          "first_same_premise_decoy": 8,
+          "first_other": 9,
+          "first_none": 0
+        },
+        "conj_fact": {
+          "n": 15,
+          "has_query": 15,
+          "has_step0": 7,
+          "first_step0": 5,
+          "first_same_premise_decoy": 2,
+          "first_other": 8,
+          "first_none": 0
+        }
+      }
+    },
+    "ours": {
+      "n": 35,
+      "has_query": 35,
+      "has_step0": 26,
+      "first_step0": 16,
+      "first_same_premise_decoy": 9,
+      "first_other": 10,
+      "first_none": 0,
+      "families": {
+        "chain": {
+          "n": 19,
+          "has_query": 19,
+          "has_step0": 13,
+          "first_step0": 7,
+          "first_same_premise_decoy": 6,
+          "first_other": 6,
+          "first_none": 0
+        },
+        "conj_fact": {
+          "n": 16,
+          "has_query": 16,
+          "has_step0": 13,
+          "first_step0": 9,
+          "first_same_premise_decoy": 3,
+          "first_other": 4,
+          "first_none": 0
+        }
+      }
+    },
+    "mix15_b1": {
+      "n": 38,
+      "has_query": 38,
+      "has_step0": 25,
+      "first_step0": 15,
+      "first_same_premise_decoy": 9,
+      "first_other": 14,
+      "first_none": 0,
+      "families": {
+        "chain": {
+          "n": 23,
+          "has_query": 23,
+          "has_step0": 14,
+          "first_step0": 8,
+          "first_same_premise_decoy": 7,
+          "first_other": 8,
+          "first_none": 0
+        },
+        "conj_fact": {
+          "n": 15,
+          "has_query": 15,
+          "has_step0": 11,
+          "first_step0": 7,
+          "first_same_premise_decoy": 2,
+          "first_other": 6,
+          "first_none": 0
+        }
+      }
+    },
+    "mix15_b2": {
+      "n": 55,
+      "has_query": 55,
+      "has_step0": 29,
+      "first_step0": 12,
+      "first_same_premise_decoy": 20,
+      "first_other": 23,
+      "first_none": 0,
+      "families": {
+        "chain": {
+          "n": 30,
+          "has_query": 30,
+          "has_step0": 18,
+          "first_step0": 6,
+          "first_same_premise_decoy": 15,
+          "first_other": 9,
+          "first_none": 0
+        },
+        "conj_fact": {
+          "n": 25,
+          "has_query": 25,
+          "has_step0": 11,
+          "first_step0": 6,
+          "first_same_premise_decoy": 5,
+          "first_other": 14,
+          "first_none": 0
+        }
+      }
+    },
+    "mix15_b3": {
+      "n": 74,
+      "has_query": 74,
+      "has_step0": 51,
+      "first_step0": 12,
+      "first_same_premise_decoy": 33,
+      "first_other": 29,
+      "first_none": 0,
+      "families": {
+        "chain": {
+          "n": 38,
+          "has_query": 38,
+          "has_step0": 30,
+          "first_step0": 8,
+          "first_same_premise_decoy": 23,
+          "first_other": 7,
+          "first_none": 0
+        },
+        "conj_fact": {
+          "n": 36,
+          "has_query": 36,
+          "has_step0": 21,
+          "first_step0": 4,
+          "first_same_premise_decoy": 10,
+          "first_other": 22,
+          "first_none": 0
+        }
+      }
+    },
+    "mix15_ours": {
+      "n": 29,
+      "has_query": 29,
+      "has_step0": 23,
+      "first_step0": 12,
+      "first_same_premise_decoy": 5,
+      "first_other": 12,
+      "first_none": 0,
+      "families": {
+        "chain": {
+          "n": 17,
+          "has_query": 17,
+          "has_step0": 11,
+          "first_step0": 7,
+          "first_same_premise_decoy": 4,
+          "first_other": 6,
+          "first_none": 0
+        },
+        "conj_fact": {
+          "n": 12,
+          "has_query": 12,
+          "has_step0": 12,
+          "first_step0": 5,
+          "first_same_premise_decoy": 1,
+          "first_other": 6,
+          "first_none": 0
+        }
+      }
+    }
+  }
+}

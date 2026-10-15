@@ -1,0 +1,223 @@
+{
+  "config": {
+    "seed": 0,
+    "pools": "e1.build_pools(seed=0)",
+    "split": "seen",
+    "label": "yes",
+    "population": "Items enter a pair only when both models have aligned_correct = 1 and the gold label is yes.",
+    "pairing": "graph hash",
+    "read": "e1.read_jsonl last line wins",
+    "aligned_and_reversed": "pilot logic.jsonl aligned and shifted rows",
+    "synonym": "saved generations.jsonl",
+    "synonym_wrong": "extracted answer differs from the gold label; an empty extraction is wrong",
+    "reversed_right": "extracted reversed answer equals the gold label",
+    "left": "the first model named in the pair",
+    "only_right": "synonym wrong for the right model and synonym right for the left model",
+    "only_left": "synonym wrong for the left model and synonym right for the right model",
+    "files": {
+      "b1": {
+        "synonym": "build/e1/synonym/b1/generations.jsonl",
+        "logic": "build/e1/pilot/b1/logic.jsonl"
+      },
+      "b2": {
+        "synonym": "build/e1/synonym/b2/generations.jsonl",
+        "logic": "build/e1/pilot/b2/logic.jsonl"
+      },
+      "ours": {
+        "synonym": "build/e1/synonym/ours/generations.jsonl",
+        "logic": "build/e1/pilot/ours/logic.jsonl"
+      },
+      "mix15_b1": {
+        "synonym": "build/e1/synonym/mix15_b1/generations.jsonl",
+        "logic": "build/e1/pilot_mix15/b1/logic.jsonl"
+      },
+      "mix15_b2": {
+        "synonym": "build/e1/synonym/mix15_b2/generations.jsonl",
+        "logic": "build/e1/pilot_mix15/b2/logic.jsonl"
+      },
+      "mix15_ours": {
+        "synonym": "build/e1/synonym/mix15_ours/generations.jsonl",
+        "logic": "build/e1/pilot_mix15/ours/logic.jsonl"
+      }
+    },
+    "loaded_model": false,
+    "training": false,
+    "gpu": false
+  },
+  "pairs": [
+    {
+      "pair": "b2 versus b1",
+      "left": "b2",
+      "right": "b1",
+      "split": "seen",
+      "label": "yes",
+      "n_common": 95,
+      "n_synonym_wrong": {
+        "b2": 35,
+        "b1": 47
+      },
+      "n_both_wrong": 31,
+      "n_only_left": 4,
+      "n_only_right": 16,
+      "synonym_wrong_only_right": {
+        "n": 16,
+        "reversed_right": {
+          "b2": 13,
+          "b1": 7
+        }
+      },
+      "synonym_wrong_only_left": {
+        "n": 4,
+        "reversed_right": {
+          "b2": 3,
+          "b1": 2
+        }
+      }
+    },
+    {
+      "pair": "ours versus b1",
+      "left": "ours",
+      "right": "b1",
+      "split": "seen",
+      "label": "yes",
+      "n_common": 75,
+      "n_synonym_wrong": {
+        "ours": 40,
+        "b1": 35
+      },
+      "n_both_wrong": 32,
+      "n_only_left": 8,
+      "n_only_right": 3,
+      "synonym_wrong_only_right": {
+        "n": 3,
+        "reversed_right": {
+          "ours": 3,
+          "b1": 1
+        }
+      },
+      "synonym_wrong_only_left": {
+        "n": 8,
+        "reversed_right": {
+          "ours": 7,
+          "b1": 4
+        }
+      }
+    },
+    {
+      "pair": "ours versus b2",
+      "left": "ours",
+      "right": "b2",
+      "split": "seen",
+      "label": "yes",
+      "n_common": 77,
+      "n_synonym_wrong": {
+        "ours": 42,
+        "b2": 28
+      },
+      "n_both_wrong": 24,
+      "n_only_left": 18,
+      "n_only_right": 4,
+      "synonym_wrong_only_right": {
+        "n": 4,
+        "reversed_right": {
+          "ours": 3,
+          "b2": 3
+        }
+      },
+      "synonym_wrong_only_left": {
+        "n": 18,
+        "reversed_right": {
+          "ours": 17,
+          "b2": 14
+        }
+      }
+    },
+    {
+      "pair": "mix15_b2 versus mix15_b1",
+      "left": "mix15_b2",
+      "right": "mix15_b1",
+      "split": "seen",
+      "label": "yes",
+      "n_common": 94,
+      "n_synonym_wrong": {
+        "mix15_b2": 40,
+        "mix15_b1": 57
+      },
+      "n_both_wrong": 36,
+      "n_only_left": 4,
+      "n_only_right": 21,
+      "synonym_wrong_only_right": {
+        "n": 21,
+        "reversed_right": {
+          "mix15_b2": 21,
+          "mix15_b1": 13
+        }
+      },
+      "synonym_wrong_only_left": {
+        "n": 4,
+        "reversed_right": {
+          "mix15_b2": 4,
+          "mix15_b1": 3
+        }
+      }
+    },
+    {
+      "pair": "mix15_ours versus mix15_b1",
+      "left": "mix15_ours",
+      "right": "mix15_b1",
+      "split": "seen",
+      "label": "yes",
+      "n_common": 79,
+      "n_synonym_wrong": {
+        "mix15_ours": 50,
+        "mix15_b1": 46
+      },
+      "n_both_wrong": 40,
+      "n_only_left": 10,
+      "n_only_right": 6,
+      "synonym_wrong_only_right": {
+        "n": 6,
+        "reversed_right": {
+          "mix15_ours": 5,
+          "mix15_b1": 3
+        }
+      },
+      "synonym_wrong_only_left": {
+        "n": 10,
+        "reversed_right": {
+          "mix15_ours": 7,
+          "mix15_b1": 7
+        }
+      }
+    },
+    {
+      "pair": "mix15_ours versus mix15_b2",
+      "left": "mix15_ours",
+      "right": "mix15_b2",
+      "split": "seen",
+      "label": "yes",
+      "n_common": 80,
+      "n_synonym_wrong": {
+        "mix15_ours": 51,
+        "mix15_b2": 32
+      },
+      "n_both_wrong": 31,
+      "n_only_left": 20,
+      "n_only_right": 1,
+      "synonym_wrong_only_right": {
+        "n": 1,
+        "reversed_right": {
+          "mix15_ours": 0,
+          "mix15_b2": 0
+        }
+      },
+      "synonym_wrong_only_left": {
+        "n": 20,
+        "reversed_right": {
+          "mix15_ours": 17,
+          "mix15_b2": 19
+        }
+      }
+    }
+  ]
+}

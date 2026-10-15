@@ -1,0 +1,238 @@
+{
+  "training": false,
+  "round": "pilot",
+  "condition": "b3",
+  "training_renders": "two presentations from sample_renders(lat, 2, \"b2-random\"), plus the consistency loss",
+  "conditions_run": [
+    "b3"
+  ],
+  "SF_definition": "P(synonym wrong | aligned right)",
+  "interval": "[point, low, high]",
+  "interval_relation_rule": "overlap if the intervals touch, otherwise not",
+  "n_boot": 2000,
+  "bootstrap_seed": 0,
+  "paired_unit": "latent_task",
+  "hash_order": "sorted graph_hash",
+  "family_bootstrap": "latent tasks inside one family, sorted by graph_hash",
+  "pool_seed": 0,
+  "decoding": {
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "cot": true
+  },
+  "prompt": "logic_prompt",
+  "presentation": "synonym",
+  "synonym_scope": "proof step 0 only; premises and conclusion unchanged",
+  "ambiguous_included": false,
+  "eval_load": {
+    "function": "e1.load_for_eval",
+    "adapter": "build/e1/pilot/b3/adapter",
+    "base_dtype": "bfloat16",
+    "adapter_application": "merge_and_unload",
+    "source_metrics_quant": "nf4",
+    "note": "The pilot metrics record B3 quant as nf4 because that is the training record. This evaluation follows e1.load_for_eval. That loads the base model in bfloat16 and merges build/e1/pilot/b3/adapter with PeftModel.merge_and_unload. Aligned and reversed answers stay the saved generations in build/e1/pilot/b3/logic.jsonl; this run does not regenerate them."
+  },
+  "reversed_SF_source": "experiments/e1/rescore/metrics.json rounds.pilot.conditions.b3",
+  "reversed_SF_check": "recomputed from build/e1/pilot/b3/logic.jsonl before generation",
+  "aligned_source": "build/e1/pilot/b3/logic.jsonl",
+  "generations": "build/e1/synonym/b3/generations.jsonl",
+  "run": {
+    "condition": "b3",
+    "skipped": false,
+    "batch_size": 32,
+    "reason": null,
+    "max_new_tokens": 512,
+    "decoding": "greedy",
+    "cot": true,
+    "adapter": "build/e1/pilot/b3/adapter",
+    "load": "e1.load_for_eval",
+    "base_dtype": "bfloat16",
+    "adapter_application": "merge_and_unload",
+    "batch_schedule": [
+      32,
+      16,
+      8,
+      4
+    ]
+  },
+  "splits": {
+    "seen": {
+      "synonym_SF": [
+        0.29743589743589743,
+        0.233502538071066,
+        0.3622561330231574
+      ],
+      "reversed_SF": [
+        0.09743589743589744,
+        0.05699481865284974,
+        0.13919328561508457
+      ],
+      "interval_relation": "不重叠",
+      "overlaps_reversed_SF": false,
+      "counts": {
+        "n": 200,
+        "n_aligned_correct": 195,
+        "n_flip": 58,
+        "n_stay": 137
+      },
+      "flip_cells": {
+        "both_flipped": 10,
+        "only_reversed_flipped": 9,
+        "only_synonym_flipped": 48,
+        "neither_flipped": 128
+      },
+      "synonym_acc": [
+        0.69,
+        0.625,
+        0.755
+      ],
+      "aligned_acc": [
+        0.975,
+        0.95,
+        0.995
+      ],
+      "synonym_extract_fail": 0,
+      "synonym_extract_fail_rate": 0.0
+    },
+    "unseen": {
+      "synonym_SF": [
+        0.25925925925925924,
+        0.19372552710843374,
+        0.3250075301204819
+      ],
+      "reversed_SF": [
+        0.25308641975308643,
+        0.18867005635873563,
+        0.32278972403490835
+      ],
+      "interval_relation": "重叠",
+      "overlaps_reversed_SF": true,
+      "counts": {
+        "n": 200,
+        "n_aligned_correct": 162,
+        "n_flip": 42,
+        "n_stay": 120
+      },
+      "flip_cells": {
+        "both_flipped": 11,
+        "only_reversed_flipped": 30,
+        "only_synonym_flipped": 31,
+        "neither_flipped": 90
+      },
+      "synonym_acc": [
+        0.68,
+        0.615,
+        0.745
+      ],
+      "aligned_acc": [
+        0.81,
+        0.755,
+        0.865
+      ],
+      "synonym_extract_fail": 0,
+      "synonym_extract_fail_rate": 0.0
+    }
+  },
+  "families": {
+    "chain": {
+      "pool": "seen",
+      "n": 100,
+      "synonym_SF": [
+        0.25510204081632654,
+        0.1717171717171717,
+        0.3434422348484848
+      ],
+      "reversed_SF": [
+        0.11224489795918367,
+        0.06,
+        0.18
+      ],
+      "interval_relation": "重叠",
+      "overlaps_reversed_SF": true,
+      "n_aligned_correct": 98,
+      "synonym_n_flip": 25,
+      "reversed_n_flip": 11,
+      "synonym_acc": [
+        0.74,
+        0.65,
+        0.82
+      ],
+      "synonym_extract_fail": 0
+    },
+    "conj_fact": {
+      "pool": "seen",
+      "n": 100,
+      "synonym_SF": [
+        0.3402061855670103,
+        0.24731182795698925,
+        0.4329896907216495
+      ],
+      "reversed_SF": [
+        0.08247422680412371,
+        0.030612244897959183,
+        0.14145021645021624
+      ],
+      "interval_relation": "不重叠",
+      "overlaps_reversed_SF": false,
+      "n_aligned_correct": 97,
+      "synonym_n_flip": 33,
+      "reversed_n_flip": 8,
+      "synonym_acc": [
+        0.64,
+        0.55,
+        0.73
+      ],
+      "synonym_extract_fail": 0
+    },
+    "tree": {
+      "pool": "unseen",
+      "n": 100,
+      "synonym_SF": [
+        0.23170731707317074,
+        0.14814814814814814,
+        0.3333333333333333
+      ],
+      "reversed_SF": [
+        0.15853658536585366,
+        0.08433734939759036,
+        0.24096385542168675
+      ],
+      "interval_relation": "重叠",
+      "overlaps_reversed_SF": true,
+      "n_aligned_correct": 82,
+      "synonym_n_flip": 19,
+      "reversed_n_flip": 13,
+      "synonym_acc": [
+        0.73,
+        0.64,
+        0.81
+      ],
+      "synonym_extract_fail": 0
+    },
+    "diamond": {
+      "pool": "unseen",
+      "n": 100,
+      "synonym_SF": [
+        0.2875,
+        0.19230769230769232,
+        0.3855421686746988
+      ],
+      "reversed_SF": [
+        0.35,
+        0.25,
+        0.4523809523809524
+      ],
+      "interval_relation": "重叠",
+      "overlaps_reversed_SF": true,
+      "n_aligned_correct": 80,
+      "synonym_n_flip": 23,
+      "reversed_n_flip": 28,
+      "synonym_acc": [
+        0.63,
+        0.54,
+        0.72
+      ],
+      "synonym_extract_fail": 0
+    }
+  }
+}

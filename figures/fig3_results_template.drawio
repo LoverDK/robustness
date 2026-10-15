@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" modified="2026-09-27T00:00:00.000Z" agent="Codex" version="24.7.17">
+  <diagram id="structshift-fig3" name="Page-1">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="760" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="f3_title" value="Figure 3 prototype: results layout (values pending experiments)" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#263238;fontSize=26;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="30" y="20" width="1640" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_left" value="(a) Overall split accuracy&#10;&#10;IID     Surface-OOD     Structure-OOD     Composition-OOD&#10;&#10;[ pending bars and confidence intervals ]" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fontColor=#263238;fontSize=17;spacing=12;verticalAlign=top;fillColor=#F4F6F7;strokeColor=#CFD8DC;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="45" y="110" width="760" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_right" value="(b) Transformation-level heatmap&#10;&#10;Rows: order • depth • branching • composition • side-question&#10;Columns: base • LoRA • random augmentation • structural hard mining&#10;&#10;[ pending cells and legend ]" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fontColor=#263238;fontSize=17;spacing=12;verticalAlign=top;fillColor=#F4F6F7;strokeColor=#CFD8DC;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="875" y="110" width="780" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_note" value="This is a layout template only; no simulated or empirical values are included in the paper figure." style="text;html=1;strokeColor=none;fillColor=none;fontColor=#D73027;fontSize=16;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="45" y="665" width="1610" height="35" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

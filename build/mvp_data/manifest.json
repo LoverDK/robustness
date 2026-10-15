@@ -1,0 +1,15 @@
+{
+  "seed": 20261008,
+  "per_family": 25,
+  "n_records": 200,
+  "seen_families": [
+    "chain",
+    "fork_join"
+  ],
+  "unseen_families": [
+    "chain_then_fork",
+    "double_chain_join"
+  ],
+  "answer_preservation_checked": true,
+  "model_results_not_present": true
+}

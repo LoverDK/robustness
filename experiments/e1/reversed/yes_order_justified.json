@@ -1,0 +1,726 @@
+{
+  "config": {
+    "seed": 0,
+    "pools": "test_seen and test_unseen from build_pools(seed=0)",
+    "splits": {
+      "seen": "test_seen; families chain and conj_fact; uid seen_aligned|{hash} and seen_shifted|{hash}",
+      "unseen": "test_unseen; families tree and diamond; uid unseen_aligned|{hash} and unseen_shifted|{hash}"
+    },
+    "presentation": "shifted rows are the generator's reversed presentation, not a synonym rewrite",
+    "population": "latent label yes, aligned extract yes, shifted extract no. The population matches yes_order_trace.",
+    "empty_extract": "Gold-yes items whose aligned extract is yes and whose shifted extract is empty. They are counted in n_empty_extract and do not enter the four classes. n counts shifted extract no.",
+    "line": "The generation is split on lines. A line is one step or none.",
+    "cannot_line": "A line whose lowercase text contains 'cannot be proved' produces no step. If it matches '{entity} is {query} cannot be proved' with re.IGNORECASE and re.escape on entity and query, the generation is cannot_query. cannot_query is not one of the four classes.",
+    "since_line": "Any other line that contains the word since, case insensitive. Atoms are matches of '{entity} is ([a-z]+)' in order. The last atom is the conclusion and the earlier atoms are the premises. A since line with no atom produces no step.",
+    "known_set": "Starts as the lowercase atoms in lat.facts. A step is justified when every premise is already in that set. Only a justified step adds its conclusion.",
+    "classes": {
+      "justified": "a justified step adds the query at least once",
+      "early": "the query is some step's conclusion, and no justified step adds it",
+      "never": "there is at least one step, and the query is never a conclusion",
+      "no_since": "there is no step"
+    },
+    "partition": "On each side, the four classes are exclusive and sum to n.",
+    "sides": "aligned is the canonical generation; shifted is the reversed generation",
+    "cross": {
+      "aligned_justified_reversed_never": "aligned class justified and reversed class never",
+      "aligned_justified_reversed_early": "aligned class justified and reversed class early",
+      "aligned_justified_reversed_justified": "aligned class justified and reversed class justified"
+    },
+    "answer_extract": "structrobust.prompts.extract_yes_no on the generation only",
+    "duplicate_uids": "e1.read_jsonl keeps the last row for a repeated uid",
+    "population_lock": "n and n_empty_extract match experiments/e1/reversed/yes_order_trace.json",
+    "inputs": [
+      "build/e1/pilot/b0/logic.jsonl",
+      "build/e1/pilot/b1/logic.jsonl",
+      "build/e1/pilot/b2/logic.jsonl",
+      "build/e1/pilot/b3/logic.jsonl",
+      "build/e1/pilot/ours/logic.jsonl",
+      "build/e1/pilot_mix15/b1/logic.jsonl",
+      "build/e1/pilot_mix15/b2/logic.jsonl",
+      "build/e1/pilot_mix15/b3/logic.jsonl",
+      "build/e1/pilot_mix15/ours/logic.jsonl"
+    ],
+    "conditions": [
+      "b0",
+      "b1",
+      "b2",
+      "b3",
+      "ours",
+      "mix15_b1",
+      "mix15_b2",
+      "mix15_b3",
+      "mix15_ours"
+    ],
+    "gates": "pilot ours seen: n=7, reversed never 7, cannot_query 7, aligned justified 7, cross aligned-justified and reversed-never 7. pilot ours unseen: n=8, reversed early 4, never 4, cannot_query 8, aligned justified 7, early 1. b2 seen: n=15, reversed never 15, cannot_query 15, aligned justified 15, cross never 15. b2 unseen: n=12, reversed never 12, cannot_query 12, aligned justified 10, early 1, never 1. b1 seen: n=48, reversed never 48, cannot_query 48, aligned justified 47, early 1. b1 unseen: n=58, reversed never 57, justified 1, cannot_query 58, aligned justified 53, early 5. A mismatch stops the script before it writes this file.",
+    "loaded_model": false,
+    "training": false,
+    "not_read": "synonym generations.jsonl",
+    "reading": "Counts of whether a Since step adds the query after its premises are known. These counts are not evidence that reasoning improved, and they are not a win for any training condition."
+  },
+  "gates": {
+    "ok": true,
+    "population_matches_yes_order_trace": true,
+    "pilot_ours_seen": {
+      "ok": true,
+      "observed": {
+        "n": 7,
+        "reversed": {
+          "justified": 0,
+          "early": 0,
+          "never": 7,
+          "no_since": 0,
+          "cannot_query": 7
+        },
+        "aligned": {
+          "justified": 7,
+          "early": 0,
+          "never": 0,
+          "no_since": 0
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 7,
+          "aligned_justified_reversed_early": 0,
+          "aligned_justified_reversed_justified": 0
+        }
+      },
+      "expected": {
+        "n": 7,
+        "reversed": {
+          "justified": 0,
+          "early": 0,
+          "never": 7,
+          "no_since": 0,
+          "cannot_query": 7
+        },
+        "aligned": {
+          "justified": 7,
+          "early": 0,
+          "never": 0,
+          "no_since": 0
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 7
+        }
+      }
+    },
+    "pilot_ours_unseen": {
+      "ok": true,
+      "observed": {
+        "n": 8,
+        "reversed": {
+          "justified": 0,
+          "early": 4,
+          "never": 4,
+          "no_since": 0,
+          "cannot_query": 8
+        },
+        "aligned": {
+          "justified": 7,
+          "early": 1,
+          "never": 0,
+          "no_since": 0
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 4,
+          "aligned_justified_reversed_early": 3,
+          "aligned_justified_reversed_justified": 0
+        }
+      },
+      "expected": {
+        "n": 8,
+        "reversed": {
+          "justified": 0,
+          "early": 4,
+          "never": 4,
+          "no_since": 0,
+          "cannot_query": 8
+        },
+        "aligned": {
+          "justified": 7,
+          "early": 1,
+          "never": 0,
+          "no_since": 0
+        }
+      }
+    },
+    "b2_seen": {
+      "ok": true,
+      "observed": {
+        "n": 15,
+        "reversed": {
+          "justified": 0,
+          "early": 0,
+          "never": 15,
+          "no_since": 0,
+          "cannot_query": 15
+        },
+        "aligned": {
+          "justified": 15,
+          "early": 0,
+          "never": 0,
+          "no_since": 0
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 15,
+          "aligned_justified_reversed_early": 0,
+          "aligned_justified_reversed_justified": 0
+        }
+      },
+      "expected": {
+        "n": 15,
+        "reversed": {
+          "justified": 0,
+          "early": 0,
+          "never": 15,
+          "no_since": 0,
+          "cannot_query": 15
+        },
+        "aligned": {
+          "justified": 15,
+          "early": 0,
+          "never": 0,
+          "no_since": 0
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 15
+        }
+      }
+    },
+    "b2_unseen": {
+      "ok": true,
+      "observed": {
+        "n": 12,
+        "reversed": {
+          "justified": 0,
+          "early": 0,
+          "never": 12,
+          "no_since": 0,
+          "cannot_query": 12
+        },
+        "aligned": {
+          "justified": 10,
+          "early": 1,
+          "never": 1,
+          "no_since": 0
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 10,
+          "aligned_justified_reversed_early": 0,
+          "aligned_justified_reversed_justified": 0
+        }
+      },
+      "expected": {
+        "n": 12,
+        "reversed": {
+          "justified": 0,
+          "early": 0,
+          "never": 12,
+          "no_since": 0,
+          "cannot_query": 12
+        },
+        "aligned": {
+          "justified": 10,
+          "early": 1,
+          "never": 1,
+          "no_since": 0
+        }
+      }
+    },
+    "b1_seen": {
+      "ok": true,
+      "observed": {
+        "n": 48,
+        "reversed": {
+          "justified": 0,
+          "early": 0,
+          "never": 48,
+          "no_since": 0,
+          "cannot_query": 48
+        },
+        "aligned": {
+          "justified": 47,
+          "early": 1,
+          "never": 0,
+          "no_since": 0
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 47,
+          "aligned_justified_reversed_early": 0,
+          "aligned_justified_reversed_justified": 0
+        }
+      },
+      "expected": {
+        "n": 48,
+        "reversed": {
+          "justified": 0,
+          "early": 0,
+          "never": 48,
+          "no_since": 0,
+          "cannot_query": 48
+        },
+        "aligned": {
+          "justified": 47,
+          "early": 1,
+          "never": 0,
+          "no_since": 0
+        }
+      }
+    },
+    "b1_unseen": {
+      "ok": true,
+      "observed": {
+        "n": 58,
+        "reversed": {
+          "justified": 1,
+          "early": 0,
+          "never": 57,
+          "no_since": 0,
+          "cannot_query": 58
+        },
+        "aligned": {
+          "justified": 53,
+          "early": 5,
+          "never": 0,
+          "no_since": 0
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 52,
+          "aligned_justified_reversed_early": 0,
+          "aligned_justified_reversed_justified": 1
+        }
+      },
+      "expected": {
+        "n": 58,
+        "reversed": {
+          "justified": 1,
+          "early": 0,
+          "never": 57,
+          "no_since": 0,
+          "cannot_query": 58
+        },
+        "aligned": {
+          "justified": 53,
+          "early": 5,
+          "never": 0,
+          "no_since": 0
+        }
+      }
+    }
+  },
+  "conditions": {
+    "b0": {
+      "seen": {
+        "n": 21,
+        "n_empty_extract": 1,
+        "reversed": {
+          "justified": 2,
+          "early": 4,
+          "never": 10,
+          "no_since": 5,
+          "cannot_query": 0
+        },
+        "aligned": {
+          "justified": 1,
+          "early": 1,
+          "never": 17,
+          "no_since": 2
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 1,
+          "aligned_justified_reversed_early": 0,
+          "aligned_justified_reversed_justified": 0
+        }
+      },
+      "unseen": {
+        "n": 33,
+        "n_empty_extract": 1,
+        "reversed": {
+          "justified": 5,
+          "early": 5,
+          "never": 18,
+          "no_since": 5,
+          "cannot_query": 0
+        },
+        "aligned": {
+          "justified": 6,
+          "early": 5,
+          "never": 22,
+          "no_since": 0
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 2,
+          "aligned_justified_reversed_early": 2,
+          "aligned_justified_reversed_justified": 1
+        }
+      }
+    },
+    "b1": {
+      "seen": {
+        "n": 48,
+        "n_empty_extract": 0,
+        "reversed": {
+          "justified": 0,
+          "early": 0,
+          "never": 48,
+          "no_since": 0,
+          "cannot_query": 48
+        },
+        "aligned": {
+          "justified": 47,
+          "early": 1,
+          "never": 0,
+          "no_since": 0
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 47,
+          "aligned_justified_reversed_early": 0,
+          "aligned_justified_reversed_justified": 0
+        }
+      },
+      "unseen": {
+        "n": 58,
+        "n_empty_extract": 0,
+        "reversed": {
+          "justified": 1,
+          "early": 0,
+          "never": 57,
+          "no_since": 0,
+          "cannot_query": 58
+        },
+        "aligned": {
+          "justified": 53,
+          "early": 5,
+          "never": 0,
+          "no_since": 0
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 52,
+          "aligned_justified_reversed_early": 0,
+          "aligned_justified_reversed_justified": 1
+        }
+      }
+    },
+    "b2": {
+      "seen": {
+        "n": 15,
+        "n_empty_extract": 0,
+        "reversed": {
+          "justified": 0,
+          "early": 0,
+          "never": 15,
+          "no_since": 0,
+          "cannot_query": 15
+        },
+        "aligned": {
+          "justified": 15,
+          "early": 0,
+          "never": 0,
+          "no_since": 0
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 15,
+          "aligned_justified_reversed_early": 0,
+          "aligned_justified_reversed_justified": 0
+        }
+      },
+      "unseen": {
+        "n": 12,
+        "n_empty_extract": 0,
+        "reversed": {
+          "justified": 0,
+          "early": 0,
+          "never": 12,
+          "no_since": 0,
+          "cannot_query": 12
+        },
+        "aligned": {
+          "justified": 10,
+          "early": 1,
+          "never": 1,
+          "no_since": 0
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 10,
+          "aligned_justified_reversed_early": 0,
+          "aligned_justified_reversed_justified": 0
+        }
+      }
+    },
+    "b3": {
+      "seen": {
+        "n": 12,
+        "n_empty_extract": 0,
+        "reversed": {
+          "justified": 0,
+          "early": 0,
+          "never": 12,
+          "no_since": 0,
+          "cannot_query": 12
+        },
+        "aligned": {
+          "justified": 12,
+          "early": 0,
+          "never": 0,
+          "no_since": 0
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 12,
+          "aligned_justified_reversed_early": 0,
+          "aligned_justified_reversed_justified": 0
+        }
+      },
+      "unseen": {
+        "n": 18,
+        "n_empty_extract": 0,
+        "reversed": {
+          "justified": 0,
+          "early": 0,
+          "never": 18,
+          "no_since": 0,
+          "cannot_query": 18
+        },
+        "aligned": {
+          "justified": 17,
+          "early": 1,
+          "never": 0,
+          "no_since": 0
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 17,
+          "aligned_justified_reversed_early": 0,
+          "aligned_justified_reversed_justified": 0
+        }
+      }
+    },
+    "ours": {
+      "seen": {
+        "n": 7,
+        "n_empty_extract": 0,
+        "reversed": {
+          "justified": 0,
+          "early": 0,
+          "never": 7,
+          "no_since": 0,
+          "cannot_query": 7
+        },
+        "aligned": {
+          "justified": 7,
+          "early": 0,
+          "never": 0,
+          "no_since": 0
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 7,
+          "aligned_justified_reversed_early": 0,
+          "aligned_justified_reversed_justified": 0
+        }
+      },
+      "unseen": {
+        "n": 8,
+        "n_empty_extract": 0,
+        "reversed": {
+          "justified": 0,
+          "early": 4,
+          "never": 4,
+          "no_since": 0,
+          "cannot_query": 8
+        },
+        "aligned": {
+          "justified": 7,
+          "early": 1,
+          "never": 0,
+          "no_since": 0
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 4,
+          "aligned_justified_reversed_early": 3,
+          "aligned_justified_reversed_justified": 0
+        }
+      }
+    },
+    "mix15_b1": {
+      "seen": {
+        "n": 41,
+        "n_empty_extract": 0,
+        "reversed": {
+          "justified": 0,
+          "early": 0,
+          "never": 41,
+          "no_since": 0,
+          "cannot_query": 41
+        },
+        "aligned": {
+          "justified": 40,
+          "early": 1,
+          "never": 0,
+          "no_since": 0
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 40,
+          "aligned_justified_reversed_early": 0,
+          "aligned_justified_reversed_justified": 0
+        }
+      },
+      "unseen": {
+        "n": 42,
+        "n_empty_extract": 0,
+        "reversed": {
+          "justified": 0,
+          "early": 0,
+          "never": 42,
+          "no_since": 0,
+          "cannot_query": 42
+        },
+        "aligned": {
+          "justified": 40,
+          "early": 2,
+          "never": 0,
+          "no_since": 0
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 40,
+          "aligned_justified_reversed_early": 0,
+          "aligned_justified_reversed_justified": 0
+        }
+      }
+    },
+    "mix15_b2": {
+      "seen": {
+        "n": 9,
+        "n_empty_extract": 0,
+        "reversed": {
+          "justified": 0,
+          "early": 0,
+          "never": 9,
+          "no_since": 0,
+          "cannot_query": 9
+        },
+        "aligned": {
+          "justified": 9,
+          "early": 0,
+          "never": 0,
+          "no_since": 0
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 9,
+          "aligned_justified_reversed_early": 0,
+          "aligned_justified_reversed_justified": 0
+        }
+      },
+      "unseen": {
+        "n": 18,
+        "n_empty_extract": 0,
+        "reversed": {
+          "justified": 0,
+          "early": 0,
+          "never": 18,
+          "no_since": 0,
+          "cannot_query": 18
+        },
+        "aligned": {
+          "justified": 18,
+          "early": 0,
+          "never": 0,
+          "no_since": 0
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 18,
+          "aligned_justified_reversed_early": 0,
+          "aligned_justified_reversed_justified": 0
+        }
+      }
+    },
+    "mix15_b3": {
+      "seen": {
+        "n": 21,
+        "n_empty_extract": 0,
+        "reversed": {
+          "justified": 0,
+          "early": 0,
+          "never": 21,
+          "no_since": 0,
+          "cannot_query": 21
+        },
+        "aligned": {
+          "justified": 21,
+          "early": 0,
+          "never": 0,
+          "no_since": 0
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 21,
+          "aligned_justified_reversed_early": 0,
+          "aligned_justified_reversed_justified": 0
+        }
+      },
+      "unseen": {
+        "n": 27,
+        "n_empty_extract": 0,
+        "reversed": {
+          "justified": 0,
+          "early": 0,
+          "never": 27,
+          "no_since": 0,
+          "cannot_query": 27
+        },
+        "aligned": {
+          "justified": 25,
+          "early": 2,
+          "never": 0,
+          "no_since": 0
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 25,
+          "aligned_justified_reversed_early": 0,
+          "aligned_justified_reversed_justified": 0
+        }
+      }
+    },
+    "mix15_ours": {
+      "seen": {
+        "n": 16,
+        "n_empty_extract": 0,
+        "reversed": {
+          "justified": 0,
+          "early": 0,
+          "never": 16,
+          "no_since": 0,
+          "cannot_query": 16
+        },
+        "aligned": {
+          "justified": 16,
+          "early": 0,
+          "never": 0,
+          "no_since": 0
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 16,
+          "aligned_justified_reversed_early": 0,
+          "aligned_justified_reversed_justified": 0
+        }
+      },
+      "unseen": {
+        "n": 8,
+        "n_empty_extract": 0,
+        "reversed": {
+          "justified": 0,
+          "early": 0,
+          "never": 8,
+          "no_since": 0,
+          "cannot_query": 8
+        },
+        "aligned": {
+          "justified": 8,
+          "early": 0,
+          "never": 0,
+          "no_since": 0
+        },
+        "cross": {
+          "aligned_justified_reversed_never": 8,
+          "aligned_justified_reversed_early": 0,
+          "aligned_justified_reversed_justified": 0
+        }
+      }
+    }
+  }
+}

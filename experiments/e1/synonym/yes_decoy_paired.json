@@ -1,0 +1,162 @@
+{
+  "config": {
+    "seed": 0,
+    "n_boot": 2000,
+    "alpha": 0.05,
+    "interval": "[point, 2.5%, 97.5%]",
+    "statistic": "paired_diff_ci(left_wrong_indicator, right_wrong_indicator)",
+    "point_identity": "diff[0] equals the mean of left indicator minus right indicator. A mismatch stops the script before it writes this file.",
+    "contains_0_rule": "true when the closed interval includes 0, including when an endpoint is 0",
+    "difference": "left minus right",
+    "wrong_indicator": "1 when the synonym extract is no, otherwise 0",
+    "hash_order": "sorted graph_hash within the pair",
+    "pools": {
+      "seen": "test_seen from build_pools(seed=0)",
+      "unseen": "test_unseen from build_pools(seed=0)"
+    },
+    "population": "gold label yes, a same-premise decoy, both aligned extracts yes, and both synonym extracts yes or no. An empty synonym extract on either side stays out.",
+    "aligned_generation": "{seen|unseen}_aligned|{graph_hash} in each condition's logic.jsonl. The row is not regenerated.",
+    "synonym_generation": "{seen|unseen}_synonym|{graph_hash} in each condition's generations.jsonl",
+    "decoy": "some other_rules entry has a premise frozenset equal to core_rules[0]. The comparison uses the latent only.",
+    "premise_equality": "frozenset of the premise atoms, lowercased; order is ignored",
+    "paths": {
+      "ours": {
+        "synonym": "build/e1/synonym/ours/generations.jsonl",
+        "aligned": "build/e1/pilot/ours/logic.jsonl"
+      },
+      "b2": {
+        "synonym": "build/e1/synonym/b2/generations.jsonl",
+        "aligned": "build/e1/pilot/b2/logic.jsonl"
+      },
+      "mix15_ours": {
+        "synonym": "build/e1/synonym/mix15_ours/generations.jsonl",
+        "aligned": "build/e1/pilot_mix15/ours/logic.jsonl"
+      },
+      "mix15_b2": {
+        "synonym": "build/e1/synonym/mix15_b2/generations.jsonl",
+        "aligned": "build/e1/pilot_mix15/b2/logic.jsonl"
+      }
+    },
+    "pairs": [
+      {
+        "split": "seen",
+        "key": "ours_minus_b2",
+        "left": "ours",
+        "right": "b2"
+      },
+      {
+        "split": "seen",
+        "key": "mix15_ours_minus_mix15_b2",
+        "left": "mix15_ours",
+        "right": "mix15_b2"
+      },
+      {
+        "split": "unseen",
+        "key": "ours_minus_b2",
+        "left": "ours",
+        "right": "b2"
+      },
+      {
+        "split": "unseen",
+        "key": "mix15_ours_minus_mix15_b2",
+        "left": "mix15_ours",
+        "right": "mix15_b2"
+      }
+    ],
+    "duplicate_uids": "e1.read_jsonl keeps the last row for a repeated uid",
+    "gates": "seen ours minus b2: n=48, left_wrong=39, right_wrong=27. seen mix15_ours minus mix15_b2: n=48, left_wrong=43, right_wrong=29. A mismatch stops the script before it writes this file. Counts are not adjusted to meet the gate.",
+    "loaded_model": false,
+    "training": false,
+    "gpu": false,
+    "reading": "On common items where both canonical extracts are yes and the latent has a same-premise decoy, this is how often the synonym extract is no. A larger difference means more synonym extracts of no. It is not an accuracy win, it is not evidence that reasoning improved, and it is not a win for any training condition."
+  },
+  "gates": {
+    "ok": true,
+    "seen": {
+      "ours_minus_b2": {
+        "ok": true,
+        "observed": {
+          "n": 48,
+          "left_wrong": 39,
+          "right_wrong": 27
+        },
+        "expected": {
+          "n": 48,
+          "left_wrong": 39,
+          "right_wrong": 27
+        }
+      },
+      "mix15_ours_minus_mix15_b2": {
+        "ok": true,
+        "observed": {
+          "n": 48,
+          "left_wrong": 43,
+          "right_wrong": 29
+        },
+        "expected": {
+          "n": 48,
+          "left_wrong": 43,
+          "right_wrong": 29
+        }
+      }
+    }
+  },
+  "pairs": {
+    "seen": {
+      "ours_minus_b2": {
+        "left": "ours",
+        "right": "b2",
+        "n": 48,
+        "left_wrong": 39,
+        "right_wrong": 27,
+        "diff": [
+          0.25,
+          0.08333333333333333,
+          0.3958333333333333
+        ],
+        "contains_0": false
+      },
+      "mix15_ours_minus_mix15_b2": {
+        "left": "mix15_ours",
+        "right": "mix15_b2",
+        "n": 48,
+        "left_wrong": 43,
+        "right_wrong": 29,
+        "diff": [
+          0.2916666666666667,
+          0.14583333333333334,
+          0.4375
+        ],
+        "contains_0": false
+      }
+    },
+    "unseen": {
+      "ours_minus_b2": {
+        "left": "ours",
+        "right": "b2",
+        "n": 26,
+        "left_wrong": 17,
+        "right_wrong": 6,
+        "diff": [
+          0.4230769230769231,
+          0.15384615384615385,
+          0.6538461538461539
+        ],
+        "contains_0": false
+      },
+      "mix15_ours_minus_mix15_b2": {
+        "left": "mix15_ours",
+        "right": "mix15_b2",
+        "n": 36,
+        "left_wrong": 18,
+        "right_wrong": 5,
+        "diff": [
+          0.3611111111111111,
+          0.16666666666666666,
+          0.5555555555555556
+        ],
+        "contains_0": false
+      }
+    }
+  }
+}

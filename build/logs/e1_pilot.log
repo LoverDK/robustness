@@ -1,0 +1,160 @@
+2026-10-12 15:13:38 CHECK START
+W1012 15:13:43.311000 47776 .venv\Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   0%|          | 1/338 [00:00<04:13,  1.33it/s]Loading weights:   1%|          | 3/338 [00:00<01:20,  4.15it/s]Loading weights:   4%|4         | 15/338 [00:01<00:13, 23.60it/s]Loading weights:   8%|7         | 27/338 [00:01<00:07, 40.07it/s]Loading weights:  12%|#1        | 39/338 [00:01<00:05, 54.28it/s]Loading weights:  15%|#5        | 51/338 [00:01<00:04, 66.84it/s]Loading weights:  19%|#8        | 63/338 [00:01<00:03, 78.16it/s]Loading weights:  22%|##2       | 75/338 [00:01<00:03, 86.83it/s]Loading weights:  26%|##5       | 87/338 [00:01<00:02, 92.57it/s]Loading weights:  29%|##9       | 99/338 [00:01<00:02, 96.54it/s]Loading weights:  33%|###2      | 111/338 [00:01<00:02, 95.50it/s]Loading weights:  36%|###6      | 123/338 [00:02<00:02, 99.05it/s]Loading weights:  40%|###9      | 135/338 [00:02<00:02, 100.38it/s]Loading weights:  43%|####3     | 147/338 [00:02<00:01, 102.21it/s]Loading weights:  47%|####7     | 159/338 [00:02<00:01, 103.69it/s]Loading weights:  51%|#####     | 171/338 [00:02<00:01, 105.84it/s]Loading weights:  54%|#####4    | 183/338 [00:02<00:01, 107.06it/s]Loading weights:  58%|#####7    | 195/338 [00:02<00:01, 107.17it/s]Loading weights:  61%|######1   | 207/338 [00:02<00:01, 105.14it/s]Loading weights:  65%|######4   | 219/338 [00:02<00:01, 107.45it/s]Loading weights:  68%|######8   | 231/338 [00:03<00:00, 108.87it/s]Loading weights:  72%|#######1  | 243/338 [00:03<00:00, 110.22it/s]Loading weights:  75%|#######5  | 255/338 [00:03<00:00, 109.56it/s]Loading weights:  79%|#######8  | 267/338 [00:03<00:00, 110.07it/s]Loading weights:  83%|########2 | 279/338 [00:03<00:00, 110.31it/s]Loading weights:  86%|########6 | 291/338 [00:03<00:00, 110.38it/s]Loading weights:  90%|########9 | 303/338 [00:03<00:00, 110.35it/s]Loading weights:  93%|#########3| 315/338 [00:03<00:00, 108.85it/s]Loading weights:  97%|#########6| 327/338 [00:03<00:00, 109.55it/s]Loading weights: 100%|##########| 338/338 [00:04<00:00, 84.44it/s] 
+D:\study\科研拔尖项目\.venv\Lib\site-packages\torch\_dynamo\eval_frame.py:1263: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. Starting in PyTorch 2.9, calling checkpoint without use_reentrant will raise an exception. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+D:\study\科研拔尖项目\src\structrobust\e1.py:462: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\autograd\generated\python_variable_methods.cpp:837.)
+  return math.isfinite(float(value))
+D:\study\科研拔尖项目\.venv\Lib\site-packages\peft\utils\save_and_load.py:313: UserWarning: Could not find a config file in Qwen/Qwen2.5-1.5B-Instruct - will assume that the vocabulary was not modified.
+  warnings.warn(
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   4%|3         | 12/338 [00:00<00:03, 108.55it/s]Loading weights:   7%|6         | 23/338 [00:00<00:03, 99.76it/s] Loading weights:  10%|#         | 34/338 [00:00<00:02, 102.94it/s]Loading weights:  14%|#3        | 47/338 [00:00<00:02, 102.83it/s]Loading weights:  18%|#7        | 60/338 [00:00<00:02, 111.32it/s]Loading weights:  22%|##2       | 75/338 [00:00<00:02, 117.36it/s]Loading weights:  28%|##7       | 94/338 [00:00<00:02, 115.39it/s]Loading weights:  33%|###2      | 111/338 [00:00<00:01, 129.48it/s]Loading weights:  37%|###6      | 125/338 [00:01<00:01, 129.40it/s]Loading weights:  42%|####2     | 142/338 [00:01<00:01, 133.32it/s]Loading weights:  46%|####6     | 156/338 [00:01<00:01, 118.17it/s]Loading weights:  51%|#####1    | 173/338 [00:01<00:01, 130.25it/s]Loading weights:  56%|#####5    | 189/338 [00:01<00:01, 117.70it/s]Loading weights:  61%|######    | 205/338 [00:01<00:01, 127.47it/s]Loading weights:  65%|######5   | 220/338 [00:01<00:00, 130.01it/s]Loading weights:  70%|#######   | 238/338 [00:01<00:00, 136.87it/s]Loading weights:  75%|#######4  | 253/338 [00:02<00:00, 124.62it/s]Loading weights:  79%|#######9  | 268/338 [00:02<00:00, 126.50it/s]Loading weights:  85%|########4 | 286/338 [00:02<00:00, 120.01it/s]Loading weights:  90%|########9 | 304/338 [00:02<00:00, 133.44it/s]Loading weights:  94%|#########4| 318/338 [00:02<00:00, 134.68it/s]Loading weights:  98%|#########8| 332/338 [00:02<00:00, 135.95it/s]Loading weights: 100%|##########| 338/338 [00:02<00:00, 127.20it/s]
+[gen] 1/1  1s  8 tok/s
+2026-10-12 15:13:56 NF4 smoke ok loss 1.2821
+2026-10-12 15:13:56 CHECK_OK quant nf4 loss 1.2821
+2026-10-12 15:13:57 CHECK lengths min/max 184/203 n_train 500
+2026-10-12 15:15:18 CHECK START
+W1012 15:15:22.259000 27900 .venv\Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+D:\study\科研拔尖项目\.venv\Lib\site-packages\peft\utils\save_and_load.py:313: UserWarning: Could not find a config file in Qwen/Qwen2.5-1.5B-Instruct - will assume that the vocabulary was not modified.
+  warnings.warn(
+[gen] 1/1  0s  8 tok/s
+D:\study\科研拔尖项目\src\structrobust\e1.py:1177: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\autograd\generated\python_variable_methods.cpp:837.)
+  return {"quant": quant, "smoke_loss": float(loss), "smoke_sft": float(sft), "smoke_peak_vram_bytes": peak, "kl": float(kl)}
+2026-10-12 15:15:33 NF4 smoke ok loss 1.2821
+2026-10-12 15:15:33 CHECK_OK quant nf4 loss 1.2821
+2026-10-12 15:15:34 CHECK lengths min/max 184/203 n_train 500
+2026-10-12 15:17:01 PILOT START b0 b1 b2 b3 ours
+2026-10-12 15:17:01 pools ok slot-random unique min/mean/max 1/1.000/1
+2026-10-12 15:17:04 GSM8K download failed (ConnectionError: Couldn't reach 'gsm8k' on the Hub (OfflineModeIsEnabled)); trying hf-mirror
+2026-10-12 15:17:04 PILOT STOP GSM8K download failed: Couldn't reach 'gsm8k' on the Hub (OfflineModeIsEnabled) | mirror: Couldn't reach 'gsm8k' on the Hub (OfflineModeIsEnabled)
+2026-10-12 15:19:15 PILOT START b0 b1 b2 b3 ours
+2026-10-12 15:19:15 pools ok slot-random unique min/mean/max 1/1.000/1
+D:\study\科研拔尖项目\.venv\Lib\site-packages\huggingface_hub\file_download.py:149: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in D:\study\科研拔尖项目\.cache\huggingface\hub\datasets--gsm8k. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
+To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
+  warnings.warn(message)
+2026-10-12 15:19:18 GSM8K download failed (HfUriError: Invalid HF URI 'hf://datasets/gsm8k@740312add88f781978c0658806c59bc2815b9866/.huggingface.yaml'. Repository id must be 'namespace/name', got 'gsm8k'.); trying hf-mirror
+2026-10-12 15:19:20 PILOT STOP GSM8K download failed: Invalid HF URI 'hf://datasets/gsm8k@740312add88f781978c0658806c59bc2815b9866/.huggingface.yaml'. Repository id must be 'namespace/name', got 'gsm8k'. | mirror: Invalid HF URI 'hf://datasets/gsm8k@740312add88f781978c0658806c59bc2815b9866/.huggingface.yaml'. Repository id must be 'namespace/name', got 'gsm8k'.
+2026-10-12 15:21:20 PILOT START b0 b1 b2 b3 ours
+2026-10-12 15:21:20 pools ok slot-random unique min/mean/max 1/1.000/1
+2026-10-12 15:21:25 GSM8K ready via https://hf-mirror.com|openai/gsm8k n=500
+2026-10-12 15:21:25 reusing quantization nf4
+W1012 15:21:28.576000 4740 .venv\Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+2026-10-12 15:21:50 PILOT START b0 b1 b2 b3 ours
+2026-10-12 15:21:51 pools ok slot-random unique min/mean/max 1/1.000/1
+2026-10-12 15:21:55 GSM8K ready via hub-default|openai/gsm8k n=500
+2026-10-12 15:21:55 reusing quantization nf4
+W1012 15:21:59.219000 39088 .venv\Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+[gen] 256/800  499s  147 tok/s
+[gen] 512/800  711s  211 tok/s
+[gen] 768/800  913s  246 tok/s
+[gen] 800/800  937s  249 tok/s
+[gen] 256/400  173s  375 tok/s
+[gen] 400/400  283s  360 tok/s
+[gen] 256/500  201s  370 tok/s
+[gen] 500/500  387s  371 tok/s
+2026-10-12 15:48:23 CONDITION_DONE b0 cells seen_aligned=0.6450 seen_shifted=0.6850 unseen_aligned=0.6400 unseen_shifted=0.5500 gsm8k=0.6880
+2026-10-12 15:48:31 b1 trainable tensors 18464768 quant nf4 micro 4
+2026-10-12 15:48:35 b1 step 1/63 loss 1.2414 sft 1.2414 kl 0.0000 lr 0.0001
+2026-10-12 15:48:50 b1 step 6/63 loss 0.1570 sft 0.1570 kl 0.0000 lr 0.000198809
+2026-10-12 15:49:09 b1 step 11/63 loss 0.0826 sft 0.0826 kl 0.0000 lr 0.000191632
+2026-10-12 15:50:47 b1 step 16/63 loss 0.0350 sft 0.0350 kl 0.0000 lr 0.000178412
+2026-10-12 15:53:33 b1 step 21/63 loss 0.0423 sft 0.0423 kl 0.0000 lr 0.000160021
+2026-10-12 15:56:08 b1 step 26/63 loss 0.0701 sft 0.0701 kl 0.0000 lr 0.000137673
+2026-10-12 15:58:53 b1 step 31/63 loss 0.0507 sft 0.0507 kl 0.0000 lr 0.00011284
+2026-10-12 16:01:35 b1 step 36/63 loss 0.0253 sft 0.0253 kl 0.0000 lr 8.71602e-05
+2026-10-12 16:04:11 b1 step 41/63 loss 0.0206 sft 0.0206 kl 0.0000 lr 6.23272e-05
+2026-10-12 16:06:49 b1 step 46/63 loss 0.0541 sft 0.0541 kl 0.0000 lr 3.99786e-05
+2026-10-12 16:09:16 b1 step 51/63 loss 0.0231 sft 0.0231 kl 0.0000 lr 2.1588e-05
+2026-10-12 16:12:08 b1 step 56/63 loss 0.0172 sft 0.0172 kl 0.0000 lr 8.36831e-06
+2026-10-12 16:14:36 b1 step 61/63 loss 0.0252 sft 0.0252 kl 0.0000 lr 1.19121e-06
+2026-10-12 16:15:18 b1 step 63/63 loss 0.0341 sft 0.0341 kl 0.0000 lr 1.32591e-07
+2026-10-12 16:15:20 b1 training saved build/e1/pilot/b1/adapter
+[gen] 256/800  30s  488 tok/s
+[gen] 512/800  57s  508 tok/s
+[gen] 768/800  84s  515 tok/s
+[gen] 800/800  112s  407 tok/s
+[gen] 256/400  22s  575 tok/s
+[gen] 400/400  35s  568 tok/s
+[gen] 256/500  133s  247 tok/s
+[gen] 500/500  233s  271 tok/s
+2026-10-12 16:21:46 CONDITION_DONE b1 cells seen_aligned=0.9700 seen_shifted=0.7300 unseen_aligned=0.8800 unseen_shifted=0.6450 gsm8k=0.5100
+2026-10-12 16:21:53 b2 trainable tensors 18464768 quant nf4 micro 4
+2026-10-12 16:21:57 b2 step 1/63 loss 1.3002 sft 1.3002 kl 0.0000 lr 0.0001
+2026-10-12 16:22:13 b2 step 6/63 loss 0.1597 sft 0.1597 kl 0.0000 lr 0.000198809
+2026-10-12 16:22:29 b2 step 11/63 loss 0.1246 sft 0.1246 kl 0.0000 lr 0.000191632
+2026-10-12 16:22:42 b2 step 16/63 loss 0.0655 sft 0.0655 kl 0.0000 lr 0.000178412
+2026-10-12 16:22:56 b2 step 21/63 loss 0.0586 sft 0.0586 kl 0.0000 lr 0.000160021
+2026-10-12 16:23:09 b2 step 26/63 loss 0.0421 sft 0.0421 kl 0.0000 lr 0.000137673
+2026-10-12 16:23:23 b2 step 31/63 loss 0.0246 sft 0.0246 kl 0.0000 lr 0.00011284
+2026-10-12 16:23:36 b2 step 36/63 loss 0.0343 sft 0.0343 kl 0.0000 lr 8.71602e-05
+2026-10-12 16:23:49 b2 step 41/63 loss 0.0264 sft 0.0264 kl 0.0000 lr 6.23272e-05
+2026-10-12 16:24:03 b2 step 46/63 loss 0.0209 sft 0.0209 kl 0.0000 lr 3.99786e-05
+2026-10-12 16:24:16 b2 step 51/63 loss 0.0216 sft 0.0216 kl 0.0000 lr 2.1588e-05
+2026-10-12 16:24:30 b2 step 56/63 loss 0.0301 sft 0.0301 kl 0.0000 lr 8.36831e-06
+2026-10-12 16:24:43 b2 step 61/63 loss 0.0180 sft 0.0180 kl 0.0000 lr 1.19121e-06
+2026-10-12 16:24:47 b2 step 63/63 loss 0.0055 sft 0.0055 kl 0.0000 lr 1.32591e-07
+2026-10-12 16:24:49 b2 training saved build/e1/pilot/b2/adapter
+[gen] 256/800  27s  515 tok/s
+[gen] 512/800  54s  520 tok/s
+[gen] 768/800  82s  513 tok/s
+[gen] 800/800  85s  513 tok/s
+[gen] 256/400  22s  570 tok/s
+[gen] 400/400  35s  566 tok/s
+[gen] 256/500  114s  267 tok/s
+[gen] 500/500  195s  305 tok/s
+2026-10-12 16:30:11 CONDITION_DONE b2 cells seen_aligned=0.9850 seen_shifted=0.8950 unseen_aligned=0.7900 unseen_shifted=0.7050 gsm8k=0.5440
+2026-10-12 16:30:18 b3 trainable tensors 18464768 quant nf4 micro 4
+2026-10-12 16:30:22 b3 step 1/63 loss 1.4584 sft 1.4581 kl 0.0028 lr 0.0001
+2026-10-12 16:30:38 b3 step 6/63 loss 0.1765 sft 0.1764 kl 0.0002 lr 0.000198809
+2026-10-12 16:30:55 b3 step 11/63 loss 0.0968 sft 0.0968 kl 0.0000 lr 0.000191632
+2026-10-12 16:31:11 b3 step 16/63 loss 0.0620 sft 0.0620 kl 0.0000 lr 0.000178412
+2026-10-12 16:31:26 b3 step 21/63 loss 0.0709 sft 0.0709 kl 0.0000 lr 0.000160021
+2026-10-12 16:31:42 b3 step 26/63 loss 0.0331 sft 0.0331 kl 0.0000 lr 0.000137673
+2026-10-12 16:31:57 b3 step 31/63 loss 0.0279 sft 0.0279 kl 0.0000 lr 0.00011284
+2026-10-12 16:32:14 b3 step 36/63 loss 0.0135 sft 0.0135 kl 0.0000 lr 8.71602e-05
+2026-10-12 16:32:30 b3 step 41/63 loss 0.0246 sft 0.0246 kl 0.0000 lr 6.23272e-05
+2026-10-12 16:32:45 b3 step 46/63 loss 0.0205 sft 0.0205 kl 0.0000 lr 3.99786e-05
+2026-10-12 16:33:01 b3 step 51/63 loss 0.0192 sft 0.0192 kl 0.0000 lr 2.1588e-05
+2026-10-12 16:33:17 b3 step 56/63 loss 0.0429 sft 0.0429 kl 0.0000 lr 8.36831e-06
+2026-10-12 16:33:33 b3 step 61/63 loss 0.0146 sft 0.0146 kl 0.0000 lr 1.19121e-06
+2026-10-12 16:33:37 b3 step 63/63 loss 0.0043 sft 0.0043 kl 0.0000 lr 1.32591e-07
+2026-10-12 16:33:39 b3 training saved build/e1/pilot/b3/adapter
+[gen] 256/800  27s  519 tok/s
+[gen] 512/800  54s  513 tok/s
+[gen] 768/800  82s  511 tok/s
+[gen] 800/800  85s  510 tok/s
+[gen] 256/400  22s  561 tok/s
+[gen] 400/400  36s  546 tok/s
+[gen] 256/500  100s  311 tok/s
+[gen] 500/500  214s  285 tok/s
+2026-10-12 16:39:22 B3 validation mean minus comparison gap 0.0050; lambda 0.5 was not run
+2026-10-12 16:39:22 CONDITION_DONE b3 cells seen_aligned=0.9750 seen_shifted=0.9000 unseen_aligned=0.8100 unseen_shifted=0.6800 gsm8k=0.5440
+2026-10-12 16:39:28 ours trainable tensors 18464768 quant nf4 micro 4
+2026-10-12 16:48:44 ours mine round 0 selected burden 2.2287 vs candidate 1.6715
+2026-10-12 16:48:47 ours step 1/63 loss 1.3358 sft 1.3358 kl 0.0000 lr 0.0001
+2026-10-12 16:49:13 ours step 6/63 loss 0.2118 sft 0.2118 kl 0.0000 lr 0.000198809
+2026-10-12 16:49:41 ours step 11/63 loss 0.0766 sft 0.0766 kl 0.0000 lr 0.000191632
+2026-10-12 16:50:07 ours step 16/63 loss 0.0828 sft 0.0828 kl 0.0000 lr 0.000178412
+2026-10-12 16:50:34 ours step 21/63 loss 0.0634 sft 0.0634 kl 0.0000 lr 0.000160021
+2026-10-12 16:51:00 ours step 26/63 loss 0.0471 sft 0.0471 kl 0.0000 lr 0.000137673
+2026-10-12 16:51:27 ours step 31/63 loss 0.0333 sft 0.0333 kl 0.0000 lr 0.00011284
+2026-10-12 16:57:40 ours mine round 1 selected burden 2.1402 vs candidate 1.6715
+2026-10-12 16:58:07 ours step 36/63 loss 0.0281 sft 0.0281 kl 0.0000 lr 8.71602e-05
+2026-10-12 16:58:34 ours step 41/63 loss 0.0242 sft 0.0242 kl 0.0000 lr 6.23272e-05
+2026-10-12 16:59:00 ours step 46/63 loss 0.0234 sft 0.0234 kl 0.0000 lr 3.99786e-05
+2026-10-12 16:59:25 ours step 51/63 loss 0.0429 sft 0.0429 kl 0.0000 lr 2.1588e-05
+2026-10-12 16:59:52 ours step 56/63 loss 0.0070 sft 0.0070 kl 0.0000 lr 8.36831e-06
+2026-10-12 17:00:19 ours step 61/63 loss 0.0339 sft 0.0339 kl 0.0000 lr 1.19121e-06
+2026-10-12 17:00:26 ours step 63/63 loss 0.0148 sft 0.0148 kl 0.0000 lr 1.32591e-07
+2026-10-12 17:00:28 ours training saved build/e1/pilot/ours/adapter
+[gen] 256/800  28s  491 tok/s
+[gen] 512/800  55s  509 tok/s
+[gen] 768/800  81s  513 tok/s
+[gen] 800/800  85s  514 tok/s
+[gen] 256/400  22s  549 tok/s
+[gen] 400/400  36s  544 tok/s
+[gen] 256/500  113s  281 tok/s
+[gen] 500/500  210s  294 tok/s
+2026-10-12 17:06:05 CONDITION_DONE ours cells seen_aligned=0.8850 seen_shifted=0.9100 unseen_aligned=0.7450 unseen_shifted=0.7700 gsm8k=0.5140
+2026-10-12 17:06:05 PILOT COMPLETE b0 b1 b2 b3 ours

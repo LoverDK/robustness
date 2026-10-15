@@ -1,0 +1,274 @@
+{
+  "levels": {
+    "2": {
+      "n_latent": 20,
+      "acc": {
+        "aligned": [
+          0.65,
+          0.45,
+          0.85
+        ],
+        "reversed": [
+          0.75,
+          0.55,
+          0.9
+        ],
+        "random": [
+          0.75,
+          0.55,
+          0.9
+        ],
+        "random_distract": [
+          0.4,
+          0.2,
+          0.6
+        ]
+      },
+      "diff_vs_aligned": {
+        "reversed": [
+          -0.1,
+          -0.35,
+          0.15
+        ],
+        "random": [
+          -0.1,
+          -0.35,
+          0.15
+        ],
+        "random_distract": [
+          0.25,
+          0.0,
+          0.5
+        ]
+      },
+      "SF": {
+        "reversed": [
+          0.15384615384615385,
+          0.0,
+          0.36363636363636365
+        ],
+        "random": [
+          0.15384615384615385,
+          0.0,
+          0.36363636363636365
+        ],
+        "random_distract": [
+          0.5384615384615384,
+          0.2727272727272727,
+          0.8003124999999983
+        ]
+      },
+      "extract_fail_rate": 0.0125,
+      "pred_yes_rate": 0.525,
+      "gate_pass": false
+    },
+    "4": {
+      "n_latent": 20,
+      "acc": {
+        "aligned": [
+          0.4,
+          0.2,
+          0.6
+        ],
+        "reversed": [
+          0.4,
+          0.2,
+          0.6
+        ],
+        "random": [
+          0.45,
+          0.25,
+          0.65
+        ],
+        "random_distract": [
+          0.55,
+          0.35,
+          0.75
+        ]
+      },
+      "diff_vs_aligned": {
+        "reversed": [
+          0.0,
+          -0.35,
+          0.35
+        ],
+        "random": [
+          -0.05,
+          -0.35,
+          0.25
+        ],
+        "random_distract": [
+          -0.15,
+          -0.45,
+          0.15
+        ]
+      },
+      "SF": {
+        "reversed": [
+          0.75,
+          0.4,
+          1.0
+        ],
+        "random": [
+          0.5,
+          0.14285714285714285,
+          0.8571428571428571
+        ],
+        "random_distract": [
+          0.5,
+          0.16666666666666666,
+          0.8575892857142833
+        ]
+      },
+      "extract_fail_rate": 0.025,
+      "pred_yes_rate": 0.4375,
+      "gate_pass": false
+    },
+    "6": {
+      "n_latent": 8,
+      "acc": {
+        "aligned": [
+          0.5,
+          0.125,
+          0.875
+        ],
+        "reversed": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "random": [
+          0.75,
+          0.375,
+          1.0
+        ],
+        "random_distract": [
+          0.75,
+          0.375,
+          1.0
+        ]
+      },
+      "diff_vs_aligned": {
+        "reversed": [
+          -0.5,
+          -0.875,
+          -0.125
+        ],
+        "random": [
+          -0.25,
+          -0.75,
+          0.375
+        ],
+        "random_distract": [
+          -0.25,
+          -0.75,
+          0.375
+        ]
+      },
+      "SF": {
+        "reversed": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "random": [
+          0.5,
+          0.0,
+          1.0
+        ],
+        "random_distract": [
+          0.5,
+          0.0,
+          1.0
+        ]
+      },
+      "extract_fail_rate": 0.04411764705882353,
+      "pred_yes_rate": 0.5,
+      "gate_pass": false
+    },
+    "8": {
+      "n_latent": 0,
+      "acc": {
+        "aligned": [
+          null,
+          null,
+          null
+        ],
+        "reversed": [
+          null,
+          null,
+          null
+        ],
+        "random": [
+          null,
+          null,
+          null
+        ],
+        "random_distract": [
+          null,
+          null,
+          null
+        ]
+      },
+      "diff_vs_aligned": {
+        "reversed": [
+          null,
+          null,
+          null
+        ],
+        "random": [
+          null,
+          null,
+          null
+        ],
+        "random_distract": [
+          null,
+          null,
+          null
+        ]
+      },
+      "SF": {
+        "reversed": [
+          null,
+          null,
+          null
+        ],
+        "random": [
+          null,
+          null,
+          null
+        ],
+        "random_distract": [
+          null,
+          null,
+          null
+        ]
+      },
+      "extract_fail_rate": 0.06666666666666667,
+      "pred_yes_rate": 0.5333333333333333,
+      "gate_pass": false
+    }
+  },
+  "gate": {
+    "any_level_pass": false,
+    "criteria": "aligned acc in [0.55,0.9], aligned CI lower > 0.5 (majority baseline), SF(aligned->random) >= 0.1 with CI lower > 0"
+  },
+  "config": {
+    "model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "depths": [
+      2,
+      4,
+      6,
+      8
+    ],
+    "n_per_level": 20,
+    "max_new_tokens": 768,
+    "seed": 0,
+    "families": [
+      "chain",
+      "conj_fact"
+    ],
+    "vocab": "eval",
+    "decoding": "greedy"
+  }
+}

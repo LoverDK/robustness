@@ -1,0 +1,226 @@
+{
+  "training": false,
+  "round": "pilot",
+  "condition": "b1",
+  "training_renders": "canonical aligned presentation twice",
+  "conditions_run": [
+    "b1"
+  ],
+  "SF_definition": "P(synonym wrong | aligned right)",
+  "interval": "[point, low, high]",
+  "interval_relation_rule": "overlap if the intervals touch, otherwise not",
+  "n_boot": 2000,
+  "bootstrap_seed": 0,
+  "paired_unit": "latent_task",
+  "hash_order": "sorted graph_hash",
+  "family_bootstrap": "latent tasks inside one family, sorted by graph_hash",
+  "pool_seed": 0,
+  "decoding": {
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "cot": true
+  },
+  "prompt": "logic_prompt",
+  "presentation": "synonym",
+  "synonym_scope": "proof step 0 only; premises and conclusion unchanged",
+  "ambiguous_included": false,
+  "eval_load": {
+    "function": "e1.load_for_eval",
+    "adapter": "build/e1/pilot/b1/adapter",
+    "base_dtype": "bfloat16",
+    "adapter_application": "merge_and_unload",
+    "source_metrics_quant": "nf4",
+    "note": "Pilot metrics record B1 quant as nf4 because training used nf4. Aligned generations were produced by e1.run_condition, which calls e1.load_for_eval. That loads the base model in bfloat16 and, when an adapter is set, merges it with PeftModel.merge_and_unload. Synonym generation uses the same function on build/e1/pilot/b1/adapter. Aligned and reversed answers are the saved generations in build/e1/pilot/b1/logic.jsonl; this run does not regenerate them."
+  },
+  "reversed_SF_source": "experiments/e1/rescore/metrics.json rounds.pilot.conditions.b1",
+  "reversed_SF_check": "recomputed from build/e1/pilot/b1/logic.jsonl before generation",
+  "aligned_source": "build/e1/pilot/b1/logic.jsonl",
+  "generations": "build/e1/synonym/b1/generations.jsonl",
+  "run": {
+    "condition": "b1",
+    "skipped": false,
+    "batch_size": 32,
+    "reason": null,
+    "max_new_tokens": 512,
+    "decoding": "greedy",
+    "cot": true,
+    "adapter": "build/e1/pilot/b1/adapter",
+    "load": "e1.load_for_eval",
+    "base_dtype": "bfloat16",
+    "adapter_application": "merge_and_unload",
+    "batch_schedule": [
+      32,
+      16,
+      8,
+      4
+    ]
+  },
+  "splits": {
+    "seen": {
+      "synonym_SF": [
+        0.26804123711340205,
+        0.20918367346938777,
+        0.3333333333333333
+      ],
+      "reversed_SF": [
+        0.26804123711340205,
+        0.20833333333333334,
+        0.33160687850269643
+      ],
+      "interval_relation": "重叠",
+      "overlaps_reversed_SF": true,
+      "counts": {
+        "n": 200,
+        "n_aligned_correct": 194,
+        "n_flip": 52,
+        "n_stay": 142
+      },
+      "synonym_acc": [
+        0.725,
+        0.66,
+        0.785
+      ],
+      "aligned_acc": [
+        0.97,
+        0.945,
+        0.99
+      ],
+      "synonym_extract_fail": 0,
+      "synonym_extract_fail_rate": 0.0
+    },
+    "unseen": {
+      "synonym_SF": [
+        0.2784090909090909,
+        0.21467917675544793,
+        0.34831460674157305
+      ],
+      "reversed_SF": [
+        0.36363636363636365,
+        0.2921116804543771,
+        0.4375
+      ],
+      "interval_relation": "重叠",
+      "overlaps_reversed_SF": true,
+      "counts": {
+        "n": 200,
+        "n_aligned_correct": 176,
+        "n_flip": 49,
+        "n_stay": 127
+      },
+      "synonym_acc": [
+        0.7,
+        0.635,
+        0.765
+      ],
+      "aligned_acc": [
+        0.88,
+        0.83,
+        0.925
+      ],
+      "synonym_extract_fail": 0,
+      "synonym_extract_fail_rate": 0.0
+    }
+  },
+  "families": {
+    "chain": {
+      "pool": "seen",
+      "n": 100,
+      "synonym_SF": [
+        0.25773195876288657,
+        0.17890076754385964,
+        0.3478804347826084
+      ],
+      "reversed_SF": [
+        0.2268041237113402,
+        0.14432989690721648,
+        0.3125
+      ],
+      "interval_relation": "重叠",
+      "overlaps_reversed_SF": true,
+      "n_aligned_correct": 97,
+      "synonym_n_flip": 25,
+      "reversed_n_flip": 22,
+      "synonym_acc": [
+        0.74,
+        0.65,
+        0.82
+      ],
+      "synonym_extract_fail": 0
+    },
+    "conj_fact": {
+      "pool": "seen",
+      "n": 100,
+      "synonym_SF": [
+        0.27835051546391754,
+        0.1919191919191919,
+        0.37376893939393924
+      ],
+      "reversed_SF": [
+        0.30927835051546393,
+        0.21649484536082475,
+        0.4
+      ],
+      "interval_relation": "重叠",
+      "overlaps_reversed_SF": true,
+      "n_aligned_correct": 97,
+      "synonym_n_flip": 27,
+      "reversed_n_flip": 30,
+      "synonym_acc": [
+        0.71,
+        0.61,
+        0.8
+      ],
+      "synonym_extract_fail": 0
+    },
+    "tree": {
+      "pool": "unseen",
+      "n": 100,
+      "synonym_SF": [
+        0.2696629213483146,
+        0.1797752808988764,
+        0.3626373626373626
+      ],
+      "reversed_SF": [
+        0.3146067415730337,
+        0.2222222222222222,
+        0.4186234058514628
+      ],
+      "interval_relation": "重叠",
+      "overlaps_reversed_SF": true,
+      "n_aligned_correct": 89,
+      "synonym_n_flip": 24,
+      "reversed_n_flip": 28,
+      "synonym_acc": [
+        0.7,
+        0.61,
+        0.79
+      ],
+      "synonym_extract_fail": 0
+    },
+    "diamond": {
+      "pool": "unseen",
+      "n": 100,
+      "synonym_SF": [
+        0.28735632183908044,
+        0.19043650793650793,
+        0.388251633986928
+      ],
+      "reversed_SF": [
+        0.41379310344827586,
+        0.3146067415730337,
+        0.512590725806451
+      ],
+      "interval_relation": "重叠",
+      "overlaps_reversed_SF": true,
+      "n_aligned_correct": 87,
+      "synonym_n_flip": 25,
+      "reversed_n_flip": 36,
+      "synonym_acc": [
+        0.7,
+        0.61,
+        0.79
+      ],
+      "synonym_extract_fail": 0
+    }
+  }
+}

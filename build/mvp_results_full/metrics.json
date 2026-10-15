@@ -1,0 +1,27 @@
+{
+  "n_records": 200,
+  "models": {
+    "Qwen/Qwen2.5-1.5B-Instruct": {
+      "n_scored": 200,
+      "cell_accuracy": {
+        "seen_canonical": 0.76,
+        "seen_shifted": 0.76,
+        "unseen_canonical": 0.76,
+        "unseen_shifted": 0.76
+      },
+      "SS": 1.0,
+      "SS_bootstrap_ci95": [
+        1.0,
+        1.0
+      ],
+      "SF": 0.0,
+      "Delta_T": 0.0,
+      "double_dissociation_cells": {
+        "seen_canonical": 50,
+        "seen_shifted": 50,
+        "unseen_canonical": 50,
+        "unseen_shifted": 50
+      }
+    }
+  }
+}

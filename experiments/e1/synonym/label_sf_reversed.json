@@ -1,0 +1,878 @@
+{
+  "config": {
+    "seed": 0,
+    "n_boot": 2000,
+    "alpha": 0.05,
+    "interval": "[point, 2.5%, 97.5%]",
+    "SF_definition": "P(reversed wrong | aligned right)",
+    "paired_unit": "latent_task",
+    "hash_order": "sorted graph_hash within one split and one gold label",
+    "pool_seed": 0,
+    "splits": {
+      "seen": [
+        "chain",
+        "conj_fact"
+      ],
+      "unseen": [
+        "tree",
+        "diamond"
+      ]
+    },
+    "labels": [
+      "yes",
+      "no"
+    ],
+    "pairing": "graph hash; aligned and reversed from saved logic.jsonl; reversed rows are the shifted cells; read_jsonl last line wins",
+    "bootstrap": "conditional_flip_ci resamples latent tasks of one gold label. Yes items are not pooled with no items.",
+    "flip_pred": "Counts of reversed predictions among aligned-correct flips only: no, yes, or empty.",
+    "overlap": "yes and no intervals overlap if the closed intervals touch",
+    "synonym_SF": "Copied from experiments/e1/synonym/label_sf.json. Synonym generations were not read.",
+    "rescore_check": "yes n_flip + no n_flip and the aligned-correct sums match experiments/e1/rescore/metrics.json counts",
+    "interpretation": "Label-conditional reversed flip rates. These rates do not show that reasoning improved.",
+    "loaded_model": false,
+    "training": false
+  },
+  "conditions": {
+    "b0": {
+      "logic": "build/e1/pilot/b0/logic.jsonl",
+      "splits": {
+        "seen": {
+          "yes": {
+            "SF": [
+              0.3142857142857143,
+              0.2083198051948052,
+              0.42857142857142855
+            ],
+            "n": 100,
+            "n_aligned_correct": 70,
+            "n_flip": 22,
+            "flip_pred": {
+              "no": 21,
+              "yes": 0,
+              "empty": 1
+            },
+            "synonym_SF": [
+              0.18571428571428572,
+              0.09996478873239438,
+              0.2812610035211267
+            ]
+          },
+          "no": {
+            "SF": [
+              0.2542372881355932,
+              0.14813296903460837,
+              0.3666836734693876
+            ],
+            "n": 100,
+            "n_aligned_correct": 59,
+            "n_flip": 15,
+            "flip_pred": {
+              "no": 0,
+              "yes": 15,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.423728813559322,
+              0.30432841614906836,
+              0.559322033898305
+            ]
+          },
+          "yes_no_intervals_overlap": true
+        },
+        "unseen": {
+          "yes": {
+            "SF": [
+              0.5,
+              0.38235294117647056,
+              0.6191017316017313
+            ],
+            "n": 100,
+            "n_aligned_correct": 68,
+            "n_flip": 34,
+            "flip_pred": {
+              "no": 33,
+              "yes": 0,
+              "empty": 1
+            },
+            "synonym_SF": [
+              0.2647058823529412,
+              0.16393442622950818,
+              0.373134328358209
+            ]
+          },
+          "no": {
+            "SF": [
+              0.45,
+              0.32727272727272727,
+              0.5714810924369744
+            ],
+            "n": 100,
+            "n_aligned_correct": 60,
+            "n_flip": 27,
+            "flip_pred": {
+              "no": 0,
+              "yes": 27,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.5166666666666667,
+              0.3888681592039801,
+              0.6451612903225806
+            ]
+          },
+          "yes_no_intervals_overlap": true
+        }
+      }
+    },
+    "b1": {
+      "logic": "build/e1/pilot/b1/logic.jsonl",
+      "splits": {
+        "seen": {
+          "yes": {
+            "SF": [
+              0.5,
+              0.4,
+              0.5979381443298969
+            ],
+            "n": 100,
+            "n_aligned_correct": 96,
+            "n_flip": 48,
+            "flip_pred": {
+              "no": 48,
+              "yes": 0,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.5,
+              0.40425531914893614,
+              0.6
+            ]
+          },
+          "no": {
+            "SF": [
+              0.04081632653061224,
+              0.010101010101010102,
+              0.08163265306122448
+            ],
+            "n": 100,
+            "n_aligned_correct": 98,
+            "n_flip": 4,
+            "flip_pred": {
+              "no": 0,
+              "yes": 4,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.04081632653061224,
+              0.01009848484848485,
+              0.08247422680412371
+            ]
+          },
+          "yes_no_intervals_overlap": false
+        },
+        "unseen": {
+          "yes": {
+            "SF": [
+              0.6170212765957447,
+              0.5212765957446809,
+              0.7157894736842105
+            ],
+            "n": 100,
+            "n_aligned_correct": 94,
+            "n_flip": 58,
+            "flip_pred": {
+              "no": 58,
+              "yes": 0,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.3617021276595745,
+              0.2603669241573034,
+              0.4631578947368421
+            ]
+          },
+          "no": {
+            "SF": [
+              0.07317073170731707,
+              0.023809523809523808,
+              0.13581649831649822
+            ],
+            "n": 100,
+            "n_aligned_correct": 82,
+            "n_flip": 6,
+            "flip_pred": {
+              "no": 0,
+              "yes": 6,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.18292682926829268,
+              0.10586687306501548,
+              0.26835007173601116
+            ]
+          },
+          "yes_no_intervals_overlap": false
+        }
+      }
+    },
+    "b2": {
+      "logic": "build/e1/pilot/b2/logic.jsonl",
+      "splits": {
+        "seen": {
+          "yes": {
+            "SF": [
+              0.15306122448979592,
+              0.08595430107526883,
+              0.2268041237113402
+            ],
+            "n": 100,
+            "n_aligned_correct": 98,
+            "n_flip": 15,
+            "flip_pred": {
+              "no": 15,
+              "yes": 0,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.37755102040816324,
+              0.28421052631578947,
+              0.4701056701030922
+            ]
+          },
+          "no": {
+            "SF": [
+              0.050505050505050504,
+              0.010101010101010102,
+              0.10101010101010101
+            ],
+            "n": 100,
+            "n_aligned_correct": 99,
+            "n_flip": 5,
+            "flip_pred": {
+              "no": 0,
+              "yes": 5,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.030303030303030304,
+              0.0,
+              0.0707070707070707
+            ]
+          },
+          "yes_no_intervals_overlap": true
+        },
+        "unseen": {
+          "yes": {
+            "SF": [
+              0.14457831325301204,
+              0.07407407407407407,
+              0.22728711162255458
+            ],
+            "n": 100,
+            "n_aligned_correct": 83,
+            "n_flip": 12,
+            "flip_pred": {
+              "no": 12,
+              "yes": 0,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.30120481927710846,
+              0.20481927710843373,
+              0.4
+            ]
+          },
+          "no": {
+            "SF": [
+              0.29333333333333333,
+              0.19480519480519481,
+              0.39473684210526316
+            ],
+            "n": 100,
+            "n_aligned_correct": 75,
+            "n_flip": 22,
+            "flip_pred": {
+              "no": 0,
+              "yes": 22,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.16,
+              0.08450704225352113,
+              0.25
+            ]
+          },
+          "yes_no_intervals_overlap": true
+        }
+      }
+    },
+    "b3": {
+      "logic": "build/e1/pilot/b3/logic.jsonl",
+      "splits": {
+        "seen": {
+          "yes": {
+            "SF": [
+              0.125,
+              0.0625,
+              0.1958762886597938
+            ],
+            "n": 100,
+            "n_aligned_correct": 96,
+            "n_flip": 12,
+            "flip_pred": {
+              "no": 12,
+              "yes": 0,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.59375,
+              0.5051520358221389,
+              0.6907216494845361
+            ]
+          },
+          "no": {
+            "SF": [
+              0.0707070707070707,
+              0.020202020202020204,
+              0.12121212121212122
+            ],
+            "n": 100,
+            "n_aligned_correct": 99,
+            "n_flip": 7,
+            "flip_pred": {
+              "no": 0,
+              "yes": 7,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.010101010101010102,
+              0.0,
+              0.030612244897959183
+            ]
+          },
+          "yes_no_intervals_overlap": true
+        },
+        "unseen": {
+          "yes": {
+            "SF": [
+              0.21176470588235294,
+              0.12657864105921723,
+              0.30120481927710846
+            ],
+            "n": 100,
+            "n_aligned_correct": 85,
+            "n_flip": 18,
+            "flip_pred": {
+              "no": 18,
+              "yes": 0,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.3764705882352941,
+              0.2758405172413793,
+              0.48193834160170085
+            ]
+          },
+          "no": {
+            "SF": [
+              0.2987012987012987,
+              0.20253164556962025,
+              0.4074074074074074
+            ],
+            "n": 100,
+            "n_aligned_correct": 77,
+            "n_flip": 23,
+            "flip_pred": {
+              "no": 0,
+              "yes": 23,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.12987012987012986,
+              0.05948498964803312,
+              0.2077922077922078
+            ]
+          },
+          "yes_no_intervals_overlap": true
+        }
+      }
+    },
+    "ours": {
+      "logic": "build/e1/pilot/ours/logic.jsonl",
+      "splits": {
+        "seen": {
+          "yes": {
+            "SF": [
+              0.09090909090909091,
+              0.03074626865671642,
+              0.16
+            ],
+            "n": 100,
+            "n_aligned_correct": 77,
+            "n_flip": 7,
+            "flip_pred": {
+              "no": 7,
+              "yes": 0,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.5454545454545454,
+              0.4305474806201551,
+              0.6533333333333333
+            ]
+          },
+          "no": {
+            "SF": [
+              0.01,
+              0.0,
+              0.03
+            ],
+            "n": 100,
+            "n_aligned_correct": 100,
+            "n_flip": 1,
+            "flip_pred": {
+              "no": 0,
+              "yes": 1,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "yes_no_intervals_overlap": false
+        },
+        "unseen": {
+          "yes": {
+            "SF": [
+              0.16326530612244897,
+              0.06382978723404255,
+              0.27122496147919856
+            ],
+            "n": 100,
+            "n_aligned_correct": 49,
+            "n_flip": 8,
+            "flip_pred": {
+              "no": 8,
+              "yes": 0,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.5714285714285714,
+              0.4255186170212766,
+              0.7068965517241379
+            ]
+          },
+          "no": {
+            "SF": [
+              0.15,
+              0.08,
+              0.23
+            ],
+            "n": 100,
+            "n_aligned_correct": 100,
+            "n_flip": 15,
+            "flip_pred": {
+              "no": 0,
+              "yes": 15,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.04,
+              0.01,
+              0.08
+            ]
+          },
+          "yes_no_intervals_overlap": true
+        }
+      }
+    },
+    "mix15_b1": {
+      "logic": "build/e1/pilot_mix15/b1/logic.jsonl",
+      "splits": {
+        "seen": {
+          "yes": {
+            "SF": [
+              0.43157894736842106,
+              0.3263157894736842,
+              0.527535714285714
+            ],
+            "n": 100,
+            "n_aligned_correct": 95,
+            "n_flip": 41,
+            "flip_pred": {
+              "no": 41,
+              "yes": 0,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.6,
+              0.5051546391752577,
+              0.6947368421052632
+            ]
+          },
+          "no": {
+            "SF": [
+              0.02040816326530612,
+              0.0,
+              0.05103355775299804
+            ],
+            "n": 100,
+            "n_aligned_correct": 98,
+            "n_flip": 2,
+            "flip_pred": {
+              "no": 0,
+              "yes": 2,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.02040816326530612,
+              0.0,
+              0.05102040816326531
+            ]
+          },
+          "yes_no_intervals_overlap": false
+        },
+        "unseen": {
+          "yes": {
+            "SF": [
+              0.5,
+              0.3977272727272727,
+              0.6091954022988506
+            ],
+            "n": 100,
+            "n_aligned_correct": 84,
+            "n_flip": 42,
+            "flip_pred": {
+              "no": 42,
+              "yes": 0,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.34523809523809523,
+              0.24705882352941178,
+              0.4482758620689655
+            ]
+          },
+          "no": {
+            "SF": [
+              0.13157894736842105,
+              0.06057900432900433,
+              0.2105448480355818
+            ],
+            "n": 100,
+            "n_aligned_correct": 76,
+            "n_flip": 10,
+            "flip_pred": {
+              "no": 0,
+              "yes": 10,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.14473684210526316,
+              0.0705840927920464,
+              0.22786618444846282
+            ]
+          },
+          "yes_no_intervals_overlap": false
+        }
+      }
+    },
+    "mix15_b2": {
+      "logic": "build/e1/pilot_mix15/b2/logic.jsonl",
+      "splits": {
+        "seen": {
+          "yes": {
+            "SF": [
+              0.09090909090909091,
+              0.04040404040404041,
+              0.15155380333951743
+            ],
+            "n": 100,
+            "n_aligned_correct": 99,
+            "n_flip": 9,
+            "flip_pred": {
+              "no": 9,
+              "yes": 0,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.4444444444444444,
+              0.35353535353535354,
+              0.54
+            ]
+          },
+          "no": {
+            "SF": [
+              0.06382978723404255,
+              0.020833333333333332,
+              0.11702127659574468
+            ],
+            "n": 100,
+            "n_aligned_correct": 94,
+            "n_flip": 6,
+            "flip_pred": {
+              "no": 0,
+              "yes": 6,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.031914893617021274,
+              0.0,
+              0.07216494845360824
+            ]
+          },
+          "yes_no_intervals_overlap": true
+        },
+        "unseen": {
+          "yes": {
+            "SF": [
+              0.1836734693877551,
+              0.1111111111111111,
+              0.26321160042964525
+            ],
+            "n": 100,
+            "n_aligned_correct": 98,
+            "n_flip": 18,
+            "flip_pred": {
+              "no": 18,
+              "yes": 0,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.22448979591836735,
+              0.14432989690721648,
+              0.31251578282828274
+            ]
+          },
+          "no": {
+            "SF": [
+              0.2777777777777778,
+              0.17647058823529413,
+              0.38358798735511046
+            ],
+            "n": 100,
+            "n_aligned_correct": 72,
+            "n_flip": 20,
+            "flip_pred": {
+              "no": 0,
+              "yes": 20,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.2777777777777778,
+              0.17458592132505174,
+              0.38235294117647056
+            ]
+          },
+          "yes_no_intervals_overlap": true
+        }
+      }
+    },
+    "mix15_b3": {
+      "logic": "build/e1/pilot_mix15/b3/logic.jsonl",
+      "splits": {
+        "seen": {
+          "yes": {
+            "SF": [
+              0.21212121212121213,
+              0.13402061855670103,
+              0.29591836734693877
+            ],
+            "n": 100,
+            "n_aligned_correct": 99,
+            "n_flip": 21,
+            "flip_pred": {
+              "no": 21,
+              "yes": 0,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.25252525252525254,
+              0.1717171717171717,
+              0.3333333333333333
+            ]
+          },
+          "no": {
+            "SF": [
+              0.03125,
+              0.0,
+              0.07142857142857142
+            ],
+            "n": 100,
+            "n_aligned_correct": 96,
+            "n_flip": 3,
+            "flip_pred": {
+              "no": 0,
+              "yes": 3,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.08333333333333333,
+              0.03157072368421053,
+              0.14432989690721648
+            ]
+          },
+          "yes_no_intervals_overlap": false
+        },
+        "unseen": {
+          "yes": {
+            "SF": [
+              0.29347826086956524,
+              0.20430107526881722,
+              0.38461538461538464
+            ],
+            "n": 100,
+            "n_aligned_correct": 92,
+            "n_flip": 27,
+            "flip_pred": {
+              "no": 27,
+              "yes": 0,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.14130434782608695,
+              0.07526881720430108,
+              0.21505376344086022
+            ]
+          },
+          "no": {
+            "SF": [
+              0.19696969696969696,
+              0.109375,
+              0.3
+            ],
+            "n": 100,
+            "n_aligned_correct": 66,
+            "n_flip": 13,
+            "flip_pred": {
+              "no": 0,
+              "yes": 13,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.24242424242424243,
+              0.14705882352941177,
+              0.3513910969793321
+            ]
+          },
+          "yes_no_intervals_overlap": true
+        }
+      }
+    },
+    "mix15_ours": {
+      "logic": "build/e1/pilot_mix15/ours/logic.jsonl",
+      "splits": {
+        "seen": {
+          "yes": {
+            "SF": [
+              0.2,
+              0.11592809364548495,
+              0.2926829268292683
+            ],
+            "n": 100,
+            "n_aligned_correct": 80,
+            "n_flip": 16,
+            "flip_pred": {
+              "no": 16,
+              "yes": 0,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.6375,
+              0.5316455696202531,
+              0.7368421052631579
+            ]
+          },
+          "no": {
+            "SF": [
+              0.020202020202020204,
+              0.0,
+              0.050505050505050504
+            ],
+            "n": 100,
+            "n_aligned_correct": 99,
+            "n_flip": 2,
+            "flip_pred": {
+              "no": 0,
+              "yes": 2,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "yes_no_intervals_overlap": false
+        },
+        "unseen": {
+          "yes": {
+            "SF": [
+              0.125,
+              0.04995967741935484,
+              0.2121460506706407
+            ],
+            "n": 100,
+            "n_aligned_correct": 64,
+            "n_flip": 8,
+            "flip_pred": {
+              "no": 8,
+              "yes": 0,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.46875,
+              0.34328358208955223,
+              0.5967741935483871
+            ]
+          },
+          "no": {
+            "SF": [
+              0.25806451612903225,
+              0.1702127659574468,
+              0.34782608695652173
+            ],
+            "n": 100,
+            "n_aligned_correct": 93,
+            "n_flip": 24,
+            "flip_pred": {
+              "no": 0,
+              "yes": 24,
+              "empty": 0
+            },
+            "synonym_SF": [
+              0.10752688172043011,
+              0.052083333333333336,
+              0.1778070175438595
+            ]
+          },
+          "yes_no_intervals_overlap": true
+        }
+      }
+    }
+  },
+  "sanity": {
+    "seen_n_flip_over_n_aligned_correct": {
+      "b1": {
+        "yes": "48/96",
+        "no": "4/98"
+      },
+      "b2": {
+        "yes": "15/98",
+        "no": "5/99"
+      },
+      "ours": {
+        "yes": "7/77",
+        "no": "1/100"
+      },
+      "mix15_ours": {
+        "yes": "16/80",
+        "no": "2/99"
+      }
+    },
+    "rescore_aggregate_match": true,
+    "toy_sf_point": 0.5
+  }
+}

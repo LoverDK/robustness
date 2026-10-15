@@ -1,0 +1,15 @@
+2026-10-14 15:52:02 b1 synonym control start; training false
+2026-10-14 15:52:02 checking synonym sentences against the solver
+2026-10-14 15:52:02 solver check passed
+2026-10-14 15:52:02 b1 reversed SF matches experiments/e1/rescore/metrics.json
+2026-10-14 15:52:02 b1 seen aligned_acc=0.97 reversed_SF=[0.26804123711340205, 0.20833333333333334, 0.33160687850269643] n_aligned_correct=194 n_flip=52
+2026-10-14 15:52:02 b1 unseen aligned_acc=0.88 reversed_SF=[0.36363636363636365, 0.2921116804543771, 0.4375] n_aligned_correct=176 n_flip=64
+2026-10-14 15:52:02 b1 pending 400 / 400
+2026-10-14 15:52:02 b1 load_for_eval adapter=build/e1/pilot/b1/adapter
+W1014 15:52:14.499000 21364 .venv\Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+[gen] 256/400  26s  489 tok/s
+[gen] 400/400  42s  472 tok/s
+2026-10-14 15:52:58 b1 generation finished batch_size=32
+2026-10-14 15:52:58 wrote experiments/e1/synonym/b1_metrics.json
+2026-10-14 15:52:58 {"seen": {"synonym_SF": [0.26804123711340205, 0.20918367346938777, 0.3333333333333333], "reversed_SF": [0.26804123711340205, 0.20833333333333334, 0.33160687850269643], "overlaps_reversed_SF": true, "aligned_acc": [0.97, 0.945, 0.99], "synonym_extract_fail": 0}, "unseen": {"synonym_SF": [0.2784090909090909, 0.21467917675544793, 0.34831460674157305], "reversed_SF": [0.36363636363636365, 0.2921116804543771, 0.4375], "overlaps_reversed_SF": true, "aligned_acc": [0.88, 0.83, 0.925], "synonym_extract_fail": 0}, "batch_size": 32, "generation_skipped": false}
+2026-10-14 15:52:58 B1 SYNONYM COMPLETE

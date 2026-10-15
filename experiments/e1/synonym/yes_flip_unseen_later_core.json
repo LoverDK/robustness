@@ -1,0 +1,302 @@
+{
+  "config": {
+    "seed": 0,
+    "split": "unseen",
+    "pool": "test_unseen from build_pools(seed=0)",
+    "population": "unseen graph, latent label yes, aligned extract yes, synonym extract no, and the first synonym Since atom is later_core",
+    "aligned_generation": "unseen_aligned|{graph_hash} in each condition's logic.jsonl. The row is not regenerated.",
+    "synonym_generation": "unseen_synonym|{graph_hash} in each condition's generations.jsonl",
+    "regex": "since\\b[^\\.\\n]*,\\s*{entity} is ([a-z]+)",
+    "regex_flags": "IGNORECASE",
+    "since_sentence": "yes_flip_trace.since_atoms. Order is the order of matches. A line containing 'cannot be proved' contributes no atom.",
+    "class_priority": "yes_flip_first_since_unseen.first_since_class. step0, then query, then same_premise_decoy, then later_core, then other_decoy, then other. Only later_core enters this file.",
+    "later_core_rule": "The first synonym Since atom equals the conclusion of exactly one entry of core_rules[1:]. If that atom is the conclusion of more than one core rule, the script stops and writes nothing.",
+    "premises_subset_of_facts": "Every premise of that unique later core rule is a member of lat.facts. Comparison is case-insensitive. Premise order is ignored because this is membership, not tuple equality.",
+    "later_has_step0": "A Since atom after the first equals core_rules[0]'s conclusion. The first atom is not included.",
+    "later_has_query": "A Since atom after the first equals lat.query. The first atom is not included. This count may overlap later_has_step0.",
+    "aligned_first_step0": "On the same items, the aligned generation's first Since atom equals core_rules[0]'s conclusion.",
+    "aligned_first_same_later": "On the same items, the aligned generation's first Since atom equals the conclusion of the same later core rule. This count may overlap aligned_first_step0. The two aligned counts are not a partition of n_later_first.",
+    "families": [
+      "tree",
+      "diamond"
+    ],
+    "family_rule": "tree and diamond each repeat the same six counts. Their sums equal the condition.",
+    "answer_extract": "structrobust.prompts.extract_yes_no on the generation only",
+    "duplicate_uids": "e1.read_jsonl keeps the last row for a repeated uid",
+    "conditions": [
+      "b0",
+      "b1",
+      "b2",
+      "b3",
+      "ours",
+      "mix15_b1",
+      "mix15_b2",
+      "mix15_b3",
+      "mix15_ours"
+    ],
+    "prior_lock": "n_later_first, including tree and diamond, must equal synonym later_core in experiments/e1/synonym/yes_flip_first_since_unseen.json. That file is only read.",
+    "gates": "pilot ours n_later_first=13, premises_subset_of_facts=13, later_has_step0=3, later_has_query=0. A mismatch stops the script before it writes this file. Counts are not edited to meet the gate.",
+    "loaded_model": false,
+    "training": false,
+    "reading": "Counts, on unseen graphs, of whether a later core rule that opens a synonym yes-to-no flip has its premises among the known facts, and whether a later Since atom is the step-0 conclusion or the query. These counts are not evidence that reasoning improved, and they are not a win for any training condition."
+  },
+  "gates": {
+    "ok": true,
+    "pilot_ours": {
+      "observed": {
+        "n_later_first": 13,
+        "premises_subset_of_facts": 13,
+        "later_has_step0": 3,
+        "later_has_query": 0
+      },
+      "expected": {
+        "n_later_first": 13,
+        "premises_subset_of_facts": 13,
+        "later_has_step0": 3,
+        "later_has_query": 0
+      },
+      "ok": true
+    }
+  },
+  "prior_lock": {
+    "ok": true,
+    "file": "experiments/e1/synonym/yes_flip_first_since_unseen.json",
+    "compared": "synonym later_core at the condition and at tree and diamond"
+  },
+  "conditions": {
+    "b0": {
+      "n_later_first": 0,
+      "premises_subset_of_facts": 0,
+      "later_has_step0": 0,
+      "later_has_query": 0,
+      "aligned_first_step0": 0,
+      "aligned_first_same_later": 0,
+      "families": {
+        "tree": {
+          "n_later_first": 0,
+          "premises_subset_of_facts": 0,
+          "later_has_step0": 0,
+          "later_has_query": 0,
+          "aligned_first_step0": 0,
+          "aligned_first_same_later": 0
+        },
+        "diamond": {
+          "n_later_first": 0,
+          "premises_subset_of_facts": 0,
+          "later_has_step0": 0,
+          "later_has_query": 0,
+          "aligned_first_step0": 0,
+          "aligned_first_same_later": 0
+        }
+      }
+    },
+    "b1": {
+      "n_later_first": 21,
+      "premises_subset_of_facts": 21,
+      "later_has_step0": 0,
+      "later_has_query": 1,
+      "aligned_first_step0": 14,
+      "aligned_first_same_later": 4,
+      "families": {
+        "tree": {
+          "n_later_first": 8,
+          "premises_subset_of_facts": 8,
+          "later_has_step0": 0,
+          "later_has_query": 0,
+          "aligned_first_step0": 2,
+          "aligned_first_same_later": 3
+        },
+        "diamond": {
+          "n_later_first": 13,
+          "premises_subset_of_facts": 13,
+          "later_has_step0": 0,
+          "later_has_query": 1,
+          "aligned_first_step0": 12,
+          "aligned_first_same_later": 1
+        }
+      }
+    },
+    "b2": {
+      "n_later_first": 15,
+      "premises_subset_of_facts": 15,
+      "later_has_step0": 1,
+      "later_has_query": 1,
+      "aligned_first_step0": 12,
+      "aligned_first_same_later": 3,
+      "families": {
+        "tree": {
+          "n_later_first": 2,
+          "premises_subset_of_facts": 2,
+          "later_has_step0": 0,
+          "later_has_query": 0,
+          "aligned_first_step0": 1,
+          "aligned_first_same_later": 1
+        },
+        "diamond": {
+          "n_later_first": 13,
+          "premises_subset_of_facts": 13,
+          "later_has_step0": 1,
+          "later_has_query": 1,
+          "aligned_first_step0": 11,
+          "aligned_first_same_later": 2
+        }
+      }
+    },
+    "b3": {
+      "n_later_first": 22,
+      "premises_subset_of_facts": 22,
+      "later_has_step0": 0,
+      "later_has_query": 0,
+      "aligned_first_step0": 15,
+      "aligned_first_same_later": 5,
+      "families": {
+        "tree": {
+          "n_later_first": 7,
+          "premises_subset_of_facts": 7,
+          "later_has_step0": 0,
+          "later_has_query": 0,
+          "aligned_first_step0": 2,
+          "aligned_first_same_later": 3
+        },
+        "diamond": {
+          "n_later_first": 15,
+          "premises_subset_of_facts": 15,
+          "later_has_step0": 0,
+          "later_has_query": 0,
+          "aligned_first_step0": 13,
+          "aligned_first_same_later": 2
+        }
+      }
+    },
+    "ours": {
+      "n_later_first": 13,
+      "premises_subset_of_facts": 13,
+      "later_has_step0": 3,
+      "later_has_query": 0,
+      "aligned_first_step0": 7,
+      "aligned_first_same_later": 5,
+      "families": {
+        "tree": {
+          "n_later_first": 6,
+          "premises_subset_of_facts": 6,
+          "later_has_step0": 1,
+          "later_has_query": 0,
+          "aligned_first_step0": 3,
+          "aligned_first_same_later": 3
+        },
+        "diamond": {
+          "n_later_first": 7,
+          "premises_subset_of_facts": 7,
+          "later_has_step0": 2,
+          "later_has_query": 0,
+          "aligned_first_step0": 4,
+          "aligned_first_same_later": 2
+        }
+      }
+    },
+    "mix15_b1": {
+      "n_later_first": 20,
+      "premises_subset_of_facts": 20,
+      "later_has_step0": 0,
+      "later_has_query": 0,
+      "aligned_first_step0": 10,
+      "aligned_first_same_later": 7,
+      "families": {
+        "tree": {
+          "n_later_first": 10,
+          "premises_subset_of_facts": 10,
+          "later_has_step0": 0,
+          "later_has_query": 0,
+          "aligned_first_step0": 1,
+          "aligned_first_same_later": 7
+        },
+        "diamond": {
+          "n_later_first": 10,
+          "premises_subset_of_facts": 10,
+          "later_has_step0": 0,
+          "later_has_query": 0,
+          "aligned_first_step0": 9,
+          "aligned_first_same_later": 0
+        }
+      }
+    },
+    "mix15_b2": {
+      "n_later_first": 18,
+      "premises_subset_of_facts": 18,
+      "later_has_step0": 1,
+      "later_has_query": 1,
+      "aligned_first_step0": 12,
+      "aligned_first_same_later": 5,
+      "families": {
+        "tree": {
+          "n_later_first": 6,
+          "premises_subset_of_facts": 6,
+          "later_has_step0": 1,
+          "later_has_query": 0,
+          "aligned_first_step0": 2,
+          "aligned_first_same_later": 4
+        },
+        "diamond": {
+          "n_later_first": 12,
+          "premises_subset_of_facts": 12,
+          "later_has_step0": 0,
+          "later_has_query": 1,
+          "aligned_first_step0": 10,
+          "aligned_first_same_later": 1
+        }
+      }
+    },
+    "mix15_b3": {
+      "n_later_first": 5,
+      "premises_subset_of_facts": 5,
+      "later_has_step0": 0,
+      "later_has_query": 0,
+      "aligned_first_step0": 2,
+      "aligned_first_same_later": 3,
+      "families": {
+        "tree": {
+          "n_later_first": 1,
+          "premises_subset_of_facts": 1,
+          "later_has_step0": 0,
+          "later_has_query": 0,
+          "aligned_first_step0": 0,
+          "aligned_first_same_later": 1
+        },
+        "diamond": {
+          "n_later_first": 4,
+          "premises_subset_of_facts": 4,
+          "later_has_step0": 0,
+          "later_has_query": 0,
+          "aligned_first_step0": 2,
+          "aligned_first_same_later": 2
+        }
+      }
+    },
+    "mix15_ours": {
+      "n_later_first": 17,
+      "premises_subset_of_facts": 17,
+      "later_has_step0": 1,
+      "later_has_query": 0,
+      "aligned_first_step0": 8,
+      "aligned_first_same_later": 8,
+      "families": {
+        "tree": {
+          "n_later_first": 6,
+          "premises_subset_of_facts": 6,
+          "later_has_step0": 0,
+          "later_has_query": 0,
+          "aligned_first_step0": 2,
+          "aligned_first_same_later": 4
+        },
+        "diamond": {
+          "n_later_first": 11,
+          "premises_subset_of_facts": 11,
+          "later_has_step0": 1,
+          "later_has_query": 0,
+          "aligned_first_step0": 6,
+          "aligned_first_same_later": 4
+        }
+      }
+    }
+  }
+}

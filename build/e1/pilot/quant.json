@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "nf4_error": null,
+  "quant": "nf4",
+  "smoke_loss": 1.282061219215393,
+  "smoke_sft": 1.282061219215393,
+  "smoke_peak_vram_bytes": 3040947200,
+  "kl": 0.0
+}

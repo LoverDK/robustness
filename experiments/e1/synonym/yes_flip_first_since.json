@@ -1,0 +1,767 @@
+{
+  "config": {
+    "seed": 0,
+    "split": "seen",
+    "pool": "test_seen from build_pools(seed=0)",
+    "population": "seen graph, latent label yes, aligned extract yes, synonym extract no",
+    "aligned_generation": "seen_aligned|{graph_hash} in each condition's logic.jsonl. The row is not regenerated.",
+    "synonym_generation": "seen_synonym|{graph_hash} in each condition's generations.jsonl",
+    "partition": "On each side, the seven classes sum to n. Family blocks repeat those seven classes and sum to the condition.",
+    "regex": "since\\b[^\\.\\n]*,\\s*{entity} is ([a-z]+)",
+    "regex_flags": "IGNORECASE",
+    "since_sentence": "yes_flip_trace.since_atoms. Order is the order of matches. A line containing 'cannot be proved' contributes no atom.",
+    "first_atom": "atoms[0] when Since atoms exist; otherwise the class is none",
+    "classes": {
+      "step0": "the first Since atom equals core_rules[0]'s conclusion",
+      "query": "the first Since atom equals lat.query and is not the step-0 conclusion",
+      "same_premise_decoy": "the first Since atom is the conclusion of some other_rules entry whose premise frozenset equals core_rules[0], and it is not step0 or query",
+      "later_core": "the first Since atom is a conclusion of core_rules[1:], and it is not step0, query, or same_premise_decoy",
+      "other_decoy": "the first Since atom is a conclusion of a remaining other_rules entry",
+      "other": "the generation has a first Since atom and it matches none of the above",
+      "none": "the generation has no Since sentence"
+    },
+    "premise_equality": "frozenset of the premise atoms; order is ignored",
+    "same_premise_first_later_step0": "Among items whose first Since atom is same_premise_decoy, a later Since atom equals core_rules[0]'s conclusion. The first atom is not included. This count is not one of the seven classes.",
+    "same_premise_first_later_query": "Among items whose first Since atom is same_premise_decoy, a later Since atom equals lat.query. The first atom is not included. This count may overlap later step 0 and is not one of the seven classes.",
+    "families": "chain and conj_fact. Each family records the seven classes on both sides.",
+    "answer_extract": "structrobust.prompts.extract_yes_no on the generation only",
+    "duplicate_uids": "e1.read_jsonl keeps the last row for a repeated uid",
+    "conditions": [
+      "b0",
+      "b1",
+      "b2",
+      "b3",
+      "ours",
+      "mix15_b1",
+      "mix15_b2",
+      "mix15_b3",
+      "mix15_ours"
+    ],
+    "gates": "pilot ours aligned first atom: step0 16, same_premise_decoy 23, other_decoy 3, n=42; synonym first atom: same_premise_decoy 38, other_decoy 4. pilot b2 aligned: step0 13, same_premise_decoy 22, other 1, other_decoy 1, n=37; synonym: same_premise_decoy 36, other_decoy 1. Unlisted classes are 0 because those cells sum to n. A mismatch stops the script before it writes this file.",
+    "population_lock": "n and family n match experiments/e1/synonym/yes_flip_trace.json",
+    "loaded_model": false,
+    "training": false,
+    "reading": "Counts of which rule the first Since atom matches in saved generations. These counts are not evidence that reasoning improved, and they are not a win for any training condition."
+  },
+  "gates": {
+    "ok": true,
+    "population_matches_yes_flip_trace": true,
+    "pilot_ours": {
+      "n": 42,
+      "expected_n": 42,
+      "ok": true,
+      "aligned": {
+        "observed": {
+          "step0": 16,
+          "query": 0,
+          "same_premise_decoy": 23,
+          "later_core": 0,
+          "other_decoy": 3,
+          "other": 0,
+          "none": 0
+        },
+        "expected": {
+          "step0": 16,
+          "query": 0,
+          "same_premise_decoy": 23,
+          "later_core": 0,
+          "other_decoy": 3,
+          "other": 0,
+          "none": 0
+        },
+        "ok": true
+      },
+      "synonym": {
+        "observed": {
+          "step0": 0,
+          "query": 0,
+          "same_premise_decoy": 38,
+          "later_core": 0,
+          "other_decoy": 4,
+          "other": 0,
+          "none": 0
+        },
+        "expected": {
+          "step0": 0,
+          "query": 0,
+          "same_premise_decoy": 38,
+          "later_core": 0,
+          "other_decoy": 4,
+          "other": 0,
+          "none": 0
+        },
+        "ok": true
+      }
+    },
+    "pilot_b2": {
+      "n": 37,
+      "expected_n": 37,
+      "ok": true,
+      "aligned": {
+        "observed": {
+          "step0": 13,
+          "query": 0,
+          "same_premise_decoy": 22,
+          "later_core": 0,
+          "other_decoy": 1,
+          "other": 1,
+          "none": 0
+        },
+        "expected": {
+          "step0": 13,
+          "query": 0,
+          "same_premise_decoy": 22,
+          "later_core": 0,
+          "other_decoy": 1,
+          "other": 1,
+          "none": 0
+        },
+        "ok": true
+      },
+      "synonym": {
+        "observed": {
+          "step0": 0,
+          "query": 0,
+          "same_premise_decoy": 36,
+          "later_core": 0,
+          "other_decoy": 1,
+          "other": 0,
+          "none": 0
+        },
+        "expected": {
+          "step0": 0,
+          "query": 0,
+          "same_premise_decoy": 36,
+          "later_core": 0,
+          "other_decoy": 1,
+          "other": 0,
+          "none": 0
+        },
+        "ok": true
+      }
+    }
+  },
+  "conditions": {
+    "b0": {
+      "n": 13,
+      "aligned": {
+        "step0": 0,
+        "query": 0,
+        "same_premise_decoy": 0,
+        "later_core": 0,
+        "other_decoy": 0,
+        "other": 0,
+        "none": 13,
+        "same_premise_first_later_step0": 0,
+        "same_premise_first_later_query": 0
+      },
+      "synonym": {
+        "step0": 0,
+        "query": 0,
+        "same_premise_decoy": 0,
+        "later_core": 0,
+        "other_decoy": 0,
+        "other": 0,
+        "none": 13,
+        "same_premise_first_later_step0": 0,
+        "same_premise_first_later_query": 0
+      },
+      "families": {
+        "chain": {
+          "n": 3,
+          "aligned": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 0,
+            "later_core": 0,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 3
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 0,
+            "later_core": 0,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 3
+          }
+        },
+        "conj_fact": {
+          "n": 10,
+          "aligned": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 0,
+            "later_core": 0,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 10
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 0,
+            "later_core": 0,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 10
+          }
+        }
+      }
+    },
+    "b1": {
+      "n": 48,
+      "aligned": {
+        "step0": 22,
+        "query": 0,
+        "same_premise_decoy": 22,
+        "later_core": 0,
+        "other_decoy": 3,
+        "other": 1,
+        "none": 0,
+        "same_premise_first_later_step0": 22,
+        "same_premise_first_later_query": 22
+      },
+      "synonym": {
+        "step0": 0,
+        "query": 0,
+        "same_premise_decoy": 43,
+        "later_core": 0,
+        "other_decoy": 5,
+        "other": 0,
+        "none": 0,
+        "same_premise_first_later_step0": 0,
+        "same_premise_first_later_query": 1
+      },
+      "families": {
+        "chain": {
+          "n": 24,
+          "aligned": {
+            "step0": 13,
+            "query": 0,
+            "same_premise_decoy": 10,
+            "later_core": 0,
+            "other_decoy": 0,
+            "other": 1,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 24,
+            "later_core": 0,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          }
+        },
+        "conj_fact": {
+          "n": 24,
+          "aligned": {
+            "step0": 9,
+            "query": 0,
+            "same_premise_decoy": 12,
+            "later_core": 0,
+            "other_decoy": 3,
+            "other": 0,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 19,
+            "later_core": 0,
+            "other_decoy": 5,
+            "other": 0,
+            "none": 0
+          }
+        }
+      }
+    },
+    "b2": {
+      "n": 37,
+      "aligned": {
+        "step0": 13,
+        "query": 0,
+        "same_premise_decoy": 22,
+        "later_core": 0,
+        "other_decoy": 1,
+        "other": 1,
+        "none": 0,
+        "same_premise_first_later_step0": 22,
+        "same_premise_first_later_query": 20
+      },
+      "synonym": {
+        "step0": 0,
+        "query": 0,
+        "same_premise_decoy": 36,
+        "later_core": 0,
+        "other_decoy": 1,
+        "other": 0,
+        "none": 0,
+        "same_premise_first_later_step0": 0,
+        "same_premise_first_later_query": 1
+      },
+      "families": {
+        "chain": {
+          "n": 19,
+          "aligned": {
+            "step0": 6,
+            "query": 0,
+            "same_premise_decoy": 12,
+            "later_core": 0,
+            "other_decoy": 0,
+            "other": 1,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 19,
+            "later_core": 0,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          }
+        },
+        "conj_fact": {
+          "n": 18,
+          "aligned": {
+            "step0": 7,
+            "query": 0,
+            "same_premise_decoy": 10,
+            "later_core": 0,
+            "other_decoy": 1,
+            "other": 0,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 17,
+            "later_core": 0,
+            "other_decoy": 1,
+            "other": 0,
+            "none": 0
+          }
+        }
+      }
+    },
+    "b3": {
+      "n": 57,
+      "aligned": {
+        "step0": 21,
+        "query": 0,
+        "same_premise_decoy": 26,
+        "later_core": 0,
+        "other_decoy": 10,
+        "other": 0,
+        "none": 0,
+        "same_premise_first_later_step0": 26,
+        "same_premise_first_later_query": 26
+      },
+      "synonym": {
+        "step0": 1,
+        "query": 0,
+        "same_premise_decoy": 44,
+        "later_core": 0,
+        "other_decoy": 12,
+        "other": 0,
+        "none": 0,
+        "same_premise_first_later_step0": 0,
+        "same_premise_first_later_query": 0
+      },
+      "families": {
+        "chain": {
+          "n": 25,
+          "aligned": {
+            "step0": 12,
+            "query": 0,
+            "same_premise_decoy": 13,
+            "later_core": 0,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 25,
+            "later_core": 0,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          }
+        },
+        "conj_fact": {
+          "n": 32,
+          "aligned": {
+            "step0": 9,
+            "query": 0,
+            "same_premise_decoy": 13,
+            "later_core": 0,
+            "other_decoy": 10,
+            "other": 0,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 1,
+            "query": 0,
+            "same_premise_decoy": 19,
+            "later_core": 0,
+            "other_decoy": 12,
+            "other": 0,
+            "none": 0
+          }
+        }
+      }
+    },
+    "ours": {
+      "n": 42,
+      "aligned": {
+        "step0": 16,
+        "query": 0,
+        "same_premise_decoy": 23,
+        "later_core": 0,
+        "other_decoy": 3,
+        "other": 0,
+        "none": 0,
+        "same_premise_first_later_step0": 23,
+        "same_premise_first_later_query": 23
+      },
+      "synonym": {
+        "step0": 0,
+        "query": 0,
+        "same_premise_decoy": 38,
+        "later_core": 0,
+        "other_decoy": 4,
+        "other": 0,
+        "none": 0,
+        "same_premise_first_later_step0": 0,
+        "same_premise_first_later_query": 0
+      },
+      "families": {
+        "chain": {
+          "n": 28,
+          "aligned": {
+            "step0": 14,
+            "query": 0,
+            "same_premise_decoy": 14,
+            "later_core": 0,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 28,
+            "later_core": 0,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          }
+        },
+        "conj_fact": {
+          "n": 14,
+          "aligned": {
+            "step0": 2,
+            "query": 0,
+            "same_premise_decoy": 9,
+            "later_core": 0,
+            "other_decoy": 3,
+            "other": 0,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 10,
+            "later_core": 0,
+            "other_decoy": 4,
+            "other": 0,
+            "none": 0
+          }
+        }
+      }
+    },
+    "mix15_b1": {
+      "n": 57,
+      "aligned": {
+        "step0": 21,
+        "query": 0,
+        "same_premise_decoy": 30,
+        "later_core": 0,
+        "other_decoy": 6,
+        "other": 0,
+        "none": 0,
+        "same_premise_first_later_step0": 30,
+        "same_premise_first_later_query": 30
+      },
+      "synonym": {
+        "step0": 0,
+        "query": 0,
+        "same_premise_decoy": 45,
+        "later_core": 0,
+        "other_decoy": 11,
+        "other": 1,
+        "none": 0,
+        "same_premise_first_later_step0": 0,
+        "same_premise_first_later_query": 0
+      },
+      "families": {
+        "chain": {
+          "n": 26,
+          "aligned": {
+            "step0": 10,
+            "query": 0,
+            "same_premise_decoy": 16,
+            "later_core": 0,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 26,
+            "later_core": 0,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          }
+        },
+        "conj_fact": {
+          "n": 31,
+          "aligned": {
+            "step0": 11,
+            "query": 0,
+            "same_premise_decoy": 14,
+            "later_core": 0,
+            "other_decoy": 6,
+            "other": 0,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 19,
+            "later_core": 0,
+            "other_decoy": 11,
+            "other": 1,
+            "none": 0
+          }
+        }
+      }
+    },
+    "mix15_b2": {
+      "n": 44,
+      "aligned": {
+        "step0": 19,
+        "query": 0,
+        "same_premise_decoy": 22,
+        "later_core": 0,
+        "other_decoy": 2,
+        "other": 1,
+        "none": 0,
+        "same_premise_first_later_step0": 22,
+        "same_premise_first_later_query": 22
+      },
+      "synonym": {
+        "step0": 0,
+        "query": 0,
+        "same_premise_decoy": 38,
+        "later_core": 0,
+        "other_decoy": 5,
+        "other": 1,
+        "none": 0,
+        "same_premise_first_later_step0": 0,
+        "same_premise_first_later_query": 0
+      },
+      "families": {
+        "chain": {
+          "n": 19,
+          "aligned": {
+            "step0": 9,
+            "query": 0,
+            "same_premise_decoy": 9,
+            "later_core": 0,
+            "other_decoy": 0,
+            "other": 1,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 19,
+            "later_core": 0,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          }
+        },
+        "conj_fact": {
+          "n": 25,
+          "aligned": {
+            "step0": 10,
+            "query": 0,
+            "same_premise_decoy": 13,
+            "later_core": 0,
+            "other_decoy": 2,
+            "other": 0,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 19,
+            "later_core": 0,
+            "other_decoy": 5,
+            "other": 1,
+            "none": 0
+          }
+        }
+      }
+    },
+    "mix15_b3": {
+      "n": 25,
+      "aligned": {
+        "step0": 12,
+        "query": 0,
+        "same_premise_decoy": 11,
+        "later_core": 0,
+        "other_decoy": 2,
+        "other": 0,
+        "none": 0,
+        "same_premise_first_later_step0": 11,
+        "same_premise_first_later_query": 11
+      },
+      "synonym": {
+        "step0": 0,
+        "query": 0,
+        "same_premise_decoy": 23,
+        "later_core": 0,
+        "other_decoy": 2,
+        "other": 0,
+        "none": 0,
+        "same_premise_first_later_step0": 0,
+        "same_premise_first_later_query": 0
+      },
+      "families": {
+        "chain": {
+          "n": 11,
+          "aligned": {
+            "step0": 7,
+            "query": 0,
+            "same_premise_decoy": 4,
+            "later_core": 0,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 11,
+            "later_core": 0,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          }
+        },
+        "conj_fact": {
+          "n": 14,
+          "aligned": {
+            "step0": 5,
+            "query": 0,
+            "same_premise_decoy": 7,
+            "later_core": 0,
+            "other_decoy": 2,
+            "other": 0,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 12,
+            "later_core": 0,
+            "other_decoy": 2,
+            "other": 0,
+            "none": 0
+          }
+        }
+      }
+    },
+    "mix15_ours": {
+      "n": 51,
+      "aligned": {
+        "step0": 20,
+        "query": 0,
+        "same_premise_decoy": 26,
+        "later_core": 0,
+        "other_decoy": 5,
+        "other": 0,
+        "none": 0,
+        "same_premise_first_later_step0": 26,
+        "same_premise_first_later_query": 26
+      },
+      "synonym": {
+        "step0": 0,
+        "query": 0,
+        "same_premise_decoy": 40,
+        "later_core": 0,
+        "other_decoy": 10,
+        "other": 1,
+        "none": 0,
+        "same_premise_first_later_step0": 0,
+        "same_premise_first_later_query": 0
+      },
+      "families": {
+        "chain": {
+          "n": 25,
+          "aligned": {
+            "step0": 11,
+            "query": 0,
+            "same_premise_decoy": 14,
+            "later_core": 0,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 25,
+            "later_core": 0,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          }
+        },
+        "conj_fact": {
+          "n": 26,
+          "aligned": {
+            "step0": 9,
+            "query": 0,
+            "same_premise_decoy": 12,
+            "later_core": 0,
+            "other_decoy": 5,
+            "other": 0,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 15,
+            "later_core": 0,
+            "other_decoy": 10,
+            "other": 1,
+            "none": 0
+          }
+        }
+      }
+    }
+  }
+}

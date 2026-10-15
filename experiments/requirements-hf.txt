@@ -1,0 +1,5 @@
+# Optional dependencies for scripts/run_hf_predictions.py.
+# Keep the symbolic generator and analyzer standard-library only.
+torch>=2.7
+transformers>=4.50
+accelerate>=1.5

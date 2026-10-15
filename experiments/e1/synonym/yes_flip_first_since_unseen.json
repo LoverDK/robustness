@@ -1,0 +1,805 @@
+{
+  "config": {
+    "seed": 0,
+    "split": "unseen",
+    "pool": "test_unseen from build_pools(seed=0)",
+    "population": "unseen graph, latent label yes, aligned extract yes, synonym extract no",
+    "aligned_generation": "unseen_aligned|{graph_hash} in each condition's logic.jsonl. The row is not regenerated.",
+    "synonym_generation": "unseen_synonym|{graph_hash} in each condition's generations.jsonl",
+    "partition": "On each side, the seven classes sum to n. Family blocks repeat those seven classes and sum to the condition. The two later counts are not part of that partition.",
+    "regex": "since\\b[^\\.\\n]*,\\s*{entity} is ([a-z]+)",
+    "regex_flags": "IGNORECASE",
+    "since_sentence": "yes_flip_trace.since_atoms. Order is the order of matches. A line containing 'cannot be proved' contributes no atom.",
+    "first_atom": "atoms[0] when Since atoms exist; otherwise the class is none",
+    "classes": {
+      "step0": "the first Since atom equals core_rules[0]'s conclusion",
+      "query": "the first Since atom equals lat.query and is not the step-0 conclusion",
+      "same_premise_decoy": "the first Since atom is the conclusion of some other_rules entry whose premise frozenset equals core_rules[0], and it is not step0 or query",
+      "later_core": "the first Since atom is a conclusion of core_rules[1:], and it is not step0, query, or same_premise_decoy",
+      "other_decoy": "the first Since atom is a conclusion of a remaining other_rules entry",
+      "other": "the generation has a first Since atom and it matches none of the above",
+      "none": "the generation has no Since sentence"
+    },
+    "premise_equality": "frozenset of the premise atoms; order is ignored",
+    "same_premise_first_later_step0": "Among items whose first Since atom is same_premise_decoy, a later Since atom equals core_rules[0]'s conclusion. The first atom is not included. This count is not one of the seven classes.",
+    "same_premise_first_later_query": "Among items whose first Since atom is same_premise_decoy, a later Since atom equals lat.query. The first atom is not included. This count may overlap later step 0 and is not one of the seven classes.",
+    "families": [
+      "tree",
+      "diamond"
+    ],
+    "family_rule": "Families are those present in test_unseen. tree and diamond are written when present, in that order. A family absent from the pool is omitted. Any other family present in the pool is written under its own name. Each family records the seven classes on both sides.",
+    "answer_extract": "structrobust.prompts.extract_yes_no on the generation only",
+    "duplicate_uids": "e1.read_jsonl keeps the last row for a repeated uid",
+    "conditions": [
+      "b0",
+      "b1",
+      "b2",
+      "b3",
+      "ours",
+      "mix15_b1",
+      "mix15_b2",
+      "mix15_b3",
+      "mix15_ours"
+    ],
+    "gates": "pilot ours n=28. aligned first atom: step0 13, same_premise_decoy 6, later_core 5, other_decoy 3, other 1. synonym first atom: later_core 13, same_premise_decoy 9, other_decoy 4, step0 2. After a same-premise first atom, aligned later step0 6 and query 6; synonym later step0 2 and query 1. pilot b2 n=25. aligned first atom: step0 16, later_core 4, same_premise_decoy 5. synonym first atom: later_core 15, same_premise_decoy 8, other 1, other_decoy 1. After a same-premise first atom, aligned later step0 5 and query 5; synonym later step0 0 and query 0. Unlisted classes are 0 because those cells sum to n. A mismatch stops the script before it writes this file.",
+    "loaded_model": false,
+    "training": false,
+    "reading": "Counts of which rule the first Since atom matches in saved generations on unseen graphs. These counts are not evidence that reasoning improved, and they are not a win for any training condition."
+  },
+  "gates": {
+    "ok": true,
+    "pilot_ours": {
+      "n": 28,
+      "expected_n": 28,
+      "ok": true,
+      "aligned": {
+        "observed": {
+          "step0": 13,
+          "query": 0,
+          "same_premise_decoy": 6,
+          "later_core": 5,
+          "other_decoy": 3,
+          "other": 1,
+          "none": 0
+        },
+        "expected": {
+          "step0": 13,
+          "query": 0,
+          "same_premise_decoy": 6,
+          "later_core": 5,
+          "other_decoy": 3,
+          "other": 1,
+          "none": 0
+        },
+        "ok": true,
+        "later_observed": {
+          "same_premise_first_later_step0": 6,
+          "same_premise_first_later_query": 6
+        },
+        "later_expected": {
+          "same_premise_first_later_step0": 6,
+          "same_premise_first_later_query": 6
+        },
+        "later_ok": true
+      },
+      "synonym": {
+        "observed": {
+          "step0": 2,
+          "query": 0,
+          "same_premise_decoy": 9,
+          "later_core": 13,
+          "other_decoy": 4,
+          "other": 0,
+          "none": 0
+        },
+        "expected": {
+          "step0": 2,
+          "query": 0,
+          "same_premise_decoy": 9,
+          "later_core": 13,
+          "other_decoy": 4,
+          "other": 0,
+          "none": 0
+        },
+        "ok": true,
+        "later_observed": {
+          "same_premise_first_later_step0": 2,
+          "same_premise_first_later_query": 1
+        },
+        "later_expected": {
+          "same_premise_first_later_step0": 2,
+          "same_premise_first_later_query": 1
+        },
+        "later_ok": true
+      }
+    },
+    "pilot_b2": {
+      "n": 25,
+      "expected_n": 25,
+      "ok": true,
+      "aligned": {
+        "observed": {
+          "step0": 16,
+          "query": 0,
+          "same_premise_decoy": 5,
+          "later_core": 4,
+          "other_decoy": 0,
+          "other": 0,
+          "none": 0
+        },
+        "expected": {
+          "step0": 16,
+          "query": 0,
+          "same_premise_decoy": 5,
+          "later_core": 4,
+          "other_decoy": 0,
+          "other": 0,
+          "none": 0
+        },
+        "ok": true,
+        "later_observed": {
+          "same_premise_first_later_step0": 5,
+          "same_premise_first_later_query": 5
+        },
+        "later_expected": {
+          "same_premise_first_later_step0": 5,
+          "same_premise_first_later_query": 5
+        },
+        "later_ok": true
+      },
+      "synonym": {
+        "observed": {
+          "step0": 0,
+          "query": 0,
+          "same_premise_decoy": 8,
+          "later_core": 15,
+          "other_decoy": 1,
+          "other": 1,
+          "none": 0
+        },
+        "expected": {
+          "step0": 0,
+          "query": 0,
+          "same_premise_decoy": 8,
+          "later_core": 15,
+          "other_decoy": 1,
+          "other": 1,
+          "none": 0
+        },
+        "ok": true,
+        "later_observed": {
+          "same_premise_first_later_step0": 0,
+          "same_premise_first_later_query": 0
+        },
+        "later_expected": {
+          "same_premise_first_later_step0": 0,
+          "same_premise_first_later_query": 0
+        },
+        "later_ok": true
+      }
+    }
+  },
+  "conditions": {
+    "b0": {
+      "n": 17,
+      "aligned": {
+        "step0": 0,
+        "query": 1,
+        "same_premise_decoy": 0,
+        "later_core": 0,
+        "other_decoy": 0,
+        "other": 0,
+        "none": 16,
+        "same_premise_first_later_step0": 0,
+        "same_premise_first_later_query": 0
+      },
+      "synonym": {
+        "step0": 0,
+        "query": 0,
+        "same_premise_decoy": 0,
+        "later_core": 0,
+        "other_decoy": 0,
+        "other": 0,
+        "none": 17,
+        "same_premise_first_later_step0": 0,
+        "same_premise_first_later_query": 0
+      },
+      "families": {
+        "tree": {
+          "n": 7,
+          "aligned": {
+            "step0": 0,
+            "query": 1,
+            "same_premise_decoy": 0,
+            "later_core": 0,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 6
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 0,
+            "later_core": 0,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 7
+          }
+        },
+        "diamond": {
+          "n": 10,
+          "aligned": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 0,
+            "later_core": 0,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 10
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 0,
+            "later_core": 0,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 10
+          }
+        }
+      }
+    },
+    "b1": {
+      "n": 34,
+      "aligned": {
+        "step0": 19,
+        "query": 0,
+        "same_premise_decoy": 6,
+        "later_core": 4,
+        "other_decoy": 3,
+        "other": 2,
+        "none": 0,
+        "same_premise_first_later_step0": 6,
+        "same_premise_first_later_query": 6
+      },
+      "synonym": {
+        "step0": 0,
+        "query": 0,
+        "same_premise_decoy": 8,
+        "later_core": 21,
+        "other_decoy": 5,
+        "other": 0,
+        "none": 0,
+        "same_premise_first_later_step0": 0,
+        "same_premise_first_later_query": 0
+      },
+      "families": {
+        "tree": {
+          "n": 15,
+          "aligned": {
+            "step0": 3,
+            "query": 0,
+            "same_premise_decoy": 4,
+            "later_core": 3,
+            "other_decoy": 3,
+            "other": 2,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 2,
+            "later_core": 8,
+            "other_decoy": 5,
+            "other": 0,
+            "none": 0
+          }
+        },
+        "diamond": {
+          "n": 19,
+          "aligned": {
+            "step0": 16,
+            "query": 0,
+            "same_premise_decoy": 2,
+            "later_core": 1,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 6,
+            "later_core": 13,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          }
+        }
+      }
+    },
+    "b2": {
+      "n": 25,
+      "aligned": {
+        "step0": 16,
+        "query": 0,
+        "same_premise_decoy": 5,
+        "later_core": 4,
+        "other_decoy": 0,
+        "other": 0,
+        "none": 0,
+        "same_premise_first_later_step0": 5,
+        "same_premise_first_later_query": 5
+      },
+      "synonym": {
+        "step0": 0,
+        "query": 0,
+        "same_premise_decoy": 8,
+        "later_core": 15,
+        "other_decoy": 1,
+        "other": 1,
+        "none": 0,
+        "same_premise_first_later_step0": 0,
+        "same_premise_first_later_query": 0
+      },
+      "families": {
+        "tree": {
+          "n": 7,
+          "aligned": {
+            "step0": 4,
+            "query": 0,
+            "same_premise_decoy": 2,
+            "later_core": 1,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 3,
+            "later_core": 2,
+            "other_decoy": 1,
+            "other": 1,
+            "none": 0
+          }
+        },
+        "diamond": {
+          "n": 18,
+          "aligned": {
+            "step0": 12,
+            "query": 0,
+            "same_premise_decoy": 3,
+            "later_core": 3,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 5,
+            "later_core": 13,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          }
+        }
+      }
+    },
+    "b3": {
+      "n": 32,
+      "aligned": {
+        "step0": 17,
+        "query": 0,
+        "same_premise_decoy": 6,
+        "later_core": 5,
+        "other_decoy": 4,
+        "other": 0,
+        "none": 0,
+        "same_premise_first_later_step0": 6,
+        "same_premise_first_later_query": 6
+      },
+      "synonym": {
+        "step0": 0,
+        "query": 0,
+        "same_premise_decoy": 7,
+        "later_core": 22,
+        "other_decoy": 3,
+        "other": 0,
+        "none": 0,
+        "same_premise_first_later_step0": 0,
+        "same_premise_first_later_query": 0
+      },
+      "families": {
+        "tree": {
+          "n": 15,
+          "aligned": {
+            "step0": 4,
+            "query": 0,
+            "same_premise_decoy": 4,
+            "later_core": 3,
+            "other_decoy": 4,
+            "other": 0,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 5,
+            "later_core": 7,
+            "other_decoy": 3,
+            "other": 0,
+            "none": 0
+          }
+        },
+        "diamond": {
+          "n": 17,
+          "aligned": {
+            "step0": 13,
+            "query": 0,
+            "same_premise_decoy": 2,
+            "later_core": 2,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 2,
+            "later_core": 15,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          }
+        }
+      }
+    },
+    "ours": {
+      "n": 28,
+      "aligned": {
+        "step0": 13,
+        "query": 0,
+        "same_premise_decoy": 6,
+        "later_core": 5,
+        "other_decoy": 3,
+        "other": 1,
+        "none": 0,
+        "same_premise_first_later_step0": 6,
+        "same_premise_first_later_query": 6
+      },
+      "synonym": {
+        "step0": 2,
+        "query": 0,
+        "same_premise_decoy": 9,
+        "later_core": 13,
+        "other_decoy": 4,
+        "other": 0,
+        "none": 0,
+        "same_premise_first_later_step0": 2,
+        "same_premise_first_later_query": 1
+      },
+      "families": {
+        "tree": {
+          "n": 17,
+          "aligned": {
+            "step0": 7,
+            "query": 0,
+            "same_premise_decoy": 4,
+            "later_core": 3,
+            "other_decoy": 3,
+            "other": 0,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 1,
+            "query": 0,
+            "same_premise_decoy": 6,
+            "later_core": 6,
+            "other_decoy": 4,
+            "other": 0,
+            "none": 0
+          }
+        },
+        "diamond": {
+          "n": 11,
+          "aligned": {
+            "step0": 6,
+            "query": 0,
+            "same_premise_decoy": 2,
+            "later_core": 2,
+            "other_decoy": 0,
+            "other": 1,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 1,
+            "query": 0,
+            "same_premise_decoy": 3,
+            "later_core": 7,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          }
+        }
+      }
+    },
+    "mix15_b1": {
+      "n": 29,
+      "aligned": {
+        "step0": 13,
+        "query": 0,
+        "same_premise_decoy": 5,
+        "later_core": 7,
+        "other_decoy": 3,
+        "other": 1,
+        "none": 0,
+        "same_premise_first_later_step0": 5,
+        "same_premise_first_later_query": 5
+      },
+      "synonym": {
+        "step0": 0,
+        "query": 0,
+        "same_premise_decoy": 5,
+        "later_core": 20,
+        "other_decoy": 4,
+        "other": 0,
+        "none": 0,
+        "same_premise_first_later_step0": 0,
+        "same_premise_first_later_query": 0
+      },
+      "families": {
+        "tree": {
+          "n": 18,
+          "aligned": {
+            "step0": 3,
+            "query": 0,
+            "same_premise_decoy": 5,
+            "later_core": 7,
+            "other_decoy": 3,
+            "other": 0,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 4,
+            "later_core": 10,
+            "other_decoy": 4,
+            "other": 0,
+            "none": 0
+          }
+        },
+        "diamond": {
+          "n": 11,
+          "aligned": {
+            "step0": 10,
+            "query": 0,
+            "same_premise_decoy": 0,
+            "later_core": 0,
+            "other_decoy": 0,
+            "other": 1,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 1,
+            "later_core": 10,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          }
+        }
+      }
+    },
+    "mix15_b2": {
+      "n": 22,
+      "aligned": {
+        "step0": 15,
+        "query": 0,
+        "same_premise_decoy": 2,
+        "later_core": 5,
+        "other_decoy": 0,
+        "other": 0,
+        "none": 0,
+        "same_premise_first_later_step0": 2,
+        "same_premise_first_later_query": 2
+      },
+      "synonym": {
+        "step0": 0,
+        "query": 0,
+        "same_premise_decoy": 3,
+        "later_core": 18,
+        "other_decoy": 1,
+        "other": 0,
+        "none": 0,
+        "same_premise_first_later_step0": 0,
+        "same_premise_first_later_query": 0
+      },
+      "families": {
+        "tree": {
+          "n": 8,
+          "aligned": {
+            "step0": 3,
+            "query": 0,
+            "same_premise_decoy": 1,
+            "later_core": 4,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 1,
+            "later_core": 6,
+            "other_decoy": 1,
+            "other": 0,
+            "none": 0
+          }
+        },
+        "diamond": {
+          "n": 14,
+          "aligned": {
+            "step0": 12,
+            "query": 0,
+            "same_premise_decoy": 1,
+            "later_core": 1,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 2,
+            "later_core": 12,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          }
+        }
+      }
+    },
+    "mix15_b3": {
+      "n": 13,
+      "aligned": {
+        "step0": 5,
+        "query": 0,
+        "same_premise_decoy": 3,
+        "later_core": 3,
+        "other_decoy": 2,
+        "other": 0,
+        "none": 0,
+        "same_premise_first_later_step0": 3,
+        "same_premise_first_later_query": 3
+      },
+      "synonym": {
+        "step0": 1,
+        "query": 0,
+        "same_premise_decoy": 5,
+        "later_core": 5,
+        "other_decoy": 2,
+        "other": 0,
+        "none": 0,
+        "same_premise_first_later_step0": 0,
+        "same_premise_first_later_query": 0
+      },
+      "families": {
+        "tree": {
+          "n": 8,
+          "aligned": {
+            "step0": 2,
+            "query": 0,
+            "same_premise_decoy": 3,
+            "later_core": 1,
+            "other_decoy": 2,
+            "other": 0,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 1,
+            "query": 0,
+            "same_premise_decoy": 4,
+            "later_core": 1,
+            "other_decoy": 2,
+            "other": 0,
+            "none": 0
+          }
+        },
+        "diamond": {
+          "n": 5,
+          "aligned": {
+            "step0": 3,
+            "query": 0,
+            "same_premise_decoy": 0,
+            "later_core": 2,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 1,
+            "later_core": 4,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          }
+        }
+      }
+    },
+    "mix15_ours": {
+      "n": 30,
+      "aligned": {
+        "step0": 12,
+        "query": 0,
+        "same_premise_decoy": 7,
+        "later_core": 8,
+        "other_decoy": 2,
+        "other": 1,
+        "none": 0,
+        "same_premise_first_later_step0": 7,
+        "same_premise_first_later_query": 7
+      },
+      "synonym": {
+        "step0": 0,
+        "query": 0,
+        "same_premise_decoy": 11,
+        "later_core": 17,
+        "other_decoy": 2,
+        "other": 0,
+        "none": 0,
+        "same_premise_first_later_step0": 0,
+        "same_premise_first_later_query": 0
+      },
+      "families": {
+        "tree": {
+          "n": 14,
+          "aligned": {
+            "step0": 4,
+            "query": 0,
+            "same_premise_decoy": 4,
+            "later_core": 4,
+            "other_decoy": 2,
+            "other": 0,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 6,
+            "later_core": 6,
+            "other_decoy": 2,
+            "other": 0,
+            "none": 0
+          }
+        },
+        "diamond": {
+          "n": 16,
+          "aligned": {
+            "step0": 8,
+            "query": 0,
+            "same_premise_decoy": 3,
+            "later_core": 4,
+            "other_decoy": 0,
+            "other": 1,
+            "none": 0
+          },
+          "synonym": {
+            "step0": 0,
+            "query": 0,
+            "same_premise_decoy": 5,
+            "later_core": 11,
+            "other_decoy": 0,
+            "other": 0,
+            "none": 0
+          }
+        }
+      }
+    }
+  }
+}

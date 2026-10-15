@@ -1,0 +1,19 @@
+﻿.\.venv\Scripts\python.exe : Traceback (most recent call last):
+所在位置 C:\Users\Qiutian\AppData\Local\Temp\ps-script-1ff095f6-d17e-4150-ac15-1a4351399987.ps1:113 字符: 44
++ ... PATH="src"; .\.venv\Scripts\python.exe -m structrobust.e0 --depths 2  ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "D:\study\科研拔尖项目\src\structrobust\e0.py", line 109, in <module>
+    main()
+    ~~~~^^
+  File "D:\study\科研拔尖项目\src\structrobust\e0.py", line 97, in main
+    res, rows = analyze(meta, gens)
+                ~~~~~~~^^^^^^^^^^^^
+  File "D:\study\科研拔尖项目\src\structrobust\e0.py", line 63, in analyze
+    passed = (gate_lo <= acc_a <= gate_hi) and lo_a > 0.5 and sf is not None and sf >= sf_min and sf_lo > 0
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '<=' not supported between instances of 'float' and 'NoneType'

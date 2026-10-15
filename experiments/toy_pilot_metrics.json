@@ -1,0 +1,47 @@
+{
+  "status": "toy_simulation_only",
+  "warning": "These deterministic toy-agent metrics are not LLM results and are not included in the paper figures.",
+  "seed": 7,
+  "metrics": {
+    "canonical_order_heuristic": {
+      "accuracy": {
+        "IID|clean": 1.0,
+        "Surface-OOD|clean": 1.0,
+        "Structure-OOD|clean": 0.0,
+        "Composition-OOD|clean": 0.0,
+        "IID|side": 0.775,
+        "Structure-OOD|side": 0.0
+      },
+      "structural_gap_error": 1.0,
+      "side_interference_cost": 0.22499999999999998,
+      "n": {
+        "IID|clean": 240,
+        "Surface-OOD|clean": 240,
+        "Structure-OOD|clean": 240,
+        "Composition-OOD|clean": 240,
+        "IID|side": 240,
+        "Structure-OOD|side": 240
+      }
+    },
+    "graph_solver": {
+      "accuracy": {
+        "IID|clean": 1.0,
+        "Surface-OOD|clean": 1.0,
+        "Structure-OOD|clean": 1.0,
+        "Composition-OOD|clean": 1.0,
+        "IID|side": 1.0,
+        "Structure-OOD|side": 1.0
+      },
+      "structural_gap_error": 0.0,
+      "side_interference_cost": 0.0,
+      "n": {
+        "IID|clean": 240,
+        "Surface-OOD|clean": 240,
+        "Structure-OOD|clean": 240,
+        "Composition-OOD|clean": 240,
+        "IID|side": 240,
+        "Structure-OOD|side": 240
+      }
+    }
+  }
+}

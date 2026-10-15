@@ -1,0 +1,1210 @@
+{
+  "config": {
+    "seed": 0,
+    "n_boot": 2000,
+    "alpha": 0.05,
+    "interval": "[point, low, high]",
+    "contrast": "mean(changed) - mean(unchanged)",
+    "changed": "aligned correct and reversed wrong",
+    "unchanged": "aligned correct and reversed correct",
+    "subset": "aligned-correct latent tasks within one graph family",
+    "features": [
+      "d_rel",
+      "f_active"
+    ],
+    "families": [
+      "chain",
+      "conj_fact",
+      "tree",
+      "diamond"
+    ],
+    "presentation": "reversed",
+    "bootstrap": "Each group is resampled independently. The unit is one aligned-correct latent task. The changed group is drawn first from Generator(seed).",
+    "back_reads": "not contrasted; constant within each family",
+    "loaded_model": false,
+    "training": false
+  },
+  "mean_check": {
+    "compared_to": "experiments/e1/rescore/metrics.json burden.by_condition reversed_burden_mean",
+    "tolerance": 1e-12,
+    "n_compared": 360,
+    "n_mismatch": 0,
+    "mismatches": []
+  },
+  "rounds": {
+    "pilot": {
+      "b0": {
+        "chain": {
+          "pool": "seen",
+          "n_aligned_correct": 72,
+          "n_flip": 15,
+          "n_stay": 57,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 2.066666666666667,
+            "stay_mean": 2.087719298245614,
+            "diff": [
+              -0.02105263157894699,
+              -0.6001754385964913,
+              0.5896491228070166
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.2666666666666666,
+            "stay_mean": 1.2105263157894737,
+            "diff": [
+              0.056140350877192935,
+              -0.17894736842105274,
+              0.3263157894736841
+            ],
+            "contains_0": true
+          }
+        },
+        "conj_fact": {
+          "pool": "seen",
+          "n_aligned_correct": 57,
+          "n_flip": 22,
+          "n_stay": 35,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.9090909090909092,
+            "stay_mean": 1.9142857142857144,
+            "diff": [
+              -0.0051948051948051965,
+              -0.5571428571428569,
+              0.5247727272727265
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.1818181818181819,
+            "stay_mean": 1.2285714285714286,
+            "diff": [
+              -0.04675324675324677,
+              -0.2571428571428571,
+              0.17532467532467533
+            ],
+            "contains_0": true
+          }
+        },
+        "tree": {
+          "pool": "unseen",
+          "n_aligned_correct": 56,
+          "n_flip": 28,
+          "n_stay": 28,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "区间不含 0",
+            "flip_mean": 1.5,
+            "stay_mean": 1.75,
+            "diff": [
+              -0.25,
+              -0.4821428571428572,
+              -0.017857142857142794
+            ],
+            "contains_0": false
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.2857142857142858,
+            "stay_mean": 1.2857142857142858,
+            "diff": [
+              0.0,
+              -0.25,
+              0.25
+            ],
+            "contains_0": true
+          }
+        },
+        "diamond": {
+          "pool": "unseen",
+          "n_aligned_correct": 72,
+          "n_flip": 33,
+          "n_stay": 39,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.6666666666666667,
+            "stay_mean": 1.7820512820512822,
+            "diff": [
+              -0.11538461538461542,
+              -0.35201048951048947,
+              0.13056526806526791
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.303030303030303,
+            "stay_mean": 1.3333333333333333,
+            "diff": [
+              -0.030303030303030276,
+              -0.2494172494172493,
+              0.17727272727272664
+            ],
+            "contains_0": true
+          }
+        }
+      },
+      "b1": {
+        "chain": {
+          "pool": "seen",
+          "n_aligned_correct": 97,
+          "n_flip": 22,
+          "n_stay": 75,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 2.1363636363636362,
+            "stay_mean": 2.0933333333333333,
+            "diff": [
+              0.043030303030302974,
+              -0.38181818181818206,
+              0.467878787878788
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "区间不含 0",
+            "flip_mean": 1.0,
+            "stay_mean": 1.32,
+            "diff": [
+              -0.32000000000000006,
+              -0.42666666666666675,
+              -0.21333333333333337
+            ],
+            "contains_0": false
+          }
+        },
+        "conj_fact": {
+          "pool": "seen",
+          "n_aligned_correct": 97,
+          "n_flip": 30,
+          "n_stay": 67,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 2.0,
+            "stay_mean": 1.8955223880597014,
+            "diff": [
+              0.10447761194029859,
+              -0.31146766169154216,
+              0.5355223880597004
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "区间不含 0",
+            "flip_mean": 1.0333333333333334,
+            "stay_mean": 1.373134328358209,
+            "diff": [
+              -0.3398009950248755,
+              -0.4628855721393035,
+              -0.20547263681592032
+            ],
+            "contains_0": false
+          }
+        },
+        "tree": {
+          "pool": "unseen",
+          "n_aligned_correct": 89,
+          "n_flip": 28,
+          "n_stay": 61,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.7857142857142858,
+            "stay_mean": 1.6065573770491803,
+            "diff": [
+              0.17915690866510547,
+              -0.05300790398126461,
+              0.39962675644028073
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "区间不含 0",
+            "flip_mean": 1.0,
+            "stay_mean": 1.3934426229508197,
+            "diff": [
+              -0.39344262295081966,
+              -0.5081967213114753,
+              -0.2622950819672132
+            ],
+            "contains_0": false
+          }
+        },
+        "diamond": {
+          "pool": "unseen",
+          "n_aligned_correct": 87,
+          "n_flip": 36,
+          "n_stay": 51,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.75,
+            "stay_mean": 1.7058823529411764,
+            "diff": [
+              0.044117647058823595,
+              -0.1740400326797386,
+              0.2663602941176469
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "区间不含 0",
+            "flip_mean": 1.0555555555555556,
+            "stay_mean": 1.5098039215686274,
+            "diff": [
+              -0.45424836601307184,
+              -0.607843137254902,
+              -0.2940767973856212
+            ],
+            "contains_0": false
+          }
+        }
+      },
+      "b2": {
+        "chain": {
+          "pool": "seen",
+          "n_aligned_correct": 98,
+          "n_flip": 11,
+          "n_stay": 87,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 2.1818181818181817,
+            "stay_mean": 2.103448275862069,
+            "diff": [
+              0.0783699059561127,
+              -0.3657262277951936,
+              0.5454545454545454
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "区间不含 0",
+            "flip_mean": 1.0,
+            "stay_mean": 1.264367816091954,
+            "diff": [
+              -0.26436781609195403,
+              -0.35632183908045967,
+              -0.17241379310344818
+            ],
+            "contains_0": false
+          }
+        },
+        "conj_fact": {
+          "pool": "seen",
+          "n_aligned_correct": 99,
+          "n_flip": 9,
+          "n_stay": 90,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "区间不含 0",
+            "flip_mean": 1.4444444444444444,
+            "stay_mean": 1.9777777777777779,
+            "diff": [
+              -0.5333333333333334,
+              -0.8999999999999999,
+              -0.1441666666666681
+            ],
+            "contains_0": false
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.1111111111111112,
+            "stay_mean": 1.3,
+            "diff": [
+              -0.18888888888888888,
+              -0.37777777777777777,
+              0.06666666666666665
+            ],
+            "contains_0": true
+          }
+        },
+        "tree": {
+          "pool": "unseen",
+          "n_aligned_correct": 83,
+          "n_flip": 10,
+          "n_stay": 73,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.4,
+            "stay_mean": 1.6643835616438356,
+            "diff": [
+              -0.2643835616438357,
+              -0.5603253424657534,
+              0.040582191780820905
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "区间不含 0",
+            "flip_mean": 1.6,
+            "stay_mean": 1.2328767123287672,
+            "diff": [
+              0.3671232876712329,
+              0.026027397260274032,
+              0.6671232876712327
+            ],
+            "contains_0": false
+          }
+        },
+        "diamond": {
+          "pool": "unseen",
+          "n_aligned_correct": 75,
+          "n_flip": 24,
+          "n_stay": 51,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.6458333333333333,
+            "stay_mean": 1.7549019607843137,
+            "diff": [
+              -0.10906862745098045,
+              -0.3578431372549018,
+              0.16666666666666652
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.4583333333333333,
+            "stay_mean": 1.2352941176470589,
+            "diff": [
+              0.22303921568627438,
+              -0.017156862745097978,
+              0.4461397058823526
+            ],
+            "contains_0": true
+          }
+        }
+      },
+      "b3": {
+        "chain": {
+          "pool": "seen",
+          "n_aligned_correct": 98,
+          "n_flip": 11,
+          "n_stay": 87,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 2.090909090909091,
+            "stay_mean": 2.1264367816091956,
+            "diff": [
+              -0.03552769070010475,
+              -0.47863113897596654,
+              0.3983281086729353
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "区间不含 0",
+            "flip_mean": 1.0,
+            "stay_mean": 1.264367816091954,
+            "diff": [
+              -0.26436781609195403,
+              -0.35632183908045967,
+              -0.1839080459770115
+            ],
+            "contains_0": false
+          }
+        },
+        "conj_fact": {
+          "pool": "seen",
+          "n_aligned_correct": 97,
+          "n_flip": 8,
+          "n_stay": 89,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.5,
+            "stay_mean": 1.9550561797752808,
+            "diff": [
+              -0.4550561797752808,
+              -0.9522823033707866,
+              0.1123595505617978
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.125,
+            "stay_mean": 1.303370786516854,
+            "diff": [
+              -0.178370786516854,
+              -0.3707865168539326,
+              0.10537219101123577
+            ],
+            "contains_0": true
+          }
+        },
+        "tree": {
+          "pool": "unseen",
+          "n_aligned_correct": 82,
+          "n_flip": 13,
+          "n_stay": 69,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.6538461538461537,
+            "stay_mean": 1.6159420289855073,
+            "diff": [
+              0.037904124860646426,
+              -0.3083054626532888,
+              0.422519509476031
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.4615384615384615,
+            "stay_mean": 1.2463768115942029,
+            "diff": [
+              0.21516164994425857,
+              -0.07803790412486067,
+              0.5083612040133778
+            ],
+            "contains_0": true
+          }
+        },
+        "diamond": {
+          "pool": "unseen",
+          "n_aligned_correct": 80,
+          "n_flip": 28,
+          "n_stay": 52,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.7321428571428572,
+            "stay_mean": 1.7596153846153846,
+            "diff": [
+              -0.027472527472527375,
+              -0.25415521978021977,
+              0.21569368131868102
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.3928571428571428,
+            "stay_mean": 1.2307692307692308,
+            "diff": [
+              0.16208791208791196,
+              -0.052197802197802234,
+              0.3764423076923073
+            ],
+            "contains_0": true
+          }
+        }
+      },
+      "ours": {
+        "chain": {
+          "pool": "seen",
+          "n_aligned_correct": 97,
+          "n_flip": 4,
+          "n_stay": 93,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.75,
+            "stay_mean": 2.118279569892473,
+            "diff": [
+              -0.368279569892473,
+              -1.129301075268817,
+              0.48138440860214926
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "区间不含 0",
+            "flip_mean": 1.0,
+            "stay_mean": 1.2580645161290323,
+            "diff": [
+              -0.25806451612903225,
+              -0.35483870967741926,
+              -0.17204301075268824
+            ],
+            "contains_0": false
+          }
+        },
+        "conj_fact": {
+          "pool": "seen",
+          "n_aligned_correct": 80,
+          "n_flip": 4,
+          "n_stay": 76,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.75,
+            "stay_mean": 1.9210526315789473,
+            "diff": [
+              -0.17105263157894735,
+              -0.9473684210526316,
+              0.6842105263157894
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "区间不含 0",
+            "flip_mean": 1.0,
+            "stay_mean": 1.368421052631579,
+            "diff": [
+              -0.368421052631579,
+              -0.4736842105263157,
+              -0.26315789473684204
+            ],
+            "contains_0": false
+          }
+        },
+        "tree": {
+          "pool": "unseen",
+          "n_aligned_correct": 78,
+          "n_flip": 8,
+          "n_stay": 70,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.6875,
+            "stay_mean": 1.6714285714285715,
+            "diff": [
+              0.016071428571428514,
+              -0.38218749999999996,
+              0.4125892857142853
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.25,
+            "stay_mean": 1.4285714285714286,
+            "diff": [
+              -0.1785714285714286,
+              -0.47142857142857153,
+              0.15714285714285725
+            ],
+            "contains_0": true
+          }
+        },
+        "diamond": {
+          "pool": "unseen",
+          "n_aligned_correct": 71,
+          "n_flip": 15,
+          "n_stay": 56,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.6,
+            "stay_mean": 1.6339285714285714,
+            "diff": [
+              -0.03392857142857131,
+              -0.2916815476190477,
+              0.2309523809523808
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.5333333333333334,
+            "stay_mean": 1.5,
+            "diff": [
+              0.03333333333333344,
+              -0.25595238095238093,
+              0.30952380952380953
+            ],
+            "contains_0": true
+          }
+        }
+      }
+    },
+    "pilot_mix15": {
+      "b1": {
+        "chain": {
+          "pool": "seen",
+          "n_aligned_correct": 98,
+          "n_flip": 18,
+          "n_stay": 80,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 2.0555555555555554,
+            "stay_mean": 2.125,
+            "diff": [
+              -0.06944444444444464,
+              -0.4958680555555556,
+              0.37638888888888866
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "区间不含 0",
+            "flip_mean": 1.0,
+            "stay_mean": 1.2875,
+            "diff": [
+              -0.2875000000000001,
+              -0.38749999999999996,
+              -0.1875
+            ],
+            "contains_0": false
+          }
+        },
+        "conj_fact": {
+          "pool": "seen",
+          "n_aligned_correct": 95,
+          "n_flip": 25,
+          "n_stay": 70,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 2.04,
+            "stay_mean": 1.9142857142857144,
+            "diff": [
+              0.12571428571428567,
+              -0.32864285714285707,
+              0.6142857142857141
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "区间不含 0",
+            "flip_mean": 1.0,
+            "stay_mean": 1.4,
+            "diff": [
+              -0.3999999999999999,
+              -0.5142857142857142,
+              -0.2857142857142858
+            ],
+            "contains_0": false
+          }
+        },
+        "tree": {
+          "pool": "unseen",
+          "n_aligned_correct": 86,
+          "n_flip": 25,
+          "n_stay": 61,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.7,
+            "stay_mean": 1.6311475409836065,
+            "diff": [
+              0.06885245901639347,
+              -0.200327868852459,
+              0.3236721311475407
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.16,
+            "stay_mean": 1.3442622950819672,
+            "diff": [
+              -0.18426229508196723,
+              -0.3698852459016393,
+              0.010491803278688483
+            ],
+            "contains_0": true
+          }
+        },
+        "diamond": {
+          "pool": "unseen",
+          "n_aligned_correct": 74,
+          "n_flip": 27,
+          "n_stay": 47,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.7222222222222223,
+            "stay_mean": 1.7234042553191489,
+            "diff": [
+              -0.0011820330969265491,
+              -0.24743892828999203,
+              0.24546887312844756
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "区间不含 0",
+            "flip_mean": 1.1851851851851851,
+            "stay_mean": 1.3829787234042554,
+            "diff": [
+              -0.1977935382190703,
+              -0.39952718676122934,
+              -0.006973995271868379
+            ],
+            "contains_0": false
+          }
+        }
+      },
+      "b2": {
+        "chain": {
+          "pool": "seen",
+          "n_aligned_correct": 95,
+          "n_flip": 7,
+          "n_stay": 88,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 2.2857142857142856,
+            "stay_mean": 2.102272727272727,
+            "diff": [
+              0.18344155844155852,
+              -0.4107142857142858,
+              0.730560064935065
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "区间不含 0",
+            "flip_mean": 1.0,
+            "stay_mean": 1.25,
+            "diff": [
+              -0.25,
+              -0.34090909090909083,
+              -0.17017045454545607
+            ],
+            "contains_0": false
+          }
+        },
+        "conj_fact": {
+          "pool": "seen",
+          "n_aligned_correct": 98,
+          "n_flip": 8,
+          "n_stay": 90,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.625,
+            "stay_mean": 1.9555555555555555,
+            "diff": [
+              -0.3305555555555555,
+              -0.8055555555555554,
+              0.21666666666666679
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.125,
+            "stay_mean": 1.2777777777777777,
+            "diff": [
+              -0.15277777777777768,
+              -0.3555555555555556,
+              0.11944444444444446
+            ],
+            "contains_0": true
+          }
+        },
+        "tree": {
+          "pool": "unseen",
+          "n_aligned_correct": 84,
+          "n_flip": 17,
+          "n_stay": 67,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.5588235294117647,
+            "stay_mean": 1.6567164179104477,
+            "diff": [
+              -0.09789288849868294,
+              -0.39333845478489887,
+              0.19623573309920994
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "区间不含 0",
+            "flip_mean": 1.4705882352941178,
+            "stay_mean": 1.1940298507462686,
+            "diff": [
+              0.2765583845478492,
+              0.026338893766461924,
+              0.5276558384547849
+            ],
+            "contains_0": false
+          }
+        },
+        "diamond": {
+          "pool": "unseen",
+          "n_aligned_correct": 86,
+          "n_flip": 21,
+          "n_stay": 65,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.7142857142857142,
+            "stay_mean": 1.7538461538461538,
+            "diff": [
+              -0.03956043956043964,
+              -0.30001831501831505,
+              0.23854395604395565
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.380952380952381,
+            "stay_mean": 1.2461538461538462,
+            "diff": [
+              0.13479853479853476,
+              -0.10040293040293027,
+              0.3728937728937729
+            ],
+            "contains_0": true
+          }
+        }
+      },
+      "b3": {
+        "chain": {
+          "pool": "seen",
+          "n_aligned_correct": 98,
+          "n_flip": 8,
+          "n_stay": 90,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 2.25,
+            "stay_mean": 2.088888888888889,
+            "diff": [
+              0.16111111111111098,
+              -0.3390972222222223,
+              0.6361111111111111
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "区间不含 0",
+            "flip_mean": 1.0,
+            "stay_mean": 1.2555555555555555,
+            "diff": [
+              -0.25555555555555554,
+              -0.34444444444444455,
+              -0.16666666666666674
+            ],
+            "contains_0": false
+          }
+        },
+        "conj_fact": {
+          "pool": "seen",
+          "n_aligned_correct": 97,
+          "n_flip": 16,
+          "n_stay": 81,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.8125,
+            "stay_mean": 1.9506172839506173,
+            "diff": [
+              -0.1381172839506173,
+              -0.6489197530864197,
+              0.38761574074073935
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "区间不含 0",
+            "flip_mean": 1.0,
+            "stay_mean": 1.3209876543209877,
+            "diff": [
+              -0.32098765432098775,
+              -0.4197530864197532,
+              -0.22222222222222232
+            ],
+            "contains_0": false
+          }
+        },
+        "tree": {
+          "pool": "unseen",
+          "n_aligned_correct": 82,
+          "n_flip": 15,
+          "n_stay": 67,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.7666666666666666,
+            "stay_mean": 1.6343283582089552,
+            "diff": [
+              0.13233830845771144,
+              -0.1607089552238804,
+              0.42139303482587054
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.1333333333333333,
+            "stay_mean": 1.2388059701492538,
+            "diff": [
+              -0.10547263681592045,
+              -0.28358208955223874,
+              0.11741293532338304
+            ],
+            "contains_0": true
+          }
+        },
+        "diamond": {
+          "pool": "unseen",
+          "n_aligned_correct": 76,
+          "n_flip": 25,
+          "n_stay": 51,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.68,
+            "stay_mean": 1.7254901960784315,
+            "diff": [
+              -0.04549019607843152,
+              -0.2937254901960784,
+              0.20158823529411762
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.2,
+            "stay_mean": 1.2745098039215685,
+            "diff": [
+              -0.07450980392156858,
+              -0.25411764705882356,
+              0.14274509803921576
+            ],
+            "contains_0": true
+          }
+        }
+      },
+      "ours": {
+        "chain": {
+          "pool": "seen",
+          "n_aligned_correct": 92,
+          "n_flip": 13,
+          "n_stay": 79,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "区间不含 0",
+            "flip_mean": 1.6153846153846154,
+            "stay_mean": 2.1392405063291138,
+            "diff": [
+              -0.5238558909444984,
+              -1.021445959104187,
+              -0.03673320350535685
+            ],
+            "contains_0": false
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "区间不含 0",
+            "flip_mean": 1.0,
+            "stay_mean": 1.3037974683544304,
+            "diff": [
+              -0.30379746835443044,
+              -0.40506329113924044,
+              -0.20253164556962022
+            ],
+            "contains_0": false
+          }
+        },
+        "conj_fact": {
+          "pool": "seen",
+          "n_aligned_correct": 87,
+          "n_flip": 5,
+          "n_stay": 82,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "区间不含 0",
+            "flip_mean": 1.0,
+            "stay_mean": 1.975609756097561,
+            "diff": [
+              -0.975609756097561,
+              -1.1829268292682928,
+              -0.7682926829268293
+            ],
+            "contains_0": false
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "区间不含 0",
+            "flip_mean": 1.0,
+            "stay_mean": 1.329268292682927,
+            "diff": [
+              -0.3292682926829269,
+              -0.4390243902439024,
+              -0.23170731707317072
+            ],
+            "contains_0": false
+          }
+        },
+        "tree": {
+          "pool": "unseen",
+          "n_aligned_correct": 85,
+          "n_flip": 19,
+          "n_stay": 66,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.6578947368421053,
+            "stay_mean": 1.6818181818181819,
+            "diff": [
+              -0.02392344497607657,
+              -0.3177830940988835,
+              0.29187599681020715
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "区间不含 0",
+            "flip_mean": 1.5789473684210527,
+            "stay_mean": 1.303030303030303,
+            "diff": [
+              0.27591706539074967,
+              0.019936204146730585,
+              0.5167464114832536
+            ],
+            "contains_0": false
+          }
+        },
+        "diamond": {
+          "pool": "unseen",
+          "n_aligned_correct": 72,
+          "n_flip": 13,
+          "n_stay": 59,
+          "d_rel": {
+            "computable": true,
+            "reason": null,
+            "reading": "不能区分改口",
+            "flip_mean": 1.7692307692307692,
+            "stay_mean": 1.694915254237288,
+            "diff": [
+              0.0743155149934811,
+              -0.2327249022164275,
+              0.3911831812255538
+            ],
+            "contains_0": true
+          },
+          "f_active": {
+            "computable": true,
+            "reason": null,
+            "reading": "区间不含 0",
+            "flip_mean": 1.8461538461538463,
+            "stay_mean": 1.3389830508474576,
+            "diff": [
+              0.5071707953063886,
+              0.2685788787483703,
+              0.7118644067796611
+            ],
+            "contains_0": false
+          }
+        }
+      }
+    }
+  }
+}

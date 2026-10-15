@@ -1,0 +1,122 @@
+2026-10-12 17:19:24 MIX15 START b1 b2 b3 ours
+2026-10-12 17:19:24 offline hub=0 datasets=0 tf=0 endpoint=https://hf-mirror.com
+2026-10-12 17:19:32 GSM8K train via https://hf-mirror.com|openai/gsm8k n=7473; test via https://hf-mirror.com|openai/gsm8k n=1319
+2026-10-12 17:19:36 GSM8K mix questions 88 sequences 176 fraction 0.149660 steps 74 skipped 0
+2026-10-12 17:19:36 reusing quantization nf4
+W1012 17:19:37.995000 25124 .venv\Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+2026-10-12 17:19:45 b1 trainable tensors 18464768 quant nf4 micro 4 sequences synthetic 1000 gsm 176 steps 74
+2026-10-12 17:19:48 b1 step 1/74 loss 1.2280 sft 1.2280 kl 0.0000 lr 0.0001
+2026-10-12 17:20:08 b1 step 6/74 loss 0.2925 sft 0.2925 kl 0.0000 lr 0.000199144
+2026-10-12 17:20:25 b1 step 11/74 loss 0.2630 sft 0.2630 kl 0.0000 lr 0.000193969
+2026-10-12 17:20:47 b1 step 16/74 loss 0.1671 sft 0.1671 kl 0.0000 lr 0.000184339
+2026-10-12 17:21:04 b1 step 21/74 loss 0.1074 sft 0.1074 kl 0.0000 lr 0.000170711
+2026-10-12 17:21:25 b1 step 26/74 loss 0.1419 sft 0.1419 kl 0.0000 lr 0.00015373
+2026-10-12 17:21:38 b1 step 31/74 loss 0.0876 sft 0.0876 kl 0.0000 lr 0.000134202
+2026-10-12 17:21:53 b1 step 36/74 loss 0.0379 sft 0.0379 kl 0.0000 lr 0.000113053
+2026-10-12 17:22:07 b1 step 41/74 loss 0.0327 sft 0.0327 kl 0.0000 lr 9.12844e-05
+2026-10-12 17:22:21 b1 step 46/74 loss 0.1052 sft 0.1052 kl 0.0000 lr 6.99294e-05
+2026-10-12 17:22:38 b1 step 51/74 loss 0.1449 sft 0.1449 kl 0.0000 lr 5e-05
+2026-10-12 17:22:53 b1 step 56/74 loss 0.2677 sft 0.2677 kl 0.0000 lr 3.2441e-05
+2026-10-12 17:23:06 b1 step 61/74 loss 0.0982 sft 0.0982 kl 0.0000 lr 1.80848e-05
+2026-10-12 17:23:20 b1 step 66/74 loss 0.0462 sft 0.0462 kl 0.0000 lr 7.61205e-06
+2026-10-12 17:23:34 b1 step 71/74 loss 0.0486 sft 0.0486 kl 0.0000 lr 1.51922e-06
+2026-10-12 17:23:41 b1 step 74/74 loss 0.0659 sft 0.0659 kl 0.0000 lr 9.51778e-08
+2026-10-12 17:23:43 b1 training saved build/e1/pilot_mix15/b1/adapter
+[gen] 256/800  28s  512 tok/s
+[gen] 512/800  56s  506 tok/s
+[gen] 768/800  83s  509 tok/s
+[gen] 800/800  87s  510 tok/s
+[gen] 256/400  23s  550 tok/s
+[gen] 400/400  37s  536 tok/s
+[gen] 256/500  91s  261 tok/s
+[gen] 500/500  174s  272 tok/s
+2026-10-12 17:28:48 CONDITION_DONE b1 cells seen_aligned=0.9650 seen_shifted=0.7750 unseen_aligned=0.8000 unseen_shifted=0.6250 gsm8k=0.5440
+2026-10-12 17:28:54 b2 trainable tensors 18464768 quant nf4 micro 4 sequences synthetic 1000 gsm 176 steps 74
+2026-10-12 17:28:58 b2 step 1/74 loss 0.9956 sft 0.9956 kl 0.0000 lr 0.0001
+2026-10-12 17:29:15 b2 step 6/74 loss 0.3303 sft 0.3303 kl 0.0000 lr 0.000199144
+2026-10-12 17:29:50 b2 step 11/74 loss 0.0967 sft 0.0967 kl 0.0000 lr 0.000193969
+2026-10-12 17:30:23 b2 step 16/74 loss 0.0812 sft 0.0812 kl 0.0000 lr 0.000184339
+2026-10-12 17:30:57 b2 step 21/74 loss 0.1173 sft 0.1173 kl 0.0000 lr 0.000170711
+2026-10-12 17:31:11 b2 step 26/74 loss 0.0682 sft 0.0682 kl 0.0000 lr 0.00015373
+2026-10-12 17:31:26 b2 step 31/74 loss 0.1806 sft 0.1806 kl 0.0000 lr 0.000134202
+2026-10-12 17:31:40 b2 step 36/74 loss 0.0895 sft 0.0895 kl 0.0000 lr 0.000113053
+2026-10-12 17:31:55 b2 step 41/74 loss 0.4062 sft 0.4062 kl 0.0000 lr 9.12844e-05
+2026-10-12 17:32:10 b2 step 46/74 loss 0.1082 sft 0.1082 kl 0.0000 lr 6.99294e-05
+2026-10-12 17:32:24 b2 step 51/74 loss 0.0175 sft 0.0175 kl 0.0000 lr 5e-05
+2026-10-12 17:32:39 b2 step 56/74 loss 0.2208 sft 0.2208 kl 0.0000 lr 3.2441e-05
+2026-10-12 17:32:54 b2 step 61/74 loss 0.0159 sft 0.0159 kl 0.0000 lr 1.80848e-05
+2026-10-12 17:33:08 b2 step 66/74 loss 0.0356 sft 0.0356 kl 0.0000 lr 7.61205e-06
+2026-10-12 17:33:22 b2 step 71/74 loss 0.1012 sft 0.1012 kl 0.0000 lr 1.51922e-06
+2026-10-12 17:33:29 b2 step 74/74 loss 0.0139 sft 0.0139 kl 0.0000 lr 9.51778e-08
+2026-10-12 17:33:31 b2 training saved build/e1/pilot_mix15/b2/adapter
+[gen] 256/800  27s  519 tok/s
+[gen] 512/800  56s  498 tok/s
+[gen] 768/800  87s  485 tok/s
+[gen] 800/800  91s  483 tok/s
+[gen] 256/400  25s  507 tok/s
+[gen] 400/400  39s  508 tok/s
+[gen] 256/500  86s  280 tok/s
+[gen] 500/500  177s  278 tok/s
+2026-10-12 17:38:44 CONDITION_DONE b2 cells seen_aligned=0.9650 seen_shifted=0.9050 unseen_aligned=0.8500 unseen_shifted=0.7050 gsm8k=0.5260
+2026-10-12 17:38:51 b3 trainable tensors 18464768 quant nf4 micro 4 sequences synthetic 1000 gsm 176 steps 74
+2026-10-12 17:38:55 b3 step 1/74 loss 1.4257 sft 1.4255 kl 0.0014 lr 0.0001
+2026-10-12 17:39:10 b3 step 6/74 loss 0.1919 sft 0.1919 kl 0.0001 lr 0.000199144
+2026-10-12 17:39:27 b3 step 11/74 loss 0.1061 sft 0.1061 kl 0.0001 lr 0.000193969
+2026-10-12 17:39:54 b3 step 16/74 loss 0.2884 sft 0.2884 kl 0.0000 lr 0.000184339
+2026-10-12 17:40:07 b3 step 21/74 loss 0.0950 sft 0.0950 kl 0.0000 lr 0.000170711
+2026-10-12 17:40:22 b3 step 26/74 loss 0.0848 sft 0.0848 kl 0.0000 lr 0.00015373
+2026-10-12 17:40:37 b3 step 31/74 loss 0.3198 sft 0.3197 kl 0.0000 lr 0.000134202
+2026-10-12 17:40:51 b3 step 36/74 loss 0.2285 sft 0.2285 kl 0.0000 lr 0.000113053
+2026-10-12 17:41:06 b3 step 41/74 loss 0.1300 sft 0.1300 kl 0.0000 lr 9.12844e-05
+2026-10-12 17:41:20 b3 step 46/74 loss 0.1812 sft 0.1812 kl 0.0000 lr 6.99294e-05
+2026-10-12 17:41:34 b3 step 51/74 loss 0.0248 sft 0.0248 kl 0.0000 lr 5e-05
+2026-10-12 17:41:49 b3 step 56/74 loss 0.0710 sft 0.0710 kl 0.0000 lr 3.2441e-05
+2026-10-12 17:42:03 b3 step 61/74 loss 0.2919 sft 0.2919 kl 0.0000 lr 1.80848e-05
+2026-10-12 17:42:17 b3 step 66/74 loss 0.0198 sft 0.0198 kl 0.0000 lr 7.61205e-06
+2026-10-12 17:42:32 b3 step 71/74 loss 0.1224 sft 0.1224 kl 0.0000 lr 1.51922e-06
+2026-10-12 17:42:40 b3 step 74/74 loss 0.0262 sft 0.0262 kl 0.0000 lr 9.51778e-08
+2026-10-12 17:42:42 b3 training saved build/e1/pilot_mix15/b3/adapter
+[gen] 256/800  28s  522 tok/s
+[gen] 512/800  54s  531 tok/s
+[gen] 768/800  81s  529 tok/s
+[gen] 800/800  85s  529 tok/s
+[gen] 256/400  22s  576 tok/s
+[gen] 400/400  35s  565 tok/s
+[gen] 256/500  80s  292 tok/s
+[gen] 500/500  160s  291 tok/s
+2026-10-12 17:47:28 B3 validation mean minus comparison gap 0.0300; lambda 0.5 was not run
+2026-10-12 17:47:28 CONDITION_DONE b3 cells seen_aligned=0.9750 seen_shifted=0.8750 unseen_aligned=0.7900 unseen_shifted=0.6400 gsm8k=0.5080
+2026-10-12 17:47:34 ours trainable tensors 18464768 quant nf4 micro 4 sequences synthetic 1000 gsm 176 steps 74
+2026-10-12 18:14:28 ours mine round 0 selected burden 2.2287 vs candidate 1.6715
+2026-10-12 18:14:31 ours step 1/74 loss 1.2500 sft 1.2500 kl 0.0000 lr 0.0001
+2026-10-12 18:15:11 ours step 6/74 loss 0.3034 sft 0.3034 kl 0.0000 lr 0.000199144
+2026-10-12 18:15:49 ours step 11/74 loss 0.1365 sft 0.1365 kl 0.0000 lr 0.000193969
+2026-10-12 18:16:25 ours step 16/74 loss 0.0658 sft 0.0658 kl 0.0000 lr 0.000184339
+2026-10-12 18:17:02 ours step 21/74 loss 0.1358 sft 0.1358 kl 0.0000 lr 0.000170711
+2026-10-12 18:17:40 ours step 26/74 loss 0.2171 sft 0.2171 kl 0.0000 lr 0.00015373
+2026-10-12 18:18:20 ours step 31/74 loss 0.0477 sft 0.0477 kl 0.0000 lr 0.000134202
+2026-10-12 18:18:58 ours step 36/74 loss 0.3139 sft 0.3139 kl 0.0000 lr 0.000113053
+2026-10-12 19:04:45 ours mine round 1 selected burden 2.2033 vs candidate 1.6715
+2026-10-12 19:05:16 ours step 41/74 loss 0.1353 sft 0.1353 kl 0.0000 lr 9.12844e-05
+2026-10-12 19:05:53 ours step 46/74 loss 0.1757 sft 0.1757 kl 0.0000 lr 6.99294e-05
+2026-10-12 19:06:30 ours step 51/74 loss 0.0189 sft 0.0189 kl 0.0000 lr 5e-05
+2026-10-12 19:07:07 ours step 56/74 loss 0.0567 sft 0.0567 kl 0.0000 lr 3.2441e-05
+2026-10-12 19:07:44 ours step 61/74 loss 0.2101 sft 0.2101 kl 0.0000 lr 1.80848e-05
+2026-10-12 19:08:19 ours step 66/74 loss 0.0413 sft 0.0413 kl 0.0000 lr 7.61205e-06
+2026-10-12 19:08:56 ours step 71/74 loss 0.1196 sft 0.1196 kl 0.0000 lr 1.51922e-06
+2026-10-12 19:09:14 ours step 74/74 loss 0.0090 sft 0.0090 kl 0.0000 lr 9.51778e-08
+2026-10-12 19:09:16 ours training saved build/e1/pilot_mix15/ours/adapter
+[gen] 256/800  29s  478 tok/s
+[gen] 512/800  59s  474 tok/s
+[gen] 768/800  87s  479 tok/s
+[gen] 800/800  90s  481 tok/s
+[gen] 256/400  23s  545 tok/s
+[gen] 400/400  36s  544 tok/s
+[gen] 256/500  108s  219 tok/s
+[gen] 500/500  192s  242 tok/s
+2026-10-12 19:14:40 CONDITION_DONE ours cells seen_aligned=0.8950 seen_shifted=0.8400 unseen_aligned=0.7850 unseen_shifted=0.7000 gsm8k=0.4580
+2026-10-12 19:14:40 GSM8K_COMPARE b1 0.5440 b0 0.6880 drop 0.1440
+2026-10-12 19:14:40 GSM8K_COMPARE b2 0.5260 b0 0.6880 drop 0.1620
+2026-10-12 19:14:40 GSM8K_COMPARE b3 0.5080 b0 0.6880 drop 0.1800
+2026-10-12 19:14:40 GSM8K_COMPARE ours 0.4580 b0 0.6880 drop 0.2300
+2026-10-12 19:14:40 MIX15 COMPLETE b1 b2 b3 ours; mix fraction was not increased

@@ -1,0 +1,355 @@
+{
+  "config": {
+    "seed": 0,
+    "split": "seen",
+    "pool": "test_seen from build_pools(seed=0)",
+    "population": "seen graph, latent label yes, aligned extract yes, synonym extract no",
+    "empty_extract": "Seen gold-yes items whose aligned extract is yes and whose synonym extract is empty. They are counted in n_empty_extract and are not placed in the four buckets. n counts synonym extract no.",
+    "partition": "sum of the four buckets plus n_empty_extract equals n",
+    "regex": "since\\b[^\\.\\n]*,\\s*{entity} is ([a-z]+)",
+    "regex_flags": "IGNORECASE",
+    "since_sentence": "A match of the regex on one generation line. A line containing 'cannot be proved' contributes neither a derived atom nor a Since count.",
+    "buckets": {
+      "query_derived": "a Since sentence derives the query atom",
+      "step0_not_query": "a Since sentence derives core_rules[0]'s conclusion and none derives the query",
+      "other_derived": "at least one Since sentence, and neither the step-0 conclusion nor the query is derived",
+      "no_since": "no Since sentence"
+    },
+    "step0_conclusion": "conclusion atom of lat.core_rules[0]",
+    "query": "lat.query",
+    "entity": "lat.entity",
+    "answer_extract": "structrobust.prompts.extract_yes_no on the generation only",
+    "duplicate_uids": "e1.read_jsonl keeps the last row for a repeated uid",
+    "pairs": {
+      "pilot_ours_wrong_b2_right": "seen, gold yes, pilot ours and pilot b2 aligned extracts are yes, ours synonym extract is not yes, b2 synonym extract is yes",
+      "mix15_ours_wrong_b2_right": "seen, gold yes, mix15 ours and mix15 b2 aligned extracts are yes, mix15 ours synonym extract is not yes, mix15 b2 synonym extract is yes"
+    },
+    "pair_sides": "left is ours, right is b2; the right side is not restricted to extract no",
+    "loaded_model": false,
+    "training": false,
+    "reading": "Counts of Since sentences in saved generations. These counts are not evidence that reasoning improved, and they are not a win for any training condition."
+  },
+  "sanity": {
+    "graph_hash": "099cd1bf088e74592cba2fd9c8b6303c1b89361f8fe3f673939bfb6394ab30ad",
+    "pair": "pilot_ours_wrong_b2_right",
+    "in_pair": true,
+    "generation_chars": 138,
+    "ends_with_answer_no": true,
+    "n_since": 1,
+    "derived_atoms": [
+      "windy"
+    ],
+    "step0_conclusion": "silver",
+    "query": "snowy",
+    "entity": "Tina",
+    "bucket": "other_derived",
+    "sanity_ok": false
+  },
+  "conditions": {
+    "b0": {
+      "n": 13,
+      "n_empty_extract": 0,
+      "query_derived": 0,
+      "step0_not_query": 0,
+      "other_derived": 0,
+      "no_since": 13,
+      "since_count_mean": 0.0,
+      "families": {
+        "chain": {
+          "n": 3,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 0,
+          "no_since": 3,
+          "since_count_mean": 0.0
+        },
+        "conj_fact": {
+          "n": 10,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 0,
+          "no_since": 10,
+          "since_count_mean": 0.0
+        }
+      }
+    },
+    "b1": {
+      "n": 48,
+      "n_empty_extract": 0,
+      "query_derived": 1,
+      "step0_not_query": 0,
+      "other_derived": 47,
+      "no_since": 0,
+      "since_count_mean": 1.5416666666666667,
+      "families": {
+        "chain": {
+          "n": 24,
+          "n_empty_extract": 0,
+          "query_derived": 1,
+          "step0_not_query": 0,
+          "other_derived": 23,
+          "no_since": 0,
+          "since_count_mean": 1.375
+        },
+        "conj_fact": {
+          "n": 24,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 24,
+          "no_since": 0,
+          "since_count_mean": 1.7083333333333333
+        }
+      }
+    },
+    "b2": {
+      "n": 37,
+      "n_empty_extract": 0,
+      "query_derived": 1,
+      "step0_not_query": 0,
+      "other_derived": 36,
+      "no_since": 0,
+      "since_count_mean": 1.6486486486486487,
+      "families": {
+        "chain": {
+          "n": 19,
+          "n_empty_extract": 0,
+          "query_derived": 1,
+          "step0_not_query": 0,
+          "other_derived": 18,
+          "no_since": 0,
+          "since_count_mean": 1.4736842105263157
+        },
+        "conj_fact": {
+          "n": 18,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 18,
+          "no_since": 0,
+          "since_count_mean": 1.8333333333333333
+        }
+      }
+    },
+    "b3": {
+      "n": 57,
+      "n_empty_extract": 0,
+      "query_derived": 0,
+      "step0_not_query": 1,
+      "other_derived": 56,
+      "no_since": 0,
+      "since_count_mean": 1.456140350877193,
+      "families": {
+        "chain": {
+          "n": 25,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 25,
+          "no_since": 0,
+          "since_count_mean": 1.28
+        },
+        "conj_fact": {
+          "n": 32,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 1,
+          "other_derived": 31,
+          "no_since": 0,
+          "since_count_mean": 1.59375
+        }
+      }
+    },
+    "ours": {
+      "n": 42,
+      "n_empty_extract": 0,
+      "query_derived": 0,
+      "step0_not_query": 0,
+      "other_derived": 42,
+      "no_since": 0,
+      "since_count_mean": 1.3333333333333333,
+      "families": {
+        "chain": {
+          "n": 28,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 28,
+          "no_since": 0,
+          "since_count_mean": 1.2857142857142858
+        },
+        "conj_fact": {
+          "n": 14,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 14,
+          "no_since": 0,
+          "since_count_mean": 1.4285714285714286
+        }
+      }
+    },
+    "mix15_b1": {
+      "n": 57,
+      "n_empty_extract": 0,
+      "query_derived": 0,
+      "step0_not_query": 0,
+      "other_derived": 57,
+      "no_since": 0,
+      "since_count_mean": 1.4210526315789473,
+      "families": {
+        "chain": {
+          "n": 26,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 26,
+          "no_since": 0,
+          "since_count_mean": 1.3461538461538463
+        },
+        "conj_fact": {
+          "n": 31,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 31,
+          "no_since": 0,
+          "since_count_mean": 1.4838709677419355
+        }
+      }
+    },
+    "mix15_b2": {
+      "n": 44,
+      "n_empty_extract": 0,
+      "query_derived": 0,
+      "step0_not_query": 0,
+      "other_derived": 44,
+      "no_since": 0,
+      "since_count_mean": 1.6363636363636365,
+      "families": {
+        "chain": {
+          "n": 19,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 19,
+          "no_since": 0,
+          "since_count_mean": 1.368421052631579
+        },
+        "conj_fact": {
+          "n": 25,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 25,
+          "no_since": 0,
+          "since_count_mean": 1.84
+        }
+      }
+    },
+    "mix15_b3": {
+      "n": 25,
+      "n_empty_extract": 0,
+      "query_derived": 0,
+      "step0_not_query": 0,
+      "other_derived": 25,
+      "no_since": 0,
+      "since_count_mean": 1.56,
+      "families": {
+        "chain": {
+          "n": 11,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 11,
+          "no_since": 0,
+          "since_count_mean": 1.2727272727272727
+        },
+        "conj_fact": {
+          "n": 14,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 14,
+          "no_since": 0,
+          "since_count_mean": 1.7857142857142858
+        }
+      }
+    },
+    "mix15_ours": {
+      "n": 51,
+      "n_empty_extract": 0,
+      "query_derived": 0,
+      "step0_not_query": 0,
+      "other_derived": 51,
+      "no_since": 0,
+      "since_count_mean": 1.4705882352941178,
+      "families": {
+        "chain": {
+          "n": 25,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 25,
+          "no_since": 0,
+          "since_count_mean": 1.36
+        },
+        "conj_fact": {
+          "n": 26,
+          "n_empty_extract": 0,
+          "query_derived": 0,
+          "step0_not_query": 0,
+          "other_derived": 26,
+          "no_since": 0,
+          "since_count_mean": 1.5769230769230769
+        }
+      }
+    }
+  },
+  "pairs": {
+    "pilot_ours_wrong_b2_right": {
+      "n": 18,
+      "left": {
+        "condition": "ours",
+        "n_empty_extract": 0,
+        "query_derived": 0,
+        "step0_not_query": 0,
+        "other_derived": 18,
+        "no_since": 0,
+        "since_count_mean": 1.1666666666666667
+      },
+      "right": {
+        "condition": "b2",
+        "n_empty_extract": 0,
+        "query_derived": 18,
+        "step0_not_query": 0,
+        "other_derived": 0,
+        "no_since": 0,
+        "since_count_mean": 3.2777777777777777
+      }
+    },
+    "mix15_ours_wrong_b2_right": {
+      "n": 20,
+      "left": {
+        "condition": "mix15_ours",
+        "n_empty_extract": 0,
+        "query_derived": 0,
+        "step0_not_query": 0,
+        "other_derived": 20,
+        "no_since": 0,
+        "since_count_mean": 1.4
+      },
+      "right": {
+        "condition": "mix15_b2",
+        "n_empty_extract": 0,
+        "query_derived": 20,
+        "step0_not_query": 0,
+        "other_derived": 0,
+        "no_since": 0,
+        "since_count_mean": 3.0
+      }
+    }
+  }
+}

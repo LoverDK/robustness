@@ -1,0 +1,168 @@
+{
+  "n_latent": {
+    "seen": 200,
+    "unseen": 200
+  },
+  "n_yes": {
+    "seen": 100,
+    "unseen": 100
+  },
+  "n_no": {
+    "seen": 100,
+    "unseen": 100
+  },
+  "paired_unit": "latent_task",
+  "n_boot": 2000,
+  "acc": {
+    "seen": {
+      "aligned": [
+        0.71,
+        0.649875,
+        0.775
+      ],
+      "reversed": [
+        0.655,
+        0.59,
+        0.72
+      ],
+      "synonym": [
+        0.685,
+        0.62,
+        0.75
+      ]
+    },
+    "unseen": {
+      "aligned": [
+        0.555,
+        0.485,
+        0.625
+      ],
+      "reversed": [
+        0.51,
+        0.44,
+        0.58
+      ],
+      "synonym": [
+        0.61,
+        0.54,
+        0.675
+      ]
+    }
+  },
+  "SF": {
+    "seen": {
+      "reversed": [
+        0.352112676056338,
+        0.2758357462490129,
+        0.42657575757575755
+      ],
+      "synonym": [
+        0.3028169014084507,
+        0.2318840579710145,
+        0.379316637301787
+      ]
+    },
+    "unseen": {
+      "reversed": [
+        0.5225225225225225,
+        0.4285409035409035,
+        0.6153846153846154
+      ],
+      "synonym": [
+        0.3333333333333333,
+        0.25,
+        0.4220448129851798
+      ]
+    }
+  },
+  "delta_T": {
+    "aligned": [
+      0.15499999999999992,
+      0.06487499999999996,
+      0.25
+    ],
+    "reversed": [
+      0.14500000000000002,
+      0.04999999999999993,
+      0.235
+    ],
+    "synonym": [
+      0.07500000000000007,
+      -0.020000000000000018,
+      0.16999999999999993
+    ]
+  },
+  "interaction": {
+    "reversed": [
+      -0.009999999999999898,
+      -0.14500000000000002,
+      0.12
+    ],
+    "synonym": [
+      -0.07999999999999985,
+      -0.21499999999999997,
+      0.039999999999999925
+    ]
+  },
+  "SF_definition": "P(target wrong | aligned right), latent-task bootstrap within the pool",
+  "delta_T_definition": "acc(seen, p) - acc(unseen, p); latent tasks are resampled independently in each pool",
+  "interaction_definition": "delta_T(p) - delta_T(aligned) on the same bootstrap draw",
+  "extract_fail_rate": {
+    "seen": {
+      "aligned": 0.005,
+      "reversed": 0.0,
+      "synonym": 0.005
+    },
+    "unseen": {
+      "aligned": 0.015,
+      "reversed": 0.01,
+      "synonym": 0.005
+    }
+  },
+  "pred_yes_rate": {
+    "seen": {
+      "aligned": 0.555,
+      "reversed": 0.485,
+      "synonym": 0.63
+    },
+    "unseen": {
+      "aligned": 0.59,
+      "reversed": 0.41,
+      "synonym": 0.615
+    }
+  },
+  "config": {
+    "model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "adapter": null,
+    "depth": 2,
+    "seen_families": [
+      "chain",
+      "conj_fact"
+    ],
+    "unseen_families": [
+      "tree",
+      "diamond"
+    ],
+    "n_per_family": 100,
+    "vocab": "eval",
+    "tag": "transfer",
+    "seed": 2,
+    "max_new_tokens": 512,
+    "batch_size": 32,
+    "decoding": "greedy",
+    "cot": true,
+    "bootstrap_seed": 2,
+    "n_boot": 2000,
+    "paired_unit": "latent_task",
+    "conditions": [
+      "aligned",
+      "reversed",
+      "synonym"
+    ],
+    "sf_pairs": [
+      "aligned->reversed",
+      "aligned->synonym"
+    ],
+    "training": false
+  }
+}

@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" modified="2026-09-27T00:00:00.000Z" agent="Codex" version="24.7.17">
+  <diagram id="structshift-fig1" name="Page-1">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="620" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="f1_title" value="StructShift: schematic label-preserving structural shift" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#263238;fontSize=28;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1520" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_note" value="Illustrative pre-experiment example; no model result is shown" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#607D8B;fontSize=16;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="78" width="1520" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_a" value="Clean instance&lt;br&gt;&lt;br&gt;Start with 8 points.&lt;br&gt;Lose 3, then gain 2.&lt;br&gt;&lt;br&gt;Question: What is the final total?&lt;br&gt;&lt;br&gt;&lt;b&gt;Solver: 8 - 3 + 2 = 7&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fontColor=#263238;fontSize=18;spacing=14;verticalAlign=top;fillColor=#EAF2F8;strokeColor=#377EB8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="135" width="455" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_b" value="Held-out operator order&lt;br&gt;&lt;br&gt;Start with 8 points.&lt;br&gt;Gain 2, then lose 3.&lt;br&gt;&lt;br&gt;Question: What is the final total?&lt;br&gt;&lt;br&gt;&lt;b&gt;Solver: 8 + 2 - 3 = 7&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fontColor=#263238;fontSize=18;spacing=14;verticalAlign=top;fillColor=#FCEBDD;strokeColor=#D95F02;" vertex="1" parent="1">
+          <mxGeometry x="570" y="135" width="455" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_c" value="Separate side-question factor&lt;br&gt;&lt;br&gt;Keep the main task fixed.&lt;br&gt;Insert a length-matched unrelated question or statement.&lt;br&gt;&lt;br&gt;Prompt asks for the main answer only.&lt;br&gt;&lt;br&gt;&lt;b&gt;Analyze as a separate factor&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fontColor=#263238;fontSize=18;spacing=14;verticalAlign=top;fillColor=#E8F5EF;strokeColor=#1B9E77;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="135" width="455" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#D95F02;strokeWidth=2;dashed=0;" edge="1" parent="1" source="f1_a" target="f1_b">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#1B9E77;strokeWidth=2;dashed=0;" edge="1" parent="1" source="f1_a" target="f1_c">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

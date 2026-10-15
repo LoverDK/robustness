@@ -1,0 +1,224 @@
+{
+  "config": {
+    "seed": 0,
+    "pools": {
+      "seen": "test_seen from build_pools(seed=0)",
+      "unseen": "test_unseen from build_pools(seed=0)"
+    },
+    "population": "latent label yes and aligned extract yes. n is that count. The synonym extract then splits n into the four cells and n_empty.",
+    "aligned_generation": "{seen|unseen}_aligned|{graph_hash} in each condition's logic.jsonl. The row is not regenerated. It is used only to require extract yes.",
+    "synonym_generation": "{seen|unseen}_synonym|{graph_hash} in each condition's generations.jsonl",
+    "decoy": "some other_rules entry has a premise frozenset equal to core_rules[0]. The comparison uses the latent only. Generation text is not read for this flag.",
+    "premise_equality": "frozenset of the premise atoms, lowercased; order is ignored",
+    "cells": {
+      "wrong_with_decoy": "synonym extract no, and the latent has a same-premise decoy",
+      "wrong_without_decoy": "synonym extract no, and the latent has no same-premise decoy",
+      "right_with_decoy": "synonym extract yes, and the latent has a same-premise decoy",
+      "right_without_decoy": "synonym extract yes, and the latent has no same-premise decoy"
+    },
+    "n_empty": "synonym extract is empty. These items stay in n and stay out of the four cells.",
+    "partition": "wrong_with_decoy + wrong_without_decoy + right_with_decoy + right_without_decoy + n_empty = n",
+    "answer_extract": "structrobust.prompts.extract_yes_no on the generation only",
+    "duplicate_uids": "e1.read_jsonl keeps the last row for a repeated uid",
+    "conditions": [
+      "b0",
+      "b1",
+      "b2",
+      "b3",
+      "ours",
+      "mix15_b1",
+      "mix15_b2",
+      "mix15_b3",
+      "mix15_ours"
+    ],
+    "gates": "seen pilot ours: wrong_with_decoy 39, wrong_without_decoy 3, right_with_decoy 9, right_without_decoy 26. seen pilot b2: wrong_with_decoy 36, wrong_without_decoy 1, right_with_decoy 25, right_without_decoy 36. A mismatch stops the script before it writes this file. Counts are not adjusted to meet the gate.",
+    "loaded_model": false,
+    "training": false,
+    "reading": "A cross-tab of whether the latent has a same-premise decoy and whether the saved synonym extract is yes or no. These counts are not evidence that reasoning improved, and they are not a win for any training condition."
+  },
+  "gates": {
+    "ok": true,
+    "seen": {
+      "ours": {
+        "ok": true,
+        "observed": {
+          "wrong_with_decoy": 39,
+          "wrong_without_decoy": 3,
+          "right_with_decoy": 9,
+          "right_without_decoy": 26
+        },
+        "expected": {
+          "wrong_with_decoy": 39,
+          "wrong_without_decoy": 3,
+          "right_with_decoy": 9,
+          "right_without_decoy": 26
+        }
+      },
+      "b2": {
+        "ok": true,
+        "observed": {
+          "wrong_with_decoy": 36,
+          "wrong_without_decoy": 1,
+          "right_with_decoy": 25,
+          "right_without_decoy": 36
+        },
+        "expected": {
+          "wrong_with_decoy": 36,
+          "wrong_without_decoy": 1,
+          "right_with_decoy": 25,
+          "right_without_decoy": 36
+        }
+      }
+    }
+  },
+  "splits": {
+    "seen": {
+      "b0": {
+        "n": 70,
+        "wrong_with_decoy": 8,
+        "wrong_without_decoy": 5,
+        "right_with_decoy": 37,
+        "right_without_decoy": 20,
+        "n_empty": 0
+      },
+      "b1": {
+        "n": 96,
+        "wrong_with_decoy": 46,
+        "wrong_without_decoy": 2,
+        "right_with_decoy": 14,
+        "right_without_decoy": 34,
+        "n_empty": 0
+      },
+      "b2": {
+        "n": 98,
+        "wrong_with_decoy": 36,
+        "wrong_without_decoy": 1,
+        "right_with_decoy": 25,
+        "right_without_decoy": 36,
+        "n_empty": 0
+      },
+      "b3": {
+        "n": 96,
+        "wrong_with_decoy": 48,
+        "wrong_without_decoy": 9,
+        "right_with_decoy": 12,
+        "right_without_decoy": 27,
+        "n_empty": 0
+      },
+      "ours": {
+        "n": 77,
+        "wrong_with_decoy": 39,
+        "wrong_without_decoy": 3,
+        "right_with_decoy": 9,
+        "right_without_decoy": 26,
+        "n_empty": 0
+      },
+      "mix15_b1": {
+        "n": 95,
+        "wrong_with_decoy": 49,
+        "wrong_without_decoy": 8,
+        "right_with_decoy": 10,
+        "right_without_decoy": 28,
+        "n_empty": 0
+      },
+      "mix15_b2": {
+        "n": 99,
+        "wrong_with_decoy": 40,
+        "wrong_without_decoy": 4,
+        "right_with_decoy": 22,
+        "right_without_decoy": 33,
+        "n_empty": 0
+      },
+      "mix15_b3": {
+        "n": 99,
+        "wrong_with_decoy": 25,
+        "wrong_without_decoy": 0,
+        "right_with_decoy": 37,
+        "right_without_decoy": 37,
+        "n_empty": 0
+      },
+      "mix15_ours": {
+        "n": 80,
+        "wrong_with_decoy": 43,
+        "wrong_without_decoy": 8,
+        "right_with_decoy": 5,
+        "right_without_decoy": 24,
+        "n_empty": 0
+      }
+    },
+    "unseen": {
+      "b0": {
+        "n": 68,
+        "wrong_with_decoy": 8,
+        "wrong_without_decoy": 9,
+        "right_with_decoy": 24,
+        "right_without_decoy": 26,
+        "n_empty": 1
+      },
+      "b1": {
+        "n": 94,
+        "wrong_with_decoy": 20,
+        "wrong_without_decoy": 14,
+        "right_with_decoy": 28,
+        "right_without_decoy": 32,
+        "n_empty": 0
+      },
+      "b2": {
+        "n": 83,
+        "wrong_with_decoy": 14,
+        "wrong_without_decoy": 11,
+        "right_with_decoy": 30,
+        "right_without_decoy": 28,
+        "n_empty": 0
+      },
+      "b3": {
+        "n": 85,
+        "wrong_with_decoy": 20,
+        "wrong_without_decoy": 12,
+        "right_with_decoy": 25,
+        "right_without_decoy": 28,
+        "n_empty": 0
+      },
+      "ours": {
+        "n": 49,
+        "wrong_with_decoy": 18,
+        "wrong_without_decoy": 10,
+        "right_with_decoy": 9,
+        "right_without_decoy": 12,
+        "n_empty": 0
+      },
+      "mix15_b1": {
+        "n": 84,
+        "wrong_with_decoy": 19,
+        "wrong_without_decoy": 10,
+        "right_with_decoy": 29,
+        "right_without_decoy": 26,
+        "n_empty": 0
+      },
+      "mix15_b2": {
+        "n": 98,
+        "wrong_with_decoy": 9,
+        "wrong_without_decoy": 13,
+        "right_with_decoy": 40,
+        "right_without_decoy": 36,
+        "n_empty": 0
+      },
+      "mix15_b3": {
+        "n": 92,
+        "wrong_with_decoy": 7,
+        "wrong_without_decoy": 6,
+        "right_with_decoy": 41,
+        "right_without_decoy": 38,
+        "n_empty": 0
+      },
+      "mix15_ours": {
+        "n": 64,
+        "wrong_with_decoy": 18,
+        "wrong_without_decoy": 12,
+        "right_with_decoy": 18,
+        "right_without_decoy": 16,
+        "n_empty": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+name = "StructRobust"
+version = "0.1.0"
+defaultTargets = ["StructRobust"]
+
+[[lean_lib]]
+name = "StructRobust"

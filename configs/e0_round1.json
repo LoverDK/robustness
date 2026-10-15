@@ -1,0 +1,17 @@
+{
+  "round": 1,
+  "purpose": "E0 sanity gate, no training",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "depths": [2, 4, 6, 8],
+  "n_per_level": 200,
+  "families": ["chain", "conj_fact"],
+  "vocab": "eval",
+  "presentations": ["aligned", "reversed", "random", "random_distract"],
+  "label_balance": "1:1 yes/no",
+  "max_new_tokens": 512,
+  "batch_size": 32,
+  "decoding": "greedy",
+  "seed": 0,
+  "eval_order": "shuffled",
+  "notes": "Round 1 uses the pre-registered depths. A 16-example timing run at depth 4 is not a gate round and is not used to choose difficulty."
+}

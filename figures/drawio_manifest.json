@@ -1,0 +1,22 @@
+{
+  "type": "original_pre_experiment_figures",
+  "reference_images": [],
+  "entries": [
+    {
+      "name": "fig1_motivated_example",
+      "drawio": "fig1_motivated_example.drawio",
+      "preview": "fig1_motivated_example.png"
+    },
+    {
+      "name": "fig2_pipeline",
+      "drawio": "fig2_pipeline.drawio",
+      "preview": "fig2_pipeline.png"
+    },
+    {
+      "name": "fig3_results_template",
+      "drawio": "fig3_results_template.drawio",
+      "preview": "fig3_results_template.png"
+    }
+  ],
+  "note": "Draw.io CLI was not available in this environment; previews are generated from the same geometry specification and source files were checked with check_drawio.py."
+}

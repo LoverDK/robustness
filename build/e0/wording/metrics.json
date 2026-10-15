@@ -1,0 +1,91 @@
+{
+  "n_latent": 200,
+  "n_yes": 100,
+  "n_no": 100,
+  "paired_unit": "latent_task",
+  "acc": {
+    "aligned": [
+      0.665,
+      0.6,
+      0.73
+    ],
+    "reversed": [
+      0.635,
+      0.57,
+      0.7
+    ],
+    "synonym": [
+      0.695,
+      0.63,
+      0.755
+    ],
+    "ambiguous": [
+      0.585,
+      0.52,
+      0.655
+    ]
+  },
+  "SF": {
+    "reversed": [
+      0.3308270676691729,
+      0.2519056510516777,
+      0.41008133791474277
+    ],
+    "synonym": [
+      0.2631578947368421,
+      0.18880105401844532,
+      0.3440206896551723
+    ]
+  },
+  "SF_definition": "P(target wrong | aligned right), latent-task bootstrap; ambiguous excluded",
+  "ambiguous": {
+    "acc": [
+      0.585,
+      0.52,
+      0.655
+    ],
+    "entailment_broken": true,
+    "scored_against": "original_solver_label"
+  },
+  "extract_fail_rate": {
+    "aligned": 0.015,
+    "reversed": 0.0,
+    "synonym": 0.01,
+    "ambiguous": 0.0
+  },
+  "pred_yes_rate": {
+    "aligned": 0.555,
+    "reversed": 0.445,
+    "synonym": 0.66,
+    "ambiguous": 0.545
+  },
+  "config": {
+    "model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "depth": 2,
+    "families": [
+      "chain",
+      "conj_fact"
+    ],
+    "n_per_family": 100,
+    "vocab": "eval",
+    "tag": "wording",
+    "seed": 1,
+    "max_new_tokens": 512,
+    "batch_size": 32,
+    "decoding": "greedy",
+    "cot": true,
+    "bootstrap_seed": 2,
+    "paired_unit": "latent_task",
+    "conditions": [
+      "aligned",
+      "reversed",
+      "synonym",
+      "ambiguous"
+    ],
+    "sf_pairs": [
+      "aligned->reversed",
+      "aligned->synonym"
+    ],
+    "training": false
+  }
+}

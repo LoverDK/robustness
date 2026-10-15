@@ -1,0 +1,410 @@
+{
+  "config": {
+    "seed": 0,
+    "pools": "test_seen and test_unseen from build_pools(seed=0)",
+    "splits": {
+      "seen": "test_seen; families chain and conj_fact; uid seen_aligned|{hash} and seen_shifted|{hash}",
+      "unseen": "test_unseen; families tree and diamond; uid unseen_aligned|{hash} and unseen_shifted|{hash}"
+    },
+    "presentation": "shifted rows are the generator's reversed presentation, not a synonym rewrite",
+    "population": "latent label yes, aligned extract yes, shifted extract no. The Since chain is the shifted generation. The population matches yes_order_trace.",
+    "empty_extract": "Gold-yes items whose aligned extract is yes and whose shifted extract is empty. They are counted in n_empty_extract and do not enter the prefix histogram. n counts shifted extract no.",
+    "core_chain": "c0, c1, ... are the conclusions of core_rules in proof order. core_chain_length is the histogram of that length. Its values sum to n.",
+    "prefix": "The largest r such that c0 through c_{r-1} all occur in the shifted Since atoms. Comparison is lowercase set membership. Since sentences need not follow proof order. The first missing core conclusion truncates the prefix. Prefix histogram values sum to n.",
+    "query_is_last": "Every classified item has lat.query equal to the last core conclusion. Otherwise the script stops and names the shifted uid.",
+    "skipped_query": "The query occurs in the Since atoms and the prefix is shorter than the core chain. A full prefix that includes the query is not counted.",
+    "same_premise_first": "yes_flip_first_since.first_since_class returns same_premise_decoy. Premise equality is frozenset.",
+    "same_premise_later_step0": "Among same_premise_first items, an atom after the first equals core_rules[0]'s conclusion. The first atom is not included.",
+    "same_premise_later_query": "Among same_premise_first items, an atom after the first equals lat.query. The first atom is not included. This count may overlap later step 0.",
+    "regex": "since\\b[^\\.\\n]*,\\s*{entity} is ([a-z]+)",
+    "regex_flags": "IGNORECASE",
+    "since_sentence": "yes_flip_trace.since_atoms. Order is the order of matches. A line containing 'cannot be proved' contributes no atom.",
+    "answer_extract": "structrobust.prompts.extract_yes_no on the generation only",
+    "duplicate_uids": "e1.read_jsonl keeps the last row for a repeated uid",
+    "population_lock": "n, n_empty_extract, and same_premise_first match experiments/e1/reversed/yes_order_trace.json",
+    "inputs": [
+      "build/e1/pilot/b0/logic.jsonl",
+      "build/e1/pilot/b1/logic.jsonl",
+      "build/e1/pilot/b2/logic.jsonl",
+      "build/e1/pilot/b3/logic.jsonl",
+      "build/e1/pilot/ours/logic.jsonl",
+      "build/e1/pilot_mix15/b1/logic.jsonl",
+      "build/e1/pilot_mix15/b2/logic.jsonl",
+      "build/e1/pilot_mix15/b3/logic.jsonl",
+      "build/e1/pilot_mix15/ours/logic.jsonl"
+    ],
+    "conditions": [
+      "b0",
+      "b1",
+      "b2",
+      "b3",
+      "ours",
+      "mix15_b1",
+      "mix15_b2",
+      "mix15_b3",
+      "mix15_ours"
+    ],
+    "gates": "pilot ours seen: n=7, core_chain_length {2: 7}, prefix {0: 1, 1: 6}, skipped_query=0, same_premise_first=3, later_step0=2, later_query=0. pilot ours unseen: n=8, core_chain_length {3: 8}, prefix {0: 1, 2: 3, 3: 4}, skipped_query=0, same_premise_first=1, later_step0=1, later_query=1. A mismatch stops the script before it writes this file.",
+    "loaded_model": false,
+    "training": false,
+    "not_read": "synonym generations.jsonl",
+    "reading": "Counts of how far reversed Since atoms follow the core proof. These counts are not evidence that reasoning improved, and they are not a win for any training condition."
+  },
+  "gates": {
+    "ok": true,
+    "population_matches_yes_order_trace": true,
+    "pilot_ours_seen": {
+      "ok": true,
+      "observed": {
+        "n": 7,
+        "core_chain_length": {
+          "2": 7
+        },
+        "prefix": {
+          "0": 1,
+          "1": 6
+        },
+        "skipped_query": 0,
+        "same_premise_first": 3,
+        "same_premise_later_step0": 2,
+        "same_premise_later_query": 0
+      },
+      "expected": {
+        "n": 7,
+        "core_chain_length": {
+          "2": 7
+        },
+        "prefix": {
+          "0": 1,
+          "1": 6
+        },
+        "skipped_query": 0,
+        "same_premise_first": 3,
+        "same_premise_later_step0": 2,
+        "same_premise_later_query": 0
+      }
+    },
+    "pilot_ours_unseen": {
+      "ok": true,
+      "observed": {
+        "n": 8,
+        "core_chain_length": {
+          "3": 8
+        },
+        "prefix": {
+          "0": 1,
+          "2": 3,
+          "3": 4
+        },
+        "skipped_query": 0,
+        "same_premise_first": 1,
+        "same_premise_later_step0": 1,
+        "same_premise_later_query": 1
+      },
+      "expected": {
+        "n": 8,
+        "core_chain_length": {
+          "3": 8
+        },
+        "prefix": {
+          "0": 1,
+          "2": 3,
+          "3": 4
+        },
+        "skipped_query": 0,
+        "same_premise_first": 1,
+        "same_premise_later_step0": 1,
+        "same_premise_later_query": 1
+      }
+    }
+  },
+  "conditions": {
+    "b0": {
+      "seen": {
+        "n": 21,
+        "n_empty_extract": 1,
+        "core_chain_length": {
+          "2": 21
+        },
+        "prefix": {
+          "0": 21
+        },
+        "skipped_query": 0,
+        "same_premise_first": 0,
+        "same_premise_later_step0": 0,
+        "same_premise_later_query": 0
+      },
+      "unseen": {
+        "n": 33,
+        "n_empty_extract": 1,
+        "core_chain_length": {
+          "3": 33
+        },
+        "prefix": {
+          "0": 32,
+          "1": 1
+        },
+        "skipped_query": 0,
+        "same_premise_first": 0,
+        "same_premise_later_step0": 0,
+        "same_premise_later_query": 0
+      }
+    },
+    "b1": {
+      "seen": {
+        "n": 48,
+        "n_empty_extract": 0,
+        "core_chain_length": {
+          "2": 48
+        },
+        "prefix": {
+          "0": 2,
+          "1": 46
+        },
+        "skipped_query": 0,
+        "same_premise_first": 17,
+        "same_premise_later_step0": 15,
+        "same_premise_later_query": 0
+      },
+      "unseen": {
+        "n": 58,
+        "n_empty_extract": 0,
+        "core_chain_length": {
+          "3": 58
+        },
+        "prefix": {
+          "1": 1,
+          "2": 56,
+          "3": 1
+        },
+        "skipped_query": 0,
+        "same_premise_first": 4,
+        "same_premise_later_step0": 4,
+        "same_premise_later_query": 0
+      }
+    },
+    "b2": {
+      "seen": {
+        "n": 15,
+        "n_empty_extract": 0,
+        "core_chain_length": {
+          "2": 15
+        },
+        "prefix": {
+          "0": 3,
+          "1": 12
+        },
+        "skipped_query": 0,
+        "same_premise_first": 8,
+        "same_premise_later_step0": 5,
+        "same_premise_later_query": 0
+      },
+      "unseen": {
+        "n": 12,
+        "n_empty_extract": 0,
+        "core_chain_length": {
+          "3": 12
+        },
+        "prefix": {
+          "2": 12
+        },
+        "skipped_query": 0,
+        "same_premise_first": 2,
+        "same_premise_later_step0": 2,
+        "same_premise_later_query": 0
+      }
+    },
+    "b3": {
+      "seen": {
+        "n": 12,
+        "n_empty_extract": 0,
+        "core_chain_length": {
+          "2": 12
+        },
+        "prefix": {
+          "0": 2,
+          "1": 10
+        },
+        "skipped_query": 0,
+        "same_premise_first": 6,
+        "same_premise_later_step0": 5,
+        "same_premise_later_query": 0
+      },
+      "unseen": {
+        "n": 18,
+        "n_empty_extract": 0,
+        "core_chain_length": {
+          "3": 18
+        },
+        "prefix": {
+          "0": 2,
+          "2": 16
+        },
+        "skipped_query": 0,
+        "same_premise_first": 3,
+        "same_premise_later_step0": 2,
+        "same_premise_later_query": 0
+      }
+    },
+    "ours": {
+      "seen": {
+        "n": 7,
+        "n_empty_extract": 0,
+        "core_chain_length": {
+          "2": 7
+        },
+        "prefix": {
+          "0": 1,
+          "1": 6
+        },
+        "skipped_query": 0,
+        "same_premise_first": 3,
+        "same_premise_later_step0": 2,
+        "same_premise_later_query": 0
+      },
+      "unseen": {
+        "n": 8,
+        "n_empty_extract": 0,
+        "core_chain_length": {
+          "3": 8
+        },
+        "prefix": {
+          "0": 1,
+          "2": 3,
+          "3": 4
+        },
+        "skipped_query": 0,
+        "same_premise_first": 1,
+        "same_premise_later_step0": 1,
+        "same_premise_later_query": 1
+      }
+    },
+    "mix15_b1": {
+      "seen": {
+        "n": 41,
+        "n_empty_extract": 0,
+        "core_chain_length": {
+          "2": 41
+        },
+        "prefix": {
+          "0": 3,
+          "1": 38
+        },
+        "skipped_query": 0,
+        "same_premise_first": 14,
+        "same_premise_later_step0": 12,
+        "same_premise_later_query": 0
+      },
+      "unseen": {
+        "n": 42,
+        "n_empty_extract": 0,
+        "core_chain_length": {
+          "3": 42
+        },
+        "prefix": {
+          "0": 1,
+          "1": 1,
+          "2": 40
+        },
+        "skipped_query": 0,
+        "same_premise_first": 8,
+        "same_premise_later_step0": 8,
+        "same_premise_later_query": 0
+      }
+    },
+    "mix15_b2": {
+      "seen": {
+        "n": 9,
+        "n_empty_extract": 0,
+        "core_chain_length": {
+          "2": 9
+        },
+        "prefix": {
+          "0": 2,
+          "1": 7
+        },
+        "skipped_query": 0,
+        "same_premise_first": 5,
+        "same_premise_later_step0": 3,
+        "same_premise_later_query": 0
+      },
+      "unseen": {
+        "n": 18,
+        "n_empty_extract": 0,
+        "core_chain_length": {
+          "3": 18
+        },
+        "prefix": {
+          "0": 1,
+          "2": 17
+        },
+        "skipped_query": 0,
+        "same_premise_first": 2,
+        "same_premise_later_step0": 2,
+        "same_premise_later_query": 0
+      }
+    },
+    "mix15_b3": {
+      "seen": {
+        "n": 21,
+        "n_empty_extract": 0,
+        "core_chain_length": {
+          "2": 21
+        },
+        "prefix": {
+          "0": 3,
+          "1": 18
+        },
+        "skipped_query": 0,
+        "same_premise_first": 9,
+        "same_premise_later_step0": 6,
+        "same_premise_later_query": 0
+      },
+      "unseen": {
+        "n": 27,
+        "n_empty_extract": 0,
+        "core_chain_length": {
+          "3": 27
+        },
+        "prefix": {
+          "2": 27
+        },
+        "skipped_query": 0,
+        "same_premise_first": 2,
+        "same_premise_later_step0": 2,
+        "same_premise_later_query": 0
+      }
+    },
+    "mix15_ours": {
+      "seen": {
+        "n": 16,
+        "n_empty_extract": 0,
+        "core_chain_length": {
+          "2": 16
+        },
+        "prefix": {
+          "0": 5,
+          "1": 11
+        },
+        "skipped_query": 0,
+        "same_premise_first": 8,
+        "same_premise_later_step0": 3,
+        "same_premise_later_query": 0
+      },
+      "unseen": {
+        "n": 8,
+        "n_empty_extract": 0,
+        "core_chain_length": {
+          "3": 8
+        },
+        "prefix": {
+          "2": 8
+        },
+        "skipped_query": 0,
+        "same_premise_first": 2,
+        "same_premise_later_step0": 2,
+        "same_premise_later_query": 0
+      }
+    }
+  }
+}

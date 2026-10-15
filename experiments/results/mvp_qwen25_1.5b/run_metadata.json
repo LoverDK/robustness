@@ -1,0 +1,10 @@
+{
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+  "n_records": 200,
+  "seconds": 15.29,
+  "deterministic": true,
+  "max_new_tokens": 4,
+  "dataset_seed": 20261008
+}

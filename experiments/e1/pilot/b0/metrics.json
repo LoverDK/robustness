@@ -1,0 +1,123 @@
+{
+  "condition": "b0",
+  "status": "complete",
+  "seed": 0,
+  "depth": 2,
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "quant": "bf16-eval",
+  "adapter": null,
+  "train_seconds": 0.0,
+  "mine_seconds": 0.0,
+  "eval_seconds": 1614.0669558999944,
+  "wall_seconds": 1614.067267400038,
+  "peak_vram_bytes": 3980063232,
+  "peak_vram_mib": 3795.68408203125,
+  "train_peak_vram_mib": 0.0,
+  "eval_peak_vram_mib": 3795.68408203125,
+  "train": {
+    "train_seconds": 0.0,
+    "adapter": null,
+    "steps": 0
+  },
+  "cells": {
+    "seen_aligned": {
+      "acc": 0.645,
+      "lo": 0.58,
+      "hi": 0.71,
+      "n": 200,
+      "n_yes": 100,
+      "n_no": 100,
+      "extract_fail_rate": 0.01,
+      "pred_yes_rate": 0.545,
+      "presentation": "aligned",
+      "back_reads_mean": 0.0
+    },
+    "seen_shifted": {
+      "acc": 0.685,
+      "lo": 0.62,
+      "hi": 0.75,
+      "n": 200,
+      "n_yes": 100,
+      "n_no": 100,
+      "extract_fail_rate": 0.01,
+      "pred_yes_rate": 0.445,
+      "presentation": "reversed",
+      "back_reads_mean": 1.0
+    },
+    "unseen_aligned": {
+      "acc": 0.64,
+      "lo": 0.57,
+      "hi": 0.705,
+      "n": 200,
+      "n_yes": 100,
+      "n_no": 100,
+      "extract_fail_rate": 0.04,
+      "pred_yes_rate": 0.515,
+      "presentation": "aligned",
+      "back_reads_mean": 0.0
+    },
+    "unseen_shifted": {
+      "acc": 0.55,
+      "lo": 0.48,
+      "hi": 0.62,
+      "n": 200,
+      "n_yes": 100,
+      "n_no": 100,
+      "extract_fail_rate": 0.005,
+      "pred_yes_rate": 0.46,
+      "presentation": "reversed",
+      "back_reads_mean": 3.0
+    }
+  },
+  "val": {
+    "val_aligned": {
+      "acc": 0.655,
+      "lo": 0.585,
+      "hi": 0.72,
+      "n": 200,
+      "n_yes": 100,
+      "n_no": 100,
+      "extract_fail_rate": 0.005,
+      "pred_yes_rate": 0.625,
+      "presentation": "aligned",
+      "back_reads_mean": 0.0
+    },
+    "val_shifted": {
+      "acc": 0.64,
+      "lo": 0.575,
+      "hi": 0.705,
+      "n": 200,
+      "n_yes": 100,
+      "n_no": 100,
+      "extract_fail_rate": 0.005,
+      "pred_yes_rate": 0.505,
+      "presentation": "reversed",
+      "back_reads_mean": 1.0
+    }
+  },
+  "gsm8k": {
+    "acc": 0.688,
+    "lo": 0.65,
+    "hi": 0.728,
+    "n": 500,
+    "extract_fail_rate": 0.012,
+    "n_extract_fail": 6,
+    "status": "scored"
+  },
+  "eval_batch_size": {
+    "logic": 32,
+    "val": 32,
+    "gsm8k": 32
+  },
+  "decoding": {
+    "do_sample": false,
+    "max_new_tokens": 512
+  },
+  "files": {
+    "logic_generations": "build/e1/pilot/b0/logic.jsonl",
+    "val_generations": "build/e1/pilot/b0/val.jsonl",
+    "gsm8k_generations": "build/e1/pilot/b0/gsm8k.jsonl",
+    "train_log": null,
+    "train_done": null
+  }
+}

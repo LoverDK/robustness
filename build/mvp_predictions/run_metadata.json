@@ -1,0 +1,7 @@
+{
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "device": "cuda",
+  "n_records": 50,
+  "seconds": 5.94,
+  "deterministic": true
+}

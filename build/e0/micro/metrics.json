@@ -1,0 +1,85 @@
+{
+  "levels": {
+    "4": {
+      "n_latent": 4,
+      "acc": {
+        "aligned": [
+          0.5,
+          0.0,
+          1.0
+        ],
+        "reversed": [
+          0.75,
+          0.25,
+          1.0
+        ],
+        "random": [
+          0.25,
+          0.0,
+          0.75
+        ],
+        "random_distract": [
+          0.75,
+          0.25,
+          1.0
+        ]
+      },
+      "diff_vs_aligned": {
+        "reversed": [
+          -0.25,
+          -1.0,
+          0.5
+        ],
+        "random": [
+          0.25,
+          -0.5,
+          1.0
+        ],
+        "random_distract": [
+          -0.25,
+          -0.75,
+          0.0
+        ]
+      },
+      "SF": {
+        "reversed": [
+          0.5,
+          0.0,
+          1.0
+        ],
+        "random": [
+          1.0,
+          0.0,
+          1.0
+        ],
+        "random_distract": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "extract_fail_rate": 0.0,
+      "pred_yes_rate": 0.4375,
+      "gate_pass": false
+    }
+  },
+  "gate": {
+    "any_level_pass": false,
+    "criteria": "aligned acc in [0.55,0.9], aligned CI lower > 0.5 (majority baseline), SF(aligned->random) >= 0.1 with CI lower > 0"
+  },
+  "config": {
+    "model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "depths": [
+      4
+    ],
+    "n_per_level": 4,
+    "max_new_tokens": 512,
+    "seed": 0,
+    "families": [
+      "chain",
+      "conj_fact"
+    ],
+    "vocab": "eval",
+    "decoding": "greedy"
+  }
+}
